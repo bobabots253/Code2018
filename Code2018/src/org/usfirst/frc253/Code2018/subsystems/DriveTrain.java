@@ -51,5 +51,12 @@ public class DriveTrain extends Subsystem {
         // Set the default command for a subsystem here.
         // setDefaultCommand(new MySpecialCommand());
     }
+    public void drive(double leftspeed, double rightspeed){
+    	leftFront.set(leftspeed * -1); 
+    	leftBack.set(leftspeed * -1);
+    	rightFront.set(rightspeed);
+    	rightBack.set(rightspeed);
+    	
+    }
 }
 
