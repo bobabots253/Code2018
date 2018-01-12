@@ -52,8 +52,8 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     public void drive(double leftspeed, double rightspeed){
-    	leftFront.set(leftspeed * -1); 
-    	leftBack.set(leftspeed * -1);
+    	leftFront.set(leftspeed * -1);// We are setting the speed controllers to speed
+    	leftBack.set(leftspeed * -1);//the leftfront and back are multiplied by -1 because the values are reversed 
     	rightFront.set(rightspeed);
     	rightBack.set(rightspeed);
     	
