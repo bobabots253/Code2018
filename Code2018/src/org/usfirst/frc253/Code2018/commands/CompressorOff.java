@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class CompressorOff extends Command {
-
+	boolean changeStatus = true;
+	boolean toggle = true;
+	
     public CompressorOff() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -20,7 +22,14 @@ public class CompressorOff extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	boolean isPressedTurnOn = Robot.oi.getRightJoystick().getRawButton(2);
+    	if(isPressedTurnOn && toggle){
+    		toggle = false;
+    		changeStatus = !changeStatus;
+    	}
     	Robot.pneumatics.compressStop();
+    	
+    	
     }
 
     // Make this return true when this Command no longer needs to run execute()
