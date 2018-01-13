@@ -7,9 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class doubleSolenoid3Reverse extends Command {
+public class doubleSolenoid3Toggle extends Command {
+	boolean changeStatus = true;
+	boolean toggle = true;
 
-    public doubleSolenoid3Reverse() {
+    public doubleSolenoid3Toggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -20,7 +22,18 @@ public class doubleSolenoid3Reverse extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.pneumatics.doubleSolenoid3Reverse();
+    	boolean isPressedTurnOn = Robot.oi.getRightJoystick().getRawButton(2); 
+    	if(isPressedTurnOn && toggle){
+    		toggle = false; 
+    		changeStatus = !changeStatus; 
+    	}else if (!isPressedTurnOn){ 
+    		toggle = true; 
+    	}
+    	if(!changeStatus){
+    		Robot.pneumatics.doubleSolenoid3Forward(); 
+    	}else{
+    		Robot.pneumatics.doubleSolenoid3Reverse(); 
+    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
