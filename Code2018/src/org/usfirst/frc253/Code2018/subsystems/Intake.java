@@ -3,6 +3,7 @@ package org.usfirst.frc253.Code2018.subsystems;
 import org.usfirst.frc253.Code2018.RobotMap;
 
 import edu.wpi.first.wpilibj.SpeedController;
+import edu.wpi.first.wpilibj.VictorSP;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
@@ -22,7 +23,15 @@ public class Intake extends Subsystem {
     }
     public void grab(){
     	VictorSP1.set(.5);
+    	VictorSP2.set(-.5);
+    }
+    public void letGo(){
+    	VictorSP1.set(-.5);
     	VictorSP2.set(.5);
+    }
+    public void stopGrab(){
+    	VictorSP1.set(0);
+    	VictorSP2.set(0);
     }
     
     

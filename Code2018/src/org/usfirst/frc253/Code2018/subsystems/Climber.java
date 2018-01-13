@@ -23,5 +23,8 @@ public class Climber extends Subsystem {
     public void down(){
     	spark1.set(-.5);
     }
+    public void stop(){
+    	spark1.set(0);
+    }
 }
 
