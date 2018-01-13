@@ -91,7 +91,6 @@ public class RobotMap {
         
         pneumaticsCompressor1 = new Compressor(0);
         
-<<<<<<< HEAD
         elevatorSpark1 = new Spark(0); 
         LiveWindow.addActuator("Elevator", "Spark1", elevatorSpark1); 
         
