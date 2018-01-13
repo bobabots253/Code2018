@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CompressorOff extends Command {
+public class CompressorToggle extends Command {
 	boolean changeStatus = true;
 	boolean toggle = true;
 	
-    public CompressorOff() {
+    public CompressorToggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -26,8 +26,15 @@ public class CompressorOff extends Command {
     	if(isPressedTurnOn && toggle){
     		toggle = false;
     		changeStatus = !changeStatus;
+    	}else if(!isPressedTurnOn){
+    		toggle = true;
     	}
-    	Robot.pneumatics.compressStop();
+    	if(!changeStatus){
+    		Robot.pneumatics.compressStart();
+    	}else{
+    		Robot.pneumatics.compressStop();
+    	}
+    	
     	
     	
     }
