@@ -17,5 +17,11 @@ public class Climber extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    public void up(){
+    	spark1.set(.5);
+    }
+    public void down(){
+    	spark1.set(-.5);
+    }
 }
 
