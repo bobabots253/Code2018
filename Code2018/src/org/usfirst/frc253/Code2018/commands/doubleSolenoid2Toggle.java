@@ -7,11 +7,11 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class doubleSolenoid2Forward extends Command {
+public class doubleSolenoid2Toggle extends Command {
 	boolean changeStatus = true;
 	boolean toggle = true;
 
-    public doubleSolenoid2Forward() {
+    public doubleSolenoid2Toggle() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
