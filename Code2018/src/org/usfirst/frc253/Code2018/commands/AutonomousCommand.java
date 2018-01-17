@@ -35,13 +35,13 @@ public class AutonomousCommand extends CommandGroup {
     	if(position == Position.LEFT || position == Position.RIGHT){
     		if(switchSide == position.getPos() && scaleSide != position.getPos()){//Switch is ours and scale is not ours
     			if(canDo == Enemy.SCALE){
-    				//defend
+    				addSequential(new TurnLeft()); 
     			}else{
     				//switch
     			}
     		}else if(switchSide != position.getPos() && scaleSide == position.getPos()){//Switch is not ours scale is ours
     			if(canDo == Enemy.DEFEND){
-    				//exchange 
+    				addSequential(new exchangeCommand());
     			}else{
     				//scale
     			} 
@@ -53,9 +53,9 @@ public class AutonomousCommand extends CommandGroup {
     			} 
     		}else if(switchSide != position.getPos() && scaleSide != position.getPos()){//Neither scale or switch  
     			if(canDo == Enemy.SCALE){
-    				//defend
+    				addSequential(new TurnLeft()); 
     			}else{
-    				//exchange
+    				addSequential(new exchangeCommand());
     			}
     		}
     	}else if (position == Position.CENTER){
@@ -63,13 +63,13 @@ public class AutonomousCommand extends CommandGroup {
         		if(isDoing == Ally.SCALEORDEFEND){
         			//switch
         		}else{
-        			//exchange
+    				addSequential(new exchangeCommand());
         		}
         	}else if(switchSide == 'R'){
         		if(isDoing == Ally.SCALEORDEFEND){
         			//switch
         		}else{
-        			//exchange
+    				addSequential(new exchangeCommand());
         		}
         	}
     	}
