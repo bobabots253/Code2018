@@ -56,7 +56,7 @@ public class Elevator extends Subsystem {
     
     public Elevator(){
     	
-    }m ntg ,
+    }
     
     public void lift(){
     	spark1.set(.5);
