@@ -72,7 +72,14 @@ public class Elevator extends Subsystem {
     public void sweepBackward(){
     	talon1.set(-.5);
     }
+    public void sweepStop(){
+    	talon1.set(0);
+    }
    
+    public void eleStop(){
+    	spark1.set(0);
+    	spark2.set(0);
+    }
 }
 
 
