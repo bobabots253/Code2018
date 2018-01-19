@@ -8,11 +8,17 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class TurnLeft extends Command {
-
-
+	boolean isTimed;
+	
     public TurnLeft() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(Robot.driveTrain);
+    	isTimed = false;
+    }
+    public TurnLeft(double time) {
+    	isTimed = true; 
+    	setTimeout (time); 
     	requires(Robot.driveTrain);
     }
 
@@ -27,7 +33,11 @@ public class TurnLeft extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+    	if(isTimed){
+    		return isTimedOut();
+    	}else{
+    		return false;
+    	}
     }
 
     // Called once after isFinished returns true

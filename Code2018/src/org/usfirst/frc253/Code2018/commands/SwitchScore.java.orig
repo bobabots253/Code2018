@@ -24,9 +24,16 @@ public class SwitchScore extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+<<<<<<< HEAD
     	addSequential(new elevatorUp(3));
-    	addSequential(new sweepForward(1));
+    	addSequential(new sweepForward());
     	addSequential(new sweepBack(1));
+    	addSequential(new elevatorDown());
+=======
+    	addSequential(new elevatorUp());
+    	addSequential(new sweepForward(1));
+    	addSequential(new sweepBack());
     	addSequential(new elevatorDown(3));
+>>>>>>> master
     }
 }
