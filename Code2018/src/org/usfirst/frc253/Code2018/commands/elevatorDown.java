@@ -8,11 +8,17 @@ import edu.wpi.first.wpilibj.command.Command;
  *
  */
 public class elevatorDown extends Command {
-
+	boolean isTimed; 
     public elevatorDown() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
+    	isTimed = false;
+    }
+    public elevatorDown(double time){
+    	requires(Robot.elevator);
+    	setTimeout(time);
+    	isTimed = false;
     }
 
     // Called just before this Command runs the first time
@@ -26,7 +32,11 @@ public class elevatorDown extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return false;
+        if(isTimed){
+        	return isTimedOut();
+        }else{
+        	return false;
+        }
     }
 
     // Called once after isFinished returns true
