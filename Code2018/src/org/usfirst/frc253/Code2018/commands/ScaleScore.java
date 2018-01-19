@@ -25,8 +25,8 @@ public class ScaleScore extends CommandGroup {
         // a CommandGroup containing them would require both the chassis and the
         // arm.
     	addSequential(new elevatorUp());
-    	addSequential(new sweepForward());
+    	addSequential(new sweepForward(1));
     	addSequential(new sweepBack());
-    	addSequential(new elevatorDown());
+    	addSequential(new elevatorDown(3));
     }
 }
