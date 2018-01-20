@@ -43,7 +43,7 @@ public class tankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	double leftSpeed = Robot.oi.getStickButton().getY();// we are connecting the left joysticks to the left speedcontrollers
+    	double leftSpeed = Robot.oi.getLeftJoystick().getY();// we are connecting the left joysticks to the left speedcontrollers
     	double rightSpeed = Robot.oi.getRightJoystick().getY();// we are connecting the right joysticks to the right speedcontrollers
     	Robot.driveTrain.drive(leftSpeed, rightSpeed);// we are sending numbers to the speedcontrollers through the method
     	//
