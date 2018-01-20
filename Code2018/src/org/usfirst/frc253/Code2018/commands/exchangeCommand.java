@@ -3,6 +3,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
+//command for scoring at the exchange area 
 public class exchangeCommand extends CommandGroup {
     public exchangeCommand() {
     	addSequential(new sweepForward(1)); 

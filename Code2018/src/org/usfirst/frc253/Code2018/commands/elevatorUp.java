@@ -6,6 +6,7 @@ import org.usfirst.frc253.Code2018.*;
 /**
  *
  */
+//command for moving elevator up 
 public class elevatorUp extends Command {
 	boolean isTimed;  
 
@@ -15,6 +16,7 @@ public class elevatorUp extends Command {
     	requires(Robot.elevator);
     	isTimed = false; 
     }
+   //makes elevatorUp timed 
     public elevatorUp(double time){ 
     	isTimed = true; 
     	setTimeout(time); 

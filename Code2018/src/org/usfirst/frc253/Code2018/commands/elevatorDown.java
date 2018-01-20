@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command that brings the elevator down 
 public class elevatorDown extends Command {
 	boolean isTimed; 
     public elevatorDown() {
@@ -15,6 +16,7 @@ public class elevatorDown extends Command {
     	requires(Robot.elevator);
     	isTimed = false;
     }
+   //makes the elevatorDown command timed 
     public elevatorDown(double time){
     	requires(Robot.elevator);
     	setTimeout(time);

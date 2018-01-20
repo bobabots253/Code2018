@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command for shifting gears 
 public class gearShift extends Command {
 boolean changeStatus = true;
 boolean toggle = true;

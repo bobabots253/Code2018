@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command for turning left 
 public class TurnLeft extends Command {
 	boolean isTimed;
 	
@@ -16,6 +17,7 @@ public class TurnLeft extends Command {
     	requires(Robot.driveTrain);
     	isTimed = false;
     }
+   //makes TurnLeft  command timed 
     public TurnLeft(double time) {
     	isTimed = true; 
     	setTimeout (time); 

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
+//command for scoring at the scale
 public class SwitchScore extends CommandGroup {
 
     public SwitchScore() {
@@ -24,6 +25,8 @@ public class SwitchScore extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	
+    	//time set for each command 
     	addSequential(new elevatorUp(3));
     	addSequential(new sweepForward(1));
     	addSequential(new sweepBack(1));

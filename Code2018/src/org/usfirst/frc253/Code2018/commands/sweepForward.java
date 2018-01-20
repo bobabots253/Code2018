@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command for moving the block off the elevator 
 public class sweepForward extends Command {
 	boolean isTimed;
     public sweepForward() {
@@ -15,6 +16,7 @@ public class sweepForward extends Command {
     	requires(Robot.elevator);
     	isTimed = false;
     }
+   //makes sweepFoward timed 
     public sweepForward(double time){
     	requires(Robot.elevator);
     	setTimeout(time);

@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command for bringing sweeper-thingys back in the elevator after depositing cube 
 public class sweepBack extends Command {
 	boolean isTimed;
     public sweepBack() {
@@ -15,6 +16,7 @@ public class sweepBack extends Command {
     	requires(Robot.elevator);
     	isTimed = false;
     }
+    //makes sweepBack timed
     public sweepBack(double time){
     	isTimed = true;
     	setTimeout(time);

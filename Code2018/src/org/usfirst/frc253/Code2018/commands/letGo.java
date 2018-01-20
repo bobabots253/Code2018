@@ -7,6 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//command for letting block go - moves wheels in the opposite direction   
 public class letGo extends Command {
 
     public letGo() {
