@@ -15,10 +15,10 @@ public class sweepBack extends Command {
     	requires(Robot.elevator);
     	isTimed = false;
     }
-    public sweepBack(double time){ 
-    	requires(Robot.elevator);
+    public sweepBack(double time){
+    	isTimed = true;
     	setTimeout(time);
-    	isTimed = false;
+    	requires(Robot.elevator);
     }
     // Called just before this Command runs the first time
     protected void initialize() {
@@ -31,11 +31,11 @@ public class sweepBack extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-       if(isTimed){
-    	   return isTimedOut();
-       }else{
-    	   return false;
-       }   
+    	if(isTimed){
+    		return isTimedOut();
+    	}else{ 
+    		return false;   
+    	}
     }
 
     // Called once after isFinished returns true

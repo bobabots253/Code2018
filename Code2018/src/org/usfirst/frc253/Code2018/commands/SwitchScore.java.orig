@@ -1,4 +1,3 @@
-
 package org.usfirst.frc253.Code2018.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -6,9 +5,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
  *
  */
-public class ScaleScore extends CommandGroup {
+public class SwitchScore extends CommandGroup {
 
-    public ScaleScore() {
+    public SwitchScore() {
         // Add Commands here:
         // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
@@ -25,9 +24,16 @@ public class ScaleScore extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+<<<<<<< HEAD
     	addSequential(new elevatorUp(3));
-    	addSequential(new sweepForward(1));
+    	addSequential(new sweepForward());
     	addSequential(new sweepBack(1));
+    	addSequential(new elevatorDown());
+=======
+    	addSequential(new elevatorUp());
+    	addSequential(new sweepForward(1));
+    	addSequential(new sweepBack());
     	addSequential(new elevatorDown(3));
+>>>>>>> master
     }
 }
