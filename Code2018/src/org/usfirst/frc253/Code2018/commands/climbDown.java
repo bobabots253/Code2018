@@ -13,6 +13,7 @@ public class climbDown extends Command {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.climber);
+    	//this makes it so we can use the methods inside of climber subsystem
     }
 
     // Called just before this Command runs the first time
@@ -22,6 +23,7 @@ public class climbDown extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.climber.down();
+    	//executes code to go down
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -37,5 +39,6 @@ public class climbDown extends Command {
     // subsystems is scheduled to run
     protected void interrupted() {
     Robot.climber.stop();
+    //stops climbing
     }
 }

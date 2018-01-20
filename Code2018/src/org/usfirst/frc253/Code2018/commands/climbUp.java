@@ -7,11 +7,13 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+//climbUp is a command
 public class climbUp extends Command {
 
     public climbUp() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	//Says that this command needs climber 
     	requires(Robot.climber);
     }
 
@@ -21,6 +23,7 @@ public class climbUp extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
+    	//tells climber to go up
     	Robot.climber.up();
     }
 
