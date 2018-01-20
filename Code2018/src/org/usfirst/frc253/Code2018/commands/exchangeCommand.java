@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class exchangeCommand extends CommandGroup {
     public exchangeCommand() {
-    	addSequential(new sweepForward(1)); 
+    	addSequential(new sweepForward(1));
     	addSequential(new sweepBack()); 
         // Add Commands here:
         // e.g. addSequential(new Command1());

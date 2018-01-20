@@ -21,10 +21,10 @@ public class CompressorToggle extends Command {
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
+    protected void execute() {//makes a bool that senses if 11 on buttonBoard is pressed
     	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(11);
     	if(isPressedTurnOn && toggle){
-    		toggle = false;
+    		toggle = false;//if statement that makes toggling system
     		changeStatus = !changeStatus;
     	}else if(!isPressedTurnOn){
     		toggle = true;
