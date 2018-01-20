@@ -57,7 +57,7 @@ public class Elevator extends Subsystem {
     public Elevator(){
     	
     }
-    
+    //values for the sparks that control the elevator and sweeps
     public void lift(){
     	spark1.set(.5);
     	spark2.set(.5);

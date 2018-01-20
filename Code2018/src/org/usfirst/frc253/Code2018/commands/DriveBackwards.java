@@ -21,7 +21,7 @@ public class DriveBackwards extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.driveTrain.drive(-.25, -.25);
+    	Robot.driveTrain.drive(-.25, -.25);//gives backwards speed
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -36,6 +36,6 @@ public class DriveBackwards extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-    	Robot.driveTrain.drive(0, 0);
+    	Robot.driveTrain.drive(0, 0);//stops robot
     }
 }

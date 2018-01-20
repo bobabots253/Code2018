@@ -11,7 +11,7 @@ public class StraightDrive extends Command {
 	}
 	protected void initialize() {
 	}
-	protected void execute() { 
+	protected void execute() { //makes robot go straight at specified speed
 		Robot.driveTrain.drive(.25, .25); 
 	}
 	protected boolean isFinished() {

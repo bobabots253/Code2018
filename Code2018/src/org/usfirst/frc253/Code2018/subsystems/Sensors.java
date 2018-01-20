@@ -68,7 +68,7 @@ public class Sensors extends Subsystem {
     }
     public boolean getLimitSwitch1(){
     	return limitswitch1.get(); 
-    	//We don't know yet 
+    	//Construction needs to tell us bruh
     }
     public boolean getLimitSwitch2(){
     	return limitswitch2.get(); 

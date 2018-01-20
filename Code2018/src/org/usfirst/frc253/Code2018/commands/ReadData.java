@@ -42,9 +42,9 @@ public class ReadData extends Command {
  }
 
  // Called repeatedly when this Command is scheduled to run
- protected void execute() {
+ protected void execute() {//this sends a message to the smart dashboard 
 	 SmartDashboard.putBoolean("got cube?", Robot.sensors.hasCube());
-	 // Command "got cube?" tells driver if there's cube
+	 // Command "got cube?" tells driver if there's cube//
 	 SmartDashboard.putNumber("how far", Robot.sensors.getDistance());
 	 // Command "how far" tells driver how far from an object
  }
