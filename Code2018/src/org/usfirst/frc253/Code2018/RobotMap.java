@@ -44,7 +44,6 @@ public class RobotMap {
     public static Ultrasonic sensorsUltrasonicSensor;
     public static DoubleSolenoid pneumaticsDoubleSolenoid1;
     public static DoubleSolenoid pneumaticsDoubleSolenoid2;
-    public static DoubleSolenoid pneumaticsDoubleSolenoid3;
     public static Compressor pneumaticsCompressor1;
     public static Spark elevatorSpark1; 
     public static Spark elevatorSpark2; 
@@ -62,17 +61,12 @@ public class RobotMap {
         driveTrainLeftFront = new TalonSRX(1);
         LiveWindow.addActuator("Drive Train", "LeftFront", (TalonSRX) driveTrainLeftFront);
         
-        driveTrainLeftCenter = new TalonSRX(5);
-        LiveWindow.addActuator("Drive Train", "LeftCenter", (TalonSRX) driveTrainLeftCenter);
-        
         driveTrainRightFront = new TalonSRX(2);
         LiveWindow.addActuator("Drive Train", "RightFront", (TalonSRX) driveTrainRightFront);
         
         driveTrainRightBack = new TalonSRX(3);
         LiveWindow.addActuator("Drive Train", "RightBack", (TalonSRX) driveTrainRightBack);
         
-        driveTrainRightCenter = new TalonSRX(4);
-        LiveWindow.addActuator("Drive Train", "RightCenter", (TalonSRX) driveTrainRightCenter);        
         
         sensorsPhotoelectricSensor = new DigitalInput(0);
         LiveWindow.addSensor("Sensors", "PhotoelectricSensor", sensorsPhotoelectricSensor);
@@ -86,8 +80,6 @@ public class RobotMap {
         pneumaticsDoubleSolenoid2 = new DoubleSolenoid(0, 2, 3);
         LiveWindow.addActuator("Pneumatics", "Double Solenoid 2", pneumaticsDoubleSolenoid2);
         
-        pneumaticsDoubleSolenoid3 = new DoubleSolenoid(0, 4, 5);
-        LiveWindow.addActuator("Pneumatics", "Double Solenoid 3", pneumaticsDoubleSolenoid3);
         
         pneumaticsCompressor1 = new Compressor(0);
         
@@ -105,7 +97,7 @@ public class RobotMap {
         
         sensorsLimitSwitch2 = new DigitalInput(1); 
         LiveWindow.addSensor("Sensors", "LimitSwitch2", sensorsLimitSwitch2); 
-=======
+
         IntakeVictorSP1 = new VictorSP(2);
         LiveWindow.addActuator("Drive Train", "Victor 1", (VictorSP) IntakeVictorSP1);
         

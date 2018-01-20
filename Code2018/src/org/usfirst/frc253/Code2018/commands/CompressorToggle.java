@@ -22,7 +22,7 @@ public class CompressorToggle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnOn = Robot.oi.getRightJoystick().getRawButton(2);
+    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(11);
     	if(isPressedTurnOn && toggle){
     		toggle = false;
     		changeStatus = !changeStatus;

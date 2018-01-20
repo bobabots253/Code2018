@@ -9,9 +9,8 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class sweepBack extends Command {
 	boolean isTimed;
-
     public sweepBack() {
-        // Use requires() here to declare subsystem dependencies
+    	// Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     	requires(Robot.elevator);
     	isTimed = false;
@@ -20,7 +19,6 @@ public class sweepBack extends Command {
     	isTimed = true;
     	setTimeout(time);
     	requires(Robot.elevator);
-    	
     }
     // Called just before this Command runs the first time
     protected void initialize() {
