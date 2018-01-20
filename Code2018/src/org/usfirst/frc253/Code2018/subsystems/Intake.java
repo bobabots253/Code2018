@@ -21,6 +21,7 @@ public class Intake extends Subsystem {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
     }
+    //giving VictorSP's values
     public void grab(){
     	VictorSP1.set(.5);
     	VictorSP2.set(-.5);
