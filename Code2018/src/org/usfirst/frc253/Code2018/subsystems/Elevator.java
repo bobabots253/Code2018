@@ -39,9 +39,8 @@ public class Elevator extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private final Spark spark1 = RobotMap.elevatorSpark1;
-	private final Spark spark2 = RobotMap.elevatorSpark2; 
-	private final SpeedController talon1 = RobotMap.elevatorTalon; 
+	private final Spark ElevatorSpark = RobotMap.ElevatorSpark;
+		private final SpeedController talon1 = RobotMap.elevatorTalon; 
 	
 
     public void initDefaultCommand() {
@@ -59,12 +58,11 @@ public class Elevator extends Subsystem {
     }
     //values for the sparks that control the elevator and sweeps
     public void lift(){
-    	spark1.set(.5);
-    	spark2.set(.5);
+    	ElevatorSpark.set(.5);
     }
     public void lower(){
-    	spark1.set(-.5);
-    	spark2.set(-.5);
+    	ElevatorSpark.set(-.5);
+    
     }
     public void sweepForward(){
     	talon1.set(.5);
@@ -77,8 +75,8 @@ public class Elevator extends Subsystem {
     }
    
     public void eleStop(){
-    	spark1.set(0);
-    	spark2.set(0);
+    	ElevatorSpark.set(0);
+    	
     }
 }
 

@@ -46,8 +46,8 @@ public class RobotMap {
     public static DoubleSolenoid pneumaticsDoubleSolenoid1;
     public static DoubleSolenoid pneumaticsDoubleSolenoid2;
     public static Compressor pneumaticsCompressor1;
-    public static Spark elevatorSpark1; 
-    public static Spark elevatorSpark2; 
+    public static Spark ElevatorSpark; 
+    public static Spark ClimberSpark; 
     public static SpeedController elevatorTalon; 
     public static DigitalInput sensorsLimitSwitch1;
     public static DigitalInput sensorsLimitSwitch2; 
@@ -82,10 +82,10 @@ public class RobotMap {
         pneumaticsCompressor1 = new Compressor(0);
         //giving sparks which one it is
         elevatorSpark1 = new Spark(0); 
-        LiveWindow.add(elevatorSpark1); 
+        LiveWindow.add(Spark1); 
         
         elevatorSpark2 = new Spark(1); 
-        LiveWindow.add(elevatorSpark2); 
+        LiveWindow.add(Spark2); 
         
         elevatorTalon = new Talon(4);
         LiveWindow.add((Sendable) elevatorTalon); 

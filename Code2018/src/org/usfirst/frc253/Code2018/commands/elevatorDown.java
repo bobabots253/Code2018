@@ -20,7 +20,7 @@ public class elevatorDown extends Command {
     public elevatorDown(double time){
     	requires(Robot.elevator);
     	setTimeout(time);
-    	isTimed = false;
+    	isTimed = true;
     }
 
     // Called just before this Command runs the first time
