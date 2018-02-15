@@ -28,8 +28,7 @@ public class SwitchScore extends CommandGroup {
     	
     	//time set for each command 
     	addSequential(new elevatorUp(3));
-    	addSequential(new sweepForward(1));
-    	addSequential(new sweepBack(1));
+    	addSequential(new insideEject(1));
     	addSequential(new elevatorDown(3));
     }
 }

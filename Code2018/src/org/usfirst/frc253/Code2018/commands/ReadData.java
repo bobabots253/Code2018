@@ -47,6 +47,7 @@ public class ReadData extends Command {
 	 // Command "got cube?" tells driver if there's cube//
 	 SmartDashboard.putNumber("how far", Robot.sensors.getDistance());
 	 // Command "how far" tells driver how far from an object
+	 SmartDashboard.putNumber("Talon 3 Encoder", Robot.driveTrain.getTalon3().getSelectedSensorPosition(0));
  }
 
  // Make this return true when this Command no longer needs to run execute()

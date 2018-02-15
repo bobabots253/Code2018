@@ -28,7 +28,7 @@ public class CycleExchangetoSwitch extends CommandGroup {
     		//move to switch area 
     		addSequential(new SwitchScore());
     		//move back to exchange zone
-    		addSequential(new grab()); 
+    		//addSequential(new grab());TODO 
     		//repeat 
     	}
     

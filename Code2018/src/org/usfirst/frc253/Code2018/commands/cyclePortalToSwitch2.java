@@ -28,7 +28,7 @@ public class cyclePortalToSwitch2 extends CommandGroup {
     		//move to switch area
     		addSequential(new SwitchScore());
     		//move back to different portal
-    		addSequential(new grab());
+    		//addSequential(new grab());TODO
     		//repeat
     	}    	
     }
