@@ -47,8 +47,12 @@ public class ReadData extends Command {
 	 // Command "got cube?" tells driver if there's cube//
 	 SmartDashboard.putNumber("how far", Robot.sensors.getDistance());
 	 // Command "how far" tells driver how far from an object
-	 SmartDashboard.putBoolean("got limit switch1?", Robot.sensors.hasCube());
-	 SmartDashboard.putBoolean("got limit switch2?", Robot.sensors.hasCube());
+//	 SmartDashboard.putBoolean("got limit switch1?", Robot.sensors.hasCube());
+//	 SmartDashboard.putBoolean("got limit switch2?", Robot.sensors.hasCube());
+	 
+	 SmartDashboard.putNumber("Yaw", Robot.sensors.getYaw());
+	 SmartDashboard.putNumber("Pitch", Robot.sensors.getPitch());
+	 SmartDashboard.putNumber("Roll", Robot.sensors.getRoll());
  }
 
  // Make this return true when this Command no longer needs to run execute()

@@ -20,7 +20,7 @@ public class Intake extends Subsystem {
 	private final VictorSPX swingIntake1 = RobotMap.swingIntake1;
 	private final VictorSPX swingIntake2 = RobotMap.swingIntake2;
 	private final VictorSPX spinIntake1 = RobotMap.spinIntake1;
-	private final Talon spinIntake2 = RobotMap.spinIntake2;
+//	private final Talon spinIntake2 = RobotMap.spinIntake2;
 	private final VictorSP insideIntake1 = RobotMap.insideIntake1;
 	private final VictorSP insideIntake2 = RobotMap.insideIntake2;
 	
@@ -44,15 +44,15 @@ public class Intake extends Subsystem {
     }    
     public void spinIntake(){
     	spinIntake1.set(ControlMode.PercentOutput, .5);
-    	spinIntake2.set(-.5);
+//    	spinIntake2.set(-.5);
     }
     public void spinEject(){
     	spinIntake1.set(ControlMode.PercentOutput, -.5);
-    	spinIntake2.set(.5);
+//    	spinIntake2.set(.5);
     }
     public void spinStop(){
     	spinIntake1.set(ControlMode.PercentOutput, 0);
-    	spinIntake2.set(0);
+//    	spinIntake2.set(0);
     }
     public void insideIntake(){
     	insideIntake1.set(.5);
