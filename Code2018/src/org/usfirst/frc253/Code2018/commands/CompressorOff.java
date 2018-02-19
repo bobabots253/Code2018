@@ -7,11 +7,9 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class CompressorToggle extends Command {
-	boolean changeStatus = true;
-	boolean toggle = true;
+public class CompressorOff extends Command {
 	
-    public CompressorToggle() {
+    public CompressorOff() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -22,20 +20,7 @@ public class CompressorToggle extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {//makes a bool that senses if 11 on buttonBoard is pressed
-    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(11);
-    	if(isPressedTurnOn && toggle){
-    		toggle = false;//if statement that makes toggling system
-    		changeStatus = !changeStatus;
-    	}else if(!isPressedTurnOn){
-    		toggle = true;
-    	}
-    	if(!changeStatus){
-    		Robot.pneumatics.compressStart();
-    	}else{
     		Robot.pneumatics.compressStop();
-    	}
-    	
-    	
     	
     }
 

@@ -11,12 +11,10 @@ public class elevatorUp extends Command {
 	boolean isTimed;  
 
     public elevatorUp() {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     	requires(Robot.elevator);
     	isTimed = false; 
     }
-   //makes elevatorUp timed 
+    //makes elevatorUp timed 
     public elevatorUp(double time){ 
     	isTimed = true; 
     	setTimeout(time); 
