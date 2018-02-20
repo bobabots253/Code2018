@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -35,6 +36,7 @@ public class Robot extends IterativeRobot {
 
 	//declarations; you're making space for objects (having computer clear memory for objects)
     Command autonomousCommand;
+    Command resetElevator;
     SendableChooser<Position> positionChooser;
     SendableChooser<Enemy> enemyChooser;
     SendableChooser<Ally> allyChooser;
@@ -144,26 +146,33 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	(new ResetElevator()).start();
+    	resetElevator = new ResetElevator();
+    	if (resetElevator != null) resetElevator.start();
     }
     
-    private class ResetElevator extends Command{
-
-    	private ResetElevator() {
+    private class ResetElevator extends CommandGroup{
+    	private class ElevatorLower extends Command{
+    		private ElevatorLower() {
+    			requires(Robot.elevator);
+    			setTimeout(10);
+    		}
+    	
+    		protected void execute(){
+    			Robot.elevator.move(0.15);
+    		}
+    	
+    		@Override
+    		protected boolean isFinished() {
+    			// TODO Auto-generated method stub
+    			return isTimedOut();
+    		}
+    	}
+    	
+    	private ResetElevator(){
     		requires(Robot.elevator);
-    		setTimeout(6);
-    	}
-    	
-    	protected void execute(){
-    		Robot.elevator.move(0.125);
-    	}
-    	
-		@Override
-		protected boolean isFinished() {
-			// TODO Auto-generated method stub
-			return isTimedOut();
-		}
-    	
+
+        	addSequential(new ElevatorLower());
+    	}    
     }
 
     public void disabledPeriodic() {
@@ -172,6 +181,7 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
+    	if(resetElevator != null) resetElevator.cancel();
     	//receives data about colors 
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
 
@@ -203,6 +213,7 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
+    	if (resetElevator != null) resetElevator.cancel();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
