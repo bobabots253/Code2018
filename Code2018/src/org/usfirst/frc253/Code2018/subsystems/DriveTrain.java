@@ -48,6 +48,9 @@ public class DriveTrain extends Subsystem {
 		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		leftBack.setInverted(false);
 		
+		rightFront.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
+		rightFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		rightFront.setInverted(false);
     }
 
     // Put methods for controlling this subsystem
@@ -71,7 +74,7 @@ public class DriveTrain extends Subsystem {
     	rightBack.set(ControlMode.PercentOutput, rightspeed);
     }
     
-    public TalonSRX getTalon3(){
+    public TalonSRX getRightFront(){
     	return rightFront;
     }
 }

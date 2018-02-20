@@ -144,7 +144,26 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
+    	(new ResetElevator()).start();
+    }
+    
+    private class ResetElevator extends Command{
 
+    	private ResetElevator() {
+    		requires(Robot.elevator);
+    		setTimeout(6);
+    	}
+    	
+    	protected void execute(){
+    		Robot.elevator.move(0.125);
+    	}
+    	
+		@Override
+		protected boolean isFinished() {
+			// TODO Auto-generated method stub
+			return isTimedOut();
+		}
+    	
     }
 
     public void disabledPeriodic() {

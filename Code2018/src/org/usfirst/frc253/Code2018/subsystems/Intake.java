@@ -1,6 +1,7 @@
 package org.usfirst.frc253.Code2018.subsystems;
 
 import org.usfirst.frc253.Code2018.RobotMap;
+import org.usfirst.frc253.Code2018.commands.IntakeControl;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -28,6 +29,7 @@ public class Intake extends Subsystem {
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
+    	setDefaultCommand(new IntakeControl());
     }
     //giving VictorSP's values
     public void swingIntake(){
@@ -55,12 +57,12 @@ public class Intake extends Subsystem {
 //    	spinIntake2.set(0);
     }
     public void insideIntake(){
-    	insideIntake1.set(.5);
-    	insideIntake2.set(-.5);
+    	insideIntake1.set(1);
+    	insideIntake2.set(-1);
     }
     public void insideEject(){
-    	insideIntake1.set(-.5);
-    	insideIntake2.set(.5);
+    	insideIntake1.set(-1);
+    	insideIntake2.set(1);
     }
     public void insideStop(){
     	insideIntake1.set(0);

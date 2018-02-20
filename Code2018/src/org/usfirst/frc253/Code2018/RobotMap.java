@@ -50,7 +50,6 @@ public class RobotMap {
 //    public static Talon spinIntake2;
     public static VictorSP insideIntake1;
     public static VictorSP insideIntake2;
-    public static DigitalInput sensorsPhotoelectricSensor;
     public static Ultrasonic sensorsUltrasonicSensor;
     public static DoubleSolenoid pneumaticsDoubleSolenoid1;
     public static DoubleSolenoid pneumaticsDoubleSolenoid2;
@@ -58,7 +57,7 @@ public class RobotMap {
     public static Spark ElevatorSpark1; 
     public static Spark ElevatorSpark2; 
     public static SpeedController elevatorTalon; 
-//    public static DigitalInput sensorsLimitSwitch1;
+    public static DigitalInput sensorsLimitSwitch1;
 //    public static DigitalInput sensorsLimitSwitch2; 
     public static AHRS gyro;
 
@@ -75,10 +74,6 @@ public class RobotMap {
         driveTrainRightFront = new TalonSRX(3);
         
         driveTrainRightBack = new TalonSRX(4);
-        
-        
-        sensorsPhotoelectricSensor = new DigitalInput(0);
-        LiveWindow.add(sensorsPhotoelectricSensor);
         
         sensorsUltrasonicSensor = new Ultrasonic(1, 2);
         LiveWindow.add(sensorsUltrasonicSensor);
@@ -101,8 +96,8 @@ public class RobotMap {
         elevatorTalon = new Talon(6);
         LiveWindow.add((Sendable) elevatorTalon); 
         
-//        sensorsLimitSwitch1 = new DigitalInput(0); 
-//        LiveWindow.add(sensorsLimitSwitch1); 
+        sensorsLimitSwitch1 = new DigitalInput(0); 
+        LiveWindow.add(sensorsLimitSwitch1); 
 //        
 //        sensorsLimitSwitch2 = new DigitalInput(1); 
 //        LiveWindow.add(sensorsLimitSwitch2); 
