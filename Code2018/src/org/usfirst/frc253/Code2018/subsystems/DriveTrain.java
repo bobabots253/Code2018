@@ -46,7 +46,7 @@ public class DriveTrain extends Subsystem {
     public DriveTrain(){
     	leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
 		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-		leftBack.setInverted(false);
+		leftBack.setInverted(true);
 		
 		rightFront.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
 		rightFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
@@ -68,8 +68,8 @@ public class DriveTrain extends Subsystem {
     }
     //giving the speed controllers values
     public void drive(double leftspeed, double rightspeed){
-    	leftFront.set(ControlMode.PercentOutput, leftspeed * -1);// We are setting the speed controllers to speed
-    	leftBack.set(ControlMode.PercentOutput, leftspeed * -1);//the leftfront and back are multiplied by -1 because the values are reversed 
+    	leftFront.set(ControlMode.PercentOutput, leftspeed);// We are setting the speed controllers to speed
+    	leftBack.set(ControlMode.PercentOutput, leftspeed);//the leftfront and back are multiplied by -1 because the values are reversed 
     	rightFront.set(ControlMode.PercentOutput, rightspeed);
     	rightBack.set(ControlMode.PercentOutput, rightspeed);
     }
