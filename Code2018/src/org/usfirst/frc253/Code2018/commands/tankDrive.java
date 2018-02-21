@@ -46,7 +46,7 @@ public class tankDrive extends Command {
     	if(!changeStatus){
         	double leftSpeed = Robot.oi.getLeftJoystickY();
         	double rightSpeed = Robot.oi.getRightJoystickY();
-        	Robot.driveTrain.drive(leftSpeed, rightSpeed);
+        	Robot.driveTrain.drive(rightSpeed, leftSpeed);
         	// we are connecting the left joysticks to the left speedcontrollers
         	// we are connecting the right joysticks to the right speedcontrollers
         	// we are sending numbers to the speedcontrollers through the method

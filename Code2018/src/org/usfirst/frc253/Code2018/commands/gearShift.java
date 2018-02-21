@@ -23,7 +23,7 @@ boolean toggle = true;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnedOn = Robot.oi.getButtonBoard().getRawButton(9);
+    	boolean isPressedTurnedOn = Robot.oi.xboxController.getRawButton(6);
     	if(isPressedTurnedOn && toggle) {
     		toggle = false;
     		changeStatus = !changeStatus;

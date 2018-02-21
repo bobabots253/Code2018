@@ -46,11 +46,15 @@ public class DriveTrain extends Subsystem {
     public DriveTrain(){
     	leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
 		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
-		leftBack.setInverted(true);
+		leftBack.setInverted(false);
+		
+		leftFront.follow(leftBack);
 		
 		rightFront.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
 		rightFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		rightFront.setInverted(false);
+		
+		rightFront.follow(rightBack);
     }
 
     // Put methods for controlling this subsystem
@@ -67,10 +71,9 @@ public class DriveTrain extends Subsystem {
         // setDefaultCommand(new MySpecialCommand());
     }
     //giving the speed controllers values
-    public void drive(double leftspeed, double rightspeed){
-    	leftFront.set(ControlMode.PercentOutput, leftspeed);// We are setting the speed controllers to speed
-    	leftBack.set(ControlMode.PercentOutput, leftspeed);//the leftfront and back are multiplied by -1 because the values are reversed 
-    	rightFront.set(ControlMode.PercentOutput, rightspeed);
+    public void drive(double leftspeed, double rightspeed){// We are setting the speed controllers to speed
+    	leftBack.set(ControlMode.PercentOutput, -leftspeed);//the leftfront and back are multiplied by -1 because the values are reversed 
+    	
     	rightBack.set(ControlMode.PercentOutput, rightspeed);
     }
     
