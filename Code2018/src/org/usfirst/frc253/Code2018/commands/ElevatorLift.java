@@ -14,20 +14,15 @@ public class ElevatorLift extends Command {
 	}
 	
 	protected void execute(){
-		double left = Robot.oi.xboxController.getTriggerAxis(GenericHID.Hand.kLeft);
-		double right = Robot.oi.xboxController.getTriggerAxis(GenericHID.Hand.kRight);
+		double speed = -Robot.oi.getOperatorJoystick().getY();
 		
-		if(Math.abs(left - right) < 0.05){
-			Robot.elevator.move(.2);
-		} else {
-			Robot.elevator.move(left - right*0.5);
-		}
+		Robot.elevator.move(.2 + speed * 0.8);
 		
 		if(Robot.oi.xboxController.getYButton()){
 			Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
 		}
 		
-		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0) / 4096.0);
+		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
 	}
 	
 	@Override

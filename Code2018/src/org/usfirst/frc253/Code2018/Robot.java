@@ -15,6 +15,7 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -146,11 +147,11 @@ public class Robot extends IterativeRobot {
      * You can use it to reset subsystems before shutting down.
      */
     public void disabledInit(){
-    	resetElevator = new ResetElevator();
-    	if (resetElevator != null) resetElevator.start();
+//    	resetElevator = new ResetElevator();
+//    	if (resetElevator != null) resetElevator.start();
     }
     
-    private class ResetElevator extends CommandGroup{
+    public class ResetElevator extends CommandGroup{
     	private class ElevatorLower extends Command{
     		private ElevatorLower() {
     			requires(Robot.elevator);
@@ -166,6 +167,10 @@ public class Robot extends IterativeRobot {
     			// TODO Auto-generated method stub
     			return isTimedOut();
     		}
+    		
+    		protected void interrupted(){
+    			Robot.elevator.move(0);
+    		}
     	}
     	
     	private ResetElevator(){
@@ -176,8 +181,9 @@ public class Robot extends IterativeRobot {
     }
 
     public void disabledPeriodic() {
-        Scheduler.getInstance().run();
+    	Scheduler.getInstance().run();
         gameData = DriverStation.getInstance().getGameSpecificMessage();
+        
     }
 
     public void autonomousInit() {
