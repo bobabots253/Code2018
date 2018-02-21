@@ -4,20 +4,23 @@ import org.usfirst.frc253.Code2018.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class insideIntake extends Command {
+public class Eject extends Command {
 	boolean isTimed;
-	public insideIntake(double time){
+	public Eject(double time){
 		isTimed = true;
 		setTimeout(time);
 		requires(Robot.intake);
 	}
-	public insideIntake(){
-		isTimed = false;
-		requires(Robot.intake);
+	public Eject() {
+        // Use requires() here to declare subsystem dependencies
+        // eg. requires(chassis);
+    	requires(Robot.intake);
+    	isTimed = false; 
 	}
 	
+	
 	protected void execute(){
-		Robot.intake.insideIntake();
+		Robot.intake.eject();
 	}
 
 	@Override
@@ -26,12 +29,11 @@ public class insideIntake extends Command {
     		return isTimedOut(); 
     	}else{ 
     		return false;
-    	}
-		
+	}
 	}
 	
 	protected void interrupted(){
-		Robot.intake.insideStop();
+		Robot.intake.stop();
 	}
 
 }

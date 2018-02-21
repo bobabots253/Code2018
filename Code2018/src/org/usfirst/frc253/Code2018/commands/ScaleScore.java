@@ -29,7 +29,7 @@ public class ScaleScore extends CommandGroup {
     
     	//times set for each command 
     	addSequential(new elevatorUp(3));
-    	addSequential(new insideEject(1));
+    	addSequential(new Eject(1));
     	addSequential(new elevatorDown(3));
     }
 }

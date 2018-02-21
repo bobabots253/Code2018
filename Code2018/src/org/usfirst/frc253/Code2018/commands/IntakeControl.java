@@ -13,14 +13,14 @@ public class IntakeControl extends Command{
 	protected void execute(){
 		if(Robot.sensors.getLimitSwitch1().get()){
 			if(Robot.oi.getOperatorJoystick().getRawButton(3)){
-				Robot.intake.insideEject();
+				Robot.intake.eject();
 			} else if(Robot.oi.getOperatorJoystick().getRawButton(2)){
-				Robot.intake.insideIntake();
+				Robot.intake.intake();
 			} else {
-				Robot.intake.insideStop();
+				Robot.intake.stop();
 			}
 		} else {
-			Robot.intake.insideStop();
+			Robot.intake.stop();
 		}
 	}
 	

@@ -4,14 +4,14 @@ import org.usfirst.frc253.Code2018.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class spinIntake extends Command {
+public class swingIn extends Command {
 	
-	public spinIntake(){
+	public swingIn(){
 		requires(Robot.intake);
 	}
 	
 	protected void execute(){
-		Robot.intake.spinIntake();
+		Robot.intake.swingIn();
 	}
 
 	@Override
@@ -21,7 +21,7 @@ public class spinIntake extends Command {
 	}
 	
 	protected void interrupted(){
-		Robot.intake.spinStop();
+		Robot.intake.swingStop();
 	}
 
 }

@@ -44,10 +44,10 @@ public class RobotMap {
     public static TalonSRX driveTrainLeftFront;
     public static TalonSRX driveTrainRightFront;
     public static TalonSRX driveTrainRightBack;
-    public static VictorSPX swingIntake1;
-    public static VictorSPX swingIntake2;
     public static VictorSPX spinIntake1;
-//    public static Talon spinIntake2;
+    public static VictorSPX spinIntake2;
+    public static VictorSPX swingIntake1;
+    public static Talon swingIntake2;
     public static VictorSP insideIntake1;
     public static VictorSP insideIntake2;
     public static Ultrasonic sensorsUltrasonicSensor;
@@ -55,8 +55,7 @@ public class RobotMap {
     public static DoubleSolenoid pneumaticsDoubleSolenoid2;
     public static Compressor pneumaticsCompressor1;
     public static Spark ElevatorSpark1; 
-    public static Spark ElevatorSpark2; 
-    public static SpeedController elevatorTalon; 
+    public static Spark ElevatorSpark2;  
     public static DigitalInput sensorsLimitSwitch1;
 //    public static DigitalInput sensorsLimitSwitch2; 
     public static AHRS gyro;
@@ -91,10 +90,7 @@ public class RobotMap {
         LiveWindow.add(ElevatorSpark1); 
         
         ElevatorSpark2 = new Spark(5); 
-        LiveWindow.add(ElevatorSpark2); 
-        
-        elevatorTalon = new Talon(6);
-        LiveWindow.add((Sendable) elevatorTalon); 
+        LiveWindow.add(ElevatorSpark2);
         
         sensorsLimitSwitch1 = new DigitalInput(0); 
         LiveWindow.add(sensorsLimitSwitch1); 
@@ -102,13 +98,13 @@ public class RobotMap {
 //        sensorsLimitSwitch2 = new DigitalInput(1); 
 //        LiveWindow.add(sensorsLimitSwitch2); 
 
-        swingIntake1 = new VictorSPX(2);
+        swingIntake1 = new VictorSPX(3);
         
-        swingIntake2 = new VictorSPX(3);
+        swingIntake2 = new Talon(6);
         
         spinIntake1 = new VictorSPX(1);
         
-//        spinIntake2 = new Talon(4);
+        spinIntake2 = new VictorSPX(2);
         
         insideIntake1 = new VictorSP(2);
         
