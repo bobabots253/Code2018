@@ -15,5 +15,8 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/jackson-annotations-2.9.3.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/jeromq.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/gluegen-rt.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/jogl-all.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/ufdw.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
