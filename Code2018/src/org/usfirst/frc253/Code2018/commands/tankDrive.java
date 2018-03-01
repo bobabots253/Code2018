@@ -36,35 +36,17 @@ public class tankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(3);
-    	if(isPressedTurnOn && toggle){
-    		toggle = false; //if statement that makes toggling system
-    		changeStatus = !changeStatus;
-    	}else if(!isPressedTurnOn){
-    		toggle = true;
+        double left;
+        double right;
+        if(Math.abs(Robot.oi.keyboard.getRawAxis(1))<=kDeadzone){
+        	left = Robot.oi.getTurn();
+        	right = -Robot.oi.getTurn();
+        }else{
+    		left = Robot.oi.getThrottle()-Robot.oi.getThrottle()*Robot.oi.getTurn();
+    		right = Robot.oi.getThrottle()+Robot.oi.getThrottle()*Robot.oi.getTurn();
     	}
-    	if(!changeStatus){
-        	double leftSpeed = Robot.oi.getLeftJoystickY();
-        	double rightSpeed = Robot.oi.getRightJoystickY();
-        	Robot.driveTrain.drive(rightSpeed, leftSpeed);
-        	// we are connecting the left joysticks to the left speedcontrollers
-        	// we are connecting the right joysticks to the right speedcontrollers
-        	// we are sending numbers to the speedcontrollers through the method
-    	}else{
-        	double left;
-        	double right;
-        	if(Math.abs(Robot.oi.getLeftJoystickY())<=kDeadzone){
-        		left = Robot.oi.getRightJoystickX();
-        		right = -Robot.oi.getRightJoystickX();
-        	}else{
-    		    left = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-    		    right = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-    		   
         	
-        	}
-        	
-        	Robot.driveTrain.drive(left, right);
-    	}
+        Robot.driveTrain.drive(left, right);
     	
     }
 

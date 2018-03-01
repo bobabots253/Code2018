@@ -14,11 +14,11 @@ public class ElevatorLift extends Command {
 	}
 	
 	protected void execute(){
-		double speed = -Robot.oi.getOperatorJoystick().getY();
+		double speed = -Robot.oi.keyboard.getRawAxis(2);
 		
 		Robot.elevator.move(.2 + speed * 0.8);
 		
-		if(Robot.oi.xboxController.getYButton()){
+		if(false){ //TODO: too lazy to fix this lol
 			Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
 		}
 		
