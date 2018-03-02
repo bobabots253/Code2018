@@ -38,7 +38,7 @@ public class tankDrive extends Command {
     protected void execute() {
         double left;
         double right;
-        if(Math.abs(Robot.oi.keyboard.getRawAxis(1))<=kDeadzone){
+        if(!(Robot.oi.keyboard.getRawButton(4) || Robot.oi.keyboard.getRawButton(5))){
         	left = Robot.oi.getTurn();
         	right = -Robot.oi.getTurn();
         }else{

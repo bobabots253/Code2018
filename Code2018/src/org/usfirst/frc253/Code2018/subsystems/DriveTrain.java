@@ -50,10 +50,10 @@ public class DriveTrain extends Subsystem {
     	leftFront.follow(leftBack);
     	rightFront.follow(rightBack);
     	
-    	leftFront.setInverted(true);
-    	rightFront.setInverted(false);
-    	leftBack.setInverted(true);
-    	rightBack.setInverted(false);
+    	leftFront.setInverted(false);
+    	rightFront.setInverted(true);
+    	leftBack.setInverted(false);
+    	rightBack.setInverted(true);
     	
     	leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_2_Feedback0, 1, 10); 
 		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
@@ -102,9 +102,9 @@ public class DriveTrain extends Subsystem {
     }
     //giving the speed controllers values
     public void drive(double leftspeed, double rightspeed){// We are setting the speed controllers to speed
-    	leftBack.set(ControlMode.PercentOutput, leftspeed);//the leftfront and back are multiplied by -1 because the values are reversed 
+    	leftBack.set(ControlMode.PercentOutput, -leftspeed);//the leftfront and back are multiplied by -1 because the values are reversed 
     	
-    	rightBack.set(ControlMode.PercentOutput, rightspeed);
+    	rightBack.set(ControlMode.PercentOutput, -rightspeed);
     }
     public TalonSRX getLeftBack(){
     	return leftBack;
