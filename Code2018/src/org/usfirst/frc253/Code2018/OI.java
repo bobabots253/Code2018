@@ -120,11 +120,6 @@ public class OI {
         
 
       //giving each xBox button a command
-        ButtonX.whileHeld(new TurnLeft());  
-        ButtonA.whileHeld(new DriveBackwards());
-        ButtonB.whileHeld(new turnRight());
-        ButtonRB.whileHeld(new elevatorUp()); 
-        ButtonLB.whileHeld(new elevatorDown());
         //button board start
      // //ButtonBoard11.whileHeld(new swingIn());
       ////ButtonBoard9.whileHeld(new swingOut());

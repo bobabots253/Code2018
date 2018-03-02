@@ -13,16 +13,24 @@
 package org.usfirst.frc253.Code2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc253.Code2018.Robot;
+import org.usfirst.frc253.Code2018.profiles.MotionProfileExample;
+
+import com.ctre.phoenix.motion.SetValueMotionProfile;
+import com.ctre.phoenix.motorcontrol.ControlMode;
+
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
  *
  */
 public class tankDrive extends Command {
-	boolean changeStatus = true;
-	boolean toggle = true;
-	double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
-		
+	private boolean changeStatus = true;
+	private boolean toggle = true;
+	private double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
+	private boolean PIDtoggle = true;
+	
+	MotionProfileExample _example = new MotionProfileExample(Robot.pathChooser.getSelected(), Robot.driveTrain.getLeftBack(), Robot.driveTrain.getRightBack());
+	
     public tankDrive() {
 
     	//says we need drivetrain to do this command 
@@ -36,34 +44,60 @@ public class tankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(3);
-    	if(isPressedTurnOn && toggle){
-    		toggle = false; //if statement that makes toggling system
-    		changeStatus = !changeStatus;
-    	}else if(!isPressedTurnOn){
-    		toggle = true;
-    	}
-    	if(!changeStatus){
-        	double leftSpeed = Robot.oi.getLeftJoystickY();
-        	double rightSpeed = Robot.oi.getRightJoystickY();
-        	Robot.driveTrain.drive(rightSpeed, leftSpeed);
-        	// we are connecting the left joysticks to the left speedcontrollers
-        	// we are connecting the right joysticks to the right speedcontrollers
-        	// we are sending numbers to the speedcontrollers through the method
-    	}else{
-        	double left;
-        	double right;
-        	if(Math.abs(Robot.oi.getLeftJoystickY())<=kDeadzone){
-        		left = Robot.oi.getRightJoystickX();
-        		right = -Robot.oi.getRightJoystickX();
-        	}else{
-    		    left = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-    		    right = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-    		   
-        	
-        	}
-        	
-        	Robot.driveTrain.drive(left, right);
+    	_example.control();
+    	
+    	if(!Robot.oi.xboxController.getRawButton(7)){
+	    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(3);
+	    	if(isPressedTurnOn && toggle){
+	    		toggle = false; //if statement that makes toggling system
+	    		changeStatus = !changeStatus;
+	    	}else if(!isPressedTurnOn){
+	    		toggle = true;
+	    	}
+	    	if(!changeStatus){
+	        	double leftSpeed = Robot.oi.getLeftJoystickY();
+	        	double rightSpeed = Robot.oi.getRightJoystickY();
+	        	Robot.driveTrain.drive(rightSpeed, leftSpeed);
+	        	// we are connecting the left joysticks to the left speedcontrollers
+	        	// we are connecting the right joysticks to the right speedcontrollers
+	        	// we are sending numbers to the speedcontrollers through the method
+	    	}else{
+	        	double left;
+	        	double right;
+	        	if(Math.abs(Robot.oi.getLeftJoystickY())<=kDeadzone){
+	        		left = Robot.oi.getRightJoystickX();
+	        		right = -Robot.oi.getRightJoystickX();
+	        	}else{
+	    		    left = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
+	    		    right = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
+	    		   
+	        	
+	        	}
+	        	
+	        	Robot.driveTrain.drive(left, right);
+	        	
+	        	_example.reset();
+	    	}
+    	} else {
+    		if(PIDtoggle){
+    			Robot.driveTrain.changekP(Robot.propChanger.getSelected());
+    			Robot.driveTrain.changekD(Robot.derivChanger.getSelected());
+    			
+    			PIDtoggle = false;
+    		}
+    		
+    		SetValueMotionProfile setOutput = _example.getSetValue();
+    		
+    		Robot.driveTrain.getLeftBack().set(ControlMode.MotionProfile, setOutput.value);
+    		Robot.driveTrain.getRightBack().set(ControlMode.MotionProfile, setOutput.value);
+    		
+    		
+    		
+    		if(Robot.oi.xboxController.getRawButtonPressed(8)){
+    			_example.setPath(Robot.pathChooser.getSelected());
+    			
+    			_example.startMotionProfile();
+    		}
     	}
     	
     }
