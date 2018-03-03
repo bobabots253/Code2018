@@ -42,7 +42,7 @@ public class SetElevator extends PIDCommand{
 	@Override
 	protected double returnPIDInput() {
 		// TODO Auto-generated method stub
-		return Robot.driveTrain.getRightFront().getSelectedSensorPosition(0) / 4096.0 * 1.75 / 12.0 * Math.PI; //feet
+		return Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0) / 4096.0 * 1.75 / 12.0 * Math.PI; //feet
 	}
 
 	@Override

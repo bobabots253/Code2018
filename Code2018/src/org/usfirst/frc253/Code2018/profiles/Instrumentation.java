@@ -114,10 +114,10 @@ public class Instrumentation {
 			System.out.format("%-9s\t", (statusR.isUnderrun ? "true" : "false"));
 			System.out.format("%-9s\t", (statusR.isLast ? "true" : "false"));
 			System.out.format("%-9s\t\t", posR);
-			System.out.format("%-9s\t\t", Robot.driveTrain.getRightBack().getSelectedSensorPosition(0));
+			System.out.format("%-9s\t\t", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
 			System.out.format("%-9s\t\t", velR);
-			System.out.format("%-9s\t\t", Robot.driveTrain.getRightBack().getSelectedSensorVelocity(0));
-			System.out.format("%-9s\t", Robot.driveTrain.getRightBack().getMotorOutputVoltage());
+			System.out.format("%-9s\t\t", Robot.driveTrain.getRightFront().getSelectedSensorVelocity(0));
+			System.out.format("%-9s\t", Robot.driveTrain.getRightFront().getMotorOutputVoltage());
 			System.out.format("%-9s\t\t", statusR.profileSlotSelect);
 			System.out.format("%-9s\t\t\t", statusR.timeDurMs);
 			
