@@ -39,7 +39,6 @@ import org.usfirst.frc253.Code2018.profiles.MotionProfileData;
 //Robot gets general structure from IterativeRobot 
 public class Robot extends IterativeRobot {
 
-	public static NetworkTableInstance inst;
 	//declarations; you're making space for objects (having computer clear memory for objects)
     Command autonomousCommand;
     Command resetElevator;
@@ -104,11 +103,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     //initiates RobotMap 
     	RobotMap.init(); 
-    	camera.getInstance().startAutomaticCapture();
-    	
-    	inst = NetworkTableInstance.getDefault();
-    	inst.startServer();
-    	
+    	camera.getInstance().startAutomaticCapture();    	
     	pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
     	SmartDashboard.putData("Path Chooser", pathChooser);
     	

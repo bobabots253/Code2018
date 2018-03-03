@@ -11,16 +11,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class KinectDrive extends Command{
 
 	NetworkTable table;
-	NetworkTableEntry entry;
 	
 	public KinectDrive(){
 		requires(Robot.driveTrain);
-		table = Robot.inst.getTable("KinectData");
-		entry = table.getEntry("data");
+		table = NetworkTableInstance.getDefault().getTable("KinectData");
 	}
 	
 	protected void execute(){
-		SmartDashboard.putNumber("KinectData data", entry.getDouble(0));
+		SmartDashboard.putNumber("KinectData data", table.getEntry("data").getDouble(0));
 	}
 	
 	@Override
