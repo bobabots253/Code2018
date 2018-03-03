@@ -19,6 +19,7 @@ public class KinectDrive extends Command{
 	
 	protected void execute(){
 		SmartDashboard.putNumber("KinectData data", table.getEntry("data").getDouble(0));
+		
 	}
 	
 	@Override
