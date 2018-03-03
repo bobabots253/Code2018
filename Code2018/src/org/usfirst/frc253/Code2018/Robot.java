@@ -109,6 +109,7 @@ public class Robot extends IterativeRobot {
     	pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
     	pathChooser.addDefault("LTOLSWITCH", ProfileLib.LtoLSwitch);
     	pathChooser.addObject("RTORSWITCH", ProfileLib.RToRSwitch);
+    	pathChooser.addObject("LTOLSWITCH3-2-18", ProfileLib.LToLSwitch3_2_2018);
     	SmartDashboard.putData("Path Chooser", pathChooser);
     	
     	propChanger = new SendableChooser<Double>();

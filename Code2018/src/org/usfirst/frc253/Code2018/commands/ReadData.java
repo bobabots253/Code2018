@@ -60,13 +60,7 @@ public class ReadData extends Command {
  	 SmartDashboard.putNumber("Integral Gain", Robot.driveTrain.getkI());
  	 SmartDashboard.putNumber("Derivative Gain", Robot.driveTrain.getkD());
  	 
- 	 SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
- 	 SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightBack().getSelectedSensorPosition(0));
  	 
- 	if(Robot.oi.xboxController.getBButton()){
-		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
-		Robot.driveTrain.getRightBack().setSelectedSensorPosition(0, 0, 0);
-	}
  }
 
  // Make this return true when this Command no longer needs to run execute()

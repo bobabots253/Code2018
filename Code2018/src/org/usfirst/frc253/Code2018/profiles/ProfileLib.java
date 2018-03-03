@@ -12,4 +12,8 @@ public class ProfileLib {
 		add(new MotionProfileData("RtoRswitch_left.csv", false, false, false));
 		add(new MotionProfileData("RtoRswitch_right.csv", false, false, false));
 	}};
+	public static ArrayList<MotionProfileData> LToLSwitch3_2_2018 = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("LToLSwitch3.2.2018_left.csv", false, false, false));
+		add(new MotionProfileData("LToLSwitch3.2.2018_right.csv", false, false, false));
+	}};
 } 

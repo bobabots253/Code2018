@@ -12,6 +12,8 @@
 
 package org.usfirst.frc253.Code2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import org.usfirst.frc253.Code2018.Robot;
 import org.usfirst.frc253.Code2018.profiles.MotionProfileExample;
 
@@ -45,6 +47,14 @@ public class tankDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	_example.control();
+    	
+    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightBack().getSelectedSensorPosition(0));
+    	 
+    	if(Robot.oi.xboxController.getBButton()){
+    		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
+    		Robot.driveTrain.getRightBack().setSelectedSensorPosition(0, 0, 0);
+    	}
     	
     	if(!Robot.oi.xboxController.getRawButton(7)){
 	    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(3);
@@ -91,10 +101,10 @@ public class tankDrive extends Command {
     		Robot.driveTrain.getLeftBack().set(ControlMode.MotionProfile, setOutput.value);
     		Robot.driveTrain.getRightBack().set(ControlMode.MotionProfile, setOutput.value);
     		
-    		
+    		_example.setPath(Robot.pathChooser.getSelected());
     		
     		if(Robot.oi.xboxController.getRawButtonPressed(8)){
-    			_example.setPath(Robot.pathChooser.getSelected());
+    			
     			
     			_example.startMotionProfile();
     		}
