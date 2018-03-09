@@ -18,8 +18,17 @@ public class KinectDrive extends Command{
 	}
 	
 	protected void execute(){
-		SmartDashboard.putNumber("KinectData data", table.getEntry("data").getDouble(0));
+		SmartDashboard.putNumber("rightHandX", table.getEntry("rHandX").getDouble(0));
+		SmartDashboard.putNumber("rightHandY", table.getEntry("rHandY").getDouble(0));
+		SmartDashboard.putNumber("rightHandZ", table.getEntry("rHandZ").getDouble(0));
 		
+		SmartDashboard.putNumber("centerShoulderX", table.getEntry("cShoulderX").getDouble(0));
+		SmartDashboard.putNumber("centerShoulderY", table.getEntry("cShoulderY").getDouble(0));
+		SmartDashboard.putNumber("centerShoulderZ", table.getEntry("cShoulderZ").getDouble(0));
+		/*
+		 * Ideas:
+		 * - throttle: handZ - torsoZ
+		 */
 	}
 	
 	@Override
