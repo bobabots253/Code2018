@@ -65,7 +65,7 @@ public class DriveTrain extends Subsystem {
 		leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		
 		leftBack.setSensorPhase(false);
-		rightFront.setSensorPhase(true);
+		rightFront.setSensorPhase(false);
 		
 		leftBack.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
     	rightFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);

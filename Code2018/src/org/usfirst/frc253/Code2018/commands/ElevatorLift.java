@@ -16,7 +16,7 @@ public class ElevatorLift extends Command {
 	protected void execute(){
 		double speed = -Robot.oi.getOperatorJoystick().getY();
 		
-		Robot.elevator.move(.2 + speed * 0.8);
+		Robot.elevator.move(.225 + speed * 0.775);
 		
 		if(Robot.oi.xboxController.getYButton()){
 			Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);

@@ -20,6 +20,7 @@ import org.usfirst.frc253.Code2018.profiles.MotionProfileExample;
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 
 /**
@@ -75,17 +76,16 @@ public class tankDrive extends Command {
 	        	double left;
 	        	double right;
 	        	if(Math.abs(Robot.oi.getLeftJoystickY())<=kDeadzone){
-	        		left = Robot.oi.getRightJoystickX();
-	        		right = -Robot.oi.getRightJoystickX();
-	        	}else{
-	    		    left = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-	    		    right = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
-	    		   
-	        	
+	        		left = -Robot.oi.getRightJoystickX();
+	        		right = Robot.oi.getRightJoystickX();
+	        	}else if(Robot.oi.xboxController.getTriggerAxis(GenericHID.Hand.kLeft)>0.125){
+	        		 left = -Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
+		    		 right=-Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
+	        	}else {
+	    		    left = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
+	    		    right = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	        	}
-	        	
 	        	Robot.driveTrain.drive(left, right);
-	        	
 	        	_example.reset();
 	    	}
     	} else {

@@ -2,6 +2,7 @@ package org.usfirst.frc253.Code2018.commands;
 
 import org.usfirst.frc253.Code2018.Robot;
 
+import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
@@ -23,7 +24,7 @@ boolean toggle = true;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnedOn = Robot.oi.xboxController.getRawButton(6);
+    	boolean isPressedTurnedOn = Robot.oi.xboxController.getTriggerAxis(GenericHID.Hand.kRight)>0.125;
     	if(isPressedTurnedOn && toggle) {
     		toggle = false;
     		changeStatus = !changeStatus;
