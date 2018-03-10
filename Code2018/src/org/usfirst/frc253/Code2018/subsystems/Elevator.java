@@ -76,6 +76,10 @@ public class Elevator extends Subsystem {
     	ElevatorSpark2.set(0);
     	
     }
+    public void pidControl(double output){
+    	ElevatorSpark1.pidWrite(output);
+    	ElevatorSpark2.pidWrite(output);
+    }
 }
 
 

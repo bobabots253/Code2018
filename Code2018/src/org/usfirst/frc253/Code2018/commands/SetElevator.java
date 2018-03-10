@@ -7,36 +7,24 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class SetElevator extends PIDCommand{
 
+	public static final double GROUND = 0;
+	public static final double SWITCH = 2.104;
+	public static final double SCALE = 5.542;
+	public static final double PORTAL = 2.25; //bottom is 1 ft 8 in off the ground; portal is 1 ft 2 in high
 	
-	public SetElevator(Height s){
+	public SetElevator(double height){
 		super(0.1, 0, 0);
 		requires(Robot.elevator);
-		getPIDController().setSetpoint(s.getNum());
+		getPIDController().setSetpoint(height);
 		getPIDController().setAbsoluteTolerance(0.2);
 		getPIDController().setContinuous(false);
 		getPIDController().enable();
 	}
 	
-	public enum Height{
-		ZERO(0),
-		SWITCH(0), //1.5625 feet
-		SCALE(0); //5 feet neutral; 4 feet lowest, 6 feet highest
-		
-		private double pos;
-		
-		private Height(double p){
-			pos = p;
-		}
-		
-		public double getNum(){
-			return pos;
-		}
-	}
-	
 	protected void execute(){
 		SmartDashboard.putNumber("SetElevator Output", getPIDController().get());
 		
-		Robot.elevator.move(0.2 /*+ getPIDController().get()*/);
+		Robot.elevator.pidControl(0.225 + getPIDController().get());
 	}
 
 	@Override
