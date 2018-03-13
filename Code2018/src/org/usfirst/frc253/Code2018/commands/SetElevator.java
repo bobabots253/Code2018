@@ -18,6 +18,7 @@ public class SetElevator extends PIDCommand{
 		getPIDController().setSetpoint(height);
 		getPIDController().setAbsoluteTolerance(0.2);
 		getPIDController().setContinuous(false);
+		getPIDController().setOutputRange(-1.225, 0.775);
 		getPIDController().enable();
 	}
 	

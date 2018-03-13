@@ -15,5 +15,17 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/jackson-annotations-2.9.3.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/jeromq.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/navx_frc.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/gluegen-rt-natives-windows-amd64.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/gluegen-rt-natives-windows-i586.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/gluegen-rt.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/j4k-natives-windows-amd64.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/j4k-natives-windows-i586.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/jogl-all-natives-windows-amd64.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/jogl-all-natives-windows-i586.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/jogl-all.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/ntcore-java-4.0.0.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/ntcore-jni-4.0.0-all.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/ufdw.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/wpiutil-java-3.0.0.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
