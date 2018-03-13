@@ -43,8 +43,8 @@ public class Robot extends IterativeRobot {
 
 	//declarations; you're making space for objects (having computer clear memory for objects)
     Command autonomousCommand;
-    Command resetElevator;
     SendableChooser<Position> positionChooser;
+    SendableChooser<Goal> goalChooser;
     SendableChooser<Enemy> enemyChooser;
     SendableChooser<Ally> allyChooser;
     
@@ -83,12 +83,18 @@ public class Robot extends IterativeRobot {
     	}
     }
     
+    public enum Goal{
+    	SCALE, SWITCH, EXCHANGE, BASELINE;
+    }
+    
     //declaring the enemy's potential actions 
+    @Deprecated
     public enum Enemy{
     	SCALE, DEFEND
     }
     
-    //declaring ally's potential actions 
+    //declaring ally's potential actions
+    @Deprecated
     public enum Ally{
     	SWITCH, SCALEORDEFEND
     }
@@ -108,7 +114,7 @@ public class Robot extends IterativeRobot {
     	
     	camera = CameraServer.getInstance().startAutomaticCapture(0);
     	//UNCOMMENT THE LINE BELOW TO USE A SECOND CAMERA
-    	//camera = CameraServer.getInstance().startAutomaticCapture(1);
+    	//camera2 = CameraServer.getInstance().startAutomaticCapture(1);
     	
     	pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
     	pathChooser.addDefault("LTOLSWITCH", ProfileLib.LtoLSwitch);
@@ -155,13 +161,21 @@ public class Robot extends IterativeRobot {
         // constructed yet. Thus, their requires() statements may grab null
         // pointers. Bad news. Don't move it.
         //The choosers got data from the smart dashboard 
-        positionChooser = new SendableChooser();
+        positionChooser = new SendableChooser<Position>();
         positionChooser.addDefault("Center", Position.CENTER);
         positionChooser.addObject("Left", Position.LEFT);
         positionChooser.addObject("Right", Position.RIGHT);
+        
+        goalChooser =new SendableChooser<Goal>();
+        goalChooser.addDefault("Base line (All positions)", Goal.BASELINE);
+        goalChooser.addObject("Switch (All positions)", Goal.SWITCH);
+        goalChooser.addObject("Scale (Left/Right)", Goal.SCALE);
+        goalChooser.addObject("Exchange zone (Center)", Goal.EXCHANGE);
+        
         enemyChooser = new SendableChooser();
         enemyChooser.addDefault("Enemy can do scale", Enemy.SCALE);
         enemyChooser.addObject("Enemy can defending", Enemy.DEFEND);
+        
         allyChooser = new SendableChooser();
         allyChooser.addDefault("Ally going to the switch", Ally.SWITCH);
         allyChooser.addObject("Ally is going to null zone", Ally.SCALEORDEFEND);
@@ -190,19 +204,18 @@ public class Robot extends IterativeRobot {
     }
 
     public void autonomousInit() {
-    	if(resetElevator != null) resetElevator.cancel();
     	//receives data about colors 
     	gameData = DriverStation.getInstance().getGameSpecificMessage();
 
     	//gets data from choosers 
-    	Position position = (Position) positionChooser.getSelected();
-    	char switchSide = gameData.charAt(0);
-    	char scaleSide = gameData.charAt(1);
+    	Position position = positionChooser.getSelected();
+    	Goal goal = goalChooser.getSelected();
+    	
     	Enemy canDo = (Enemy) enemyChooser.getSelected();
     	Ally isDoing = (Ally) allyChooser.getSelected();
     	
     	//starts auto by using info compiled from line 157 
-    	autonomousCommand = new AutonomousCommand(position, switchSide, scaleSide, canDo, isDoing);
+    	autonomousCommand = new AutonomousCommand(position, goal, gameData);
         // schedule the autonomous command (example)
         if (autonomousCommand != null){
         	autonomousCommand.start();
@@ -222,7 +235,6 @@ public class Robot extends IterativeRobot {
         // teleop starts running. If you want the autonomous to
         // continue until interrupted by another command, remove
         // this line or comment it out.
-    	if (resetElevator != null) resetElevator.cancel();
         if (autonomousCommand != null) autonomousCommand.cancel();
     }
 
