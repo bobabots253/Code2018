@@ -11,6 +11,7 @@
 
 package org.usfirst.frc253.Code2018;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -60,7 +61,6 @@ public class Robot extends IterativeRobot {
     public static Pneumatics pneumatics;
     public static Elevator elevator;
     public static Intake intake;
-    
     //another declaration 
     public String gameData;
     
@@ -99,13 +99,16 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     
-    //declares camaraserver object; camaraserver = object used for camera  
-    CameraServer camera;
+    UsbCamera camera;
+    UsbCamera camera2;
     //what happens when robot starts 
     public void robotInit() {
     //initiates RobotMap 
     	RobotMap.init(); 
-    	camera.getInstance().startAutomaticCapture();
+    	
+    	camera = CameraServer.getInstance().startAutomaticCapture(0);
+    	//UNCOMMENT THE LINE BELOW TO USE A SECOND CAMERA
+    	//camera = CameraServer.getInstance().startAutomaticCapture(1);
     	
     	pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
     	pathChooser.addDefault("LTOLSWITCH", ProfileLib.LtoLSwitch);
