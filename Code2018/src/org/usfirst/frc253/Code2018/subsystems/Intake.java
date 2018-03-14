@@ -32,12 +32,29 @@ public class Intake extends Subsystem {
     	setDefaultCommand(new IntakeControl());
     }
     //giving VictorSP's values
-    public void swingIn(){
+    public void swingInT(){
+    	swingIntake1.set(ControlMode.PercentOutput,- .5);
+    	swingIntake2.set(-.5);
+    }
+    public void swingOutT(){
     	swingIntake1.set(ControlMode.PercentOutput, .5);
     	swingIntake2.set(.5);
     }
+    public void swingIn(){
+    	swingIntake1.set(ControlMode.PercentOutput, .5);
+    //	swingIntake2.set(.5);
+    }
+    
     public void swingOut(){
-    	swingIntake1.set(ControlMode.PercentOutput,-.5);
+    	//swingIntake1.set(ControlMode.PercentOutput,-.5);
+    	swingIntake2.set(-.5);
+    }
+    public void swingInL(){
+    	swingIntake1.set(ControlMode.PercentOutput, .5);
+    	//swingIntake2.set(.5);
+    }
+    public void swingOutL(){
+    	//swingIntake1.set(ControlMode.PercentOutput,-.5);
     	swingIntake2.set(-.5);
     }
     public void swingStop(){
@@ -45,16 +62,16 @@ public class Intake extends Subsystem {
     	swingIntake2.set(0);
     }    
     public void intake(){
-    	insideIntake1.set(1);
-    	insideIntake2.set(-1);
+    	insideIntake1.set(-0.75);
+    	insideIntake2.set(0.75);
     	spinIntake1.set(ControlMode.PercentOutput, .75);
-    	spinIntake2.set(ControlMode.PercentOutput, -.75);
+    	spinIntake2.set(ControlMode.PercentOutput, .75);
     }
     public void eject(){
-    	insideIntake1.set(-1);
-    	insideIntake2.set(1);
+    	insideIntake1.set(0.75);
+    	insideIntake2.set(-0.75);
     	spinIntake1.set(ControlMode.PercentOutput, -.75);
-    	spinIntake2.set(ControlMode.PercentOutput, .75);
+    	spinIntake2.set(ControlMode.PercentOutput, -.75);
     }
     public void stop(){
     	insideIntake1.set(0);

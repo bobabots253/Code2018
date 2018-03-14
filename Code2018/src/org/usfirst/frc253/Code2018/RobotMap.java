@@ -77,10 +77,10 @@ public class RobotMap {
         sensorsUltrasonicSensor = new Ultrasonic(1, 2);
         LiveWindow.add(sensorsUltrasonicSensor);
         
-        pneumaticsDoubleSolenoid1 = new DoubleSolenoid(1, 4, 5);
+        pneumaticsDoubleSolenoid1 = new DoubleSolenoid(1, 0, 1);
         LiveWindow.add(pneumaticsDoubleSolenoid1);
         
-        pneumaticsDoubleSolenoid2 = new DoubleSolenoid(1, 7, 6);
+        pneumaticsDoubleSolenoid2 = new DoubleSolenoid(1, 2, 3);
         LiveWindow.add(pneumaticsDoubleSolenoid2);
         
         

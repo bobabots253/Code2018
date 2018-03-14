@@ -28,6 +28,8 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class tankDrive extends Command {
 	private boolean changeStatus = true;
+	private boolean sensitivityStatus = true;
+	private double klowSensMode = 0.35; //how much to multiply sensitivity in low sensitivity mode
 	private boolean toggle = true;
 	private double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
 	private boolean PIDtoggle = true;
@@ -68,6 +70,7 @@ public class tankDrive extends Command {
 	    	if(!changeStatus){
 	        	double leftSpeed = Robot.oi.getLeftJoystickY();
 	        	double rightSpeed = Robot.oi.getRightJoystickY();
+	        	
 	        	Robot.driveTrain.drive(rightSpeed, leftSpeed);
 	        	// we are connecting the left joysticks to the left speedcontrollers
 	        	// we are connecting the right joysticks to the right speedcontrollers
@@ -85,7 +88,20 @@ public class tankDrive extends Command {
 	    		    left = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	    		    right = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	        	}
-	        	Robot.driveTrain.drive(left, right);
+	        	
+	        	/*boolean sensToggle = Robot.oi.xboxController.getRawButton(4);
+		    	if(sensToggle && toggle){
+		    		toggle = false; //if statement that makes toggling system
+		    		sensitivityStatus = !sensitivityStatus;
+		    	}else if(!sensToggle){
+		    		toggle = true;
+		    	}
+		    	if(!sensitivityStatus){
+		    		Robot.driveTrain.drive(left*klowSensMode, right*klowSensMode);
+		    	}else{
+		    		Robot.driveTrain.drive(left, right);
+		    	}*/
+		    	Robot.driveTrain.drive(left, right);
 	        	_example.reset();
 	    	}
     	} else {
