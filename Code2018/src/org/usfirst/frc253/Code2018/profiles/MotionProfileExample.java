@@ -135,7 +135,7 @@ public class MotionProfileExample {
 	}
 	
 	public MotionProfileExample() {
-		_talonLeft = Robot.driveTrain.getLeftBack();
+		_talonLeft = Robot.driveTrain.getLeftFront();
 		_talonRight = Robot.driveTrain.getRightFront();
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the

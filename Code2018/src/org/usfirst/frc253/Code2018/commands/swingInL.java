@@ -9,11 +9,11 @@ import edu.wpi.first.wpilibj.command.Command;
 public class swingInL extends Command {
 	
 	public swingInL(){
-		requires(Robot.intake);
+		requires(Robot.arms);
 	}
 	
 	protected void execute(){
-		Robot.intake.swingInL();
+		Robot.arms.swingInL();
 	}
 
 	@Override
@@ -23,7 +23,7 @@ public class swingInL extends Command {
 	}
 	
 	protected void interrupted(){
-		Robot.intake.swingStop();
+		Robot.arms.swingStop();
 	}
 
 }

@@ -24,7 +24,7 @@ boolean toggle = true;
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	boolean isPressedTurnedOn = Robot.oi.xboxController.getTriggerAxis(GenericHID.Hand.kRight)>0.125;
+    	boolean isPressedTurnedOn = Robot.oi.xboxController.getAButton();
     	if(isPressedTurnedOn && toggle) {
     		toggle = false;
     		changeStatus = !changeStatus;

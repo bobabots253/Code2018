@@ -58,6 +58,7 @@ public class OI {
 	//making objects for joystick buttons and xBox controller :) 
 	public Joystick buttonBoard; 
 	public Joystick operator;
+	public Joystick operator2;
 	
 	public XboxController xboxController;
     public JoystickButton ButtonA;
@@ -141,7 +142,10 @@ public class OI {
         Operator10.whileHeld(new swingInL());
         Operator11.whileHeld(new swingOutL());
         Operator7.whileHeld(new TakeIn());
-        Operator8.whileHeld(new Eject());
+        Operator8.whileHeld(new Ejectonly());
+        Operator4.whileHeld(new Ejecthalf());
+        Operator5.whileHeld(new Eject());
+        
 
         
         
@@ -151,6 +155,9 @@ public class OI {
     }
     
   //making method to get the button board later 
+    public Joystick getOperatorJoystick2(){
+    	return operator2;
+    }
     public Joystick getButtonBoard(){  
     	return buttonBoard;
     }

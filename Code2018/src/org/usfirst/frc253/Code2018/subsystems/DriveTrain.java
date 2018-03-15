@@ -55,26 +55,26 @@ public class DriveTrain extends Subsystem {
     	leftBack.setInverted(true);
     	rightBack.setInverted(false);
     	
-    	leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
-		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    	leftFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
+		leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		
 		rightFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
 		rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		
-		leftFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
-		leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
+		leftBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		
-		leftBack.setSensorPhase(false);
+		leftFront.setSensorPhase(false);
 		rightFront.setSensorPhase(false);
-		leftFront.setSensorPhase(true);
+		leftBack.setSensorPhase(true);
 		
-		leftBack.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
+		leftFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
     	rightFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
 //35074964382
-		leftBack.config_kF(0, 0, Constants.kTimeoutMs);
-		leftBack.config_kP(0, kP, Constants.kTimeoutMs);
-		leftBack.config_kI(0, kI, Constants.kTimeoutMs);
-		leftBack.config_kD(0, kD, Constants.kTimeoutMs);
+		leftFront.config_kF(0, 0, Constants.kTimeoutMs);
+		leftFront.config_kP(0, kP, Constants.kTimeoutMs);
+		leftFront.config_kI(0, kI, Constants.kTimeoutMs);
+		leftFront.config_kD(0, kD, Constants.kTimeoutMs);
 
 		rightFront.config_kF(0, 0, Constants.kTimeoutMs);
 		rightFront.config_kP(0, kP, Constants.kTimeoutMs);
@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
 		rightFront.config_kD(0, kD, Constants.kTimeoutMs);
 
 		/* Our profile uses 10ms timing */
-		leftBack.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
+		leftFront.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
 		rightFront.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
 		/*
 		 * status 10 provides the trajectory target for motion profile AND

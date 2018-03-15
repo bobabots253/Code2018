@@ -18,8 +18,7 @@ public class Intake extends Subsystem {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-	private final VictorSPX swingIntake1 = RobotMap.swingIntake1;
-	private final Talon swingIntake2 = RobotMap.swingIntake2;
+
 	private final VictorSPX spinIntake1 = RobotMap.spinIntake1;
 	private final VictorSPX spinIntake2 = RobotMap.spinIntake2;
 	private final VictorSP insideIntake1 = RobotMap.insideIntake1;
@@ -32,35 +31,8 @@ public class Intake extends Subsystem {
     	setDefaultCommand(new IntakeControl());
     }
     //giving VictorSP's values
-    public void swingInT(){
-    	swingIntake1.set(ControlMode.PercentOutput,- .5);
-    	swingIntake2.set(-.5);
-    }
-    public void swingOutT(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
-    	swingIntake2.set(.5);
-    }
-    public void swingIn(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
-    //	swingIntake2.set(.5);
-    }
-    
-    public void swingOut(){
-    	//swingIntake1.set(ControlMode.PercentOutput,-.5);
-    	swingIntake2.set(-.5);
-    }
-    public void swingInL(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
-    	//swingIntake2.set(.5);
-    }
-    public void swingOutL(){
-    	//swingIntake1.set(ControlMode.PercentOutput,-.5);
-    	swingIntake2.set(-.5);
-    }
-    public void swingStop(){
-    	swingIntake1.set(ControlMode.PercentOutput, 0);
-    	swingIntake2.set(0);
-    }    
+
+       
     public void intake(){
     	insideIntake1.set(-0.75);
     	insideIntake2.set(0.75);
@@ -72,6 +44,18 @@ public class Intake extends Subsystem {
     	insideIntake2.set(-0.75);
     	spinIntake1.set(ControlMode.PercentOutput, -.75);
     	spinIntake2.set(ControlMode.PercentOutput, -.75);
+    }
+    public void ejectonly(){
+    	insideIntake1.set(0.75);
+    	insideIntake2.set(-0.75);
+    //	spinIntake1.set(ControlMode.PercentOutput, -.75);
+    	//spinIntake2.set(ControlMode.PercentOutput, -.75);
+    }
+    public void ejecthalf(){
+    	insideIntake1.set(0.5);
+    	insideIntake2.set(-0.5);
+    //	spinIntake1.set(ControlMode.PercentOutput, -.75);
+    	//spinIntake2.set(ControlMode.PercentOutput, -.75);
     }
     public void stop(){
     	insideIntake1.set(0);

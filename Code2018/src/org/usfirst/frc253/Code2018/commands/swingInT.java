@@ -1,5 +1,8 @@
 package org.usfirst.frc253.Code2018.commands;
-
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.PIDCommand;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import org.usfirst.frc253.Code2018.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -7,11 +10,12 @@ import edu.wpi.first.wpilibj.command.Command;
 public class swingInT extends Command {
 	
 	public swingInT(){
-		requires(Robot.intake);
+		
+		requires(Robot.arms);
 	}
 	
 	protected void execute(){
-		Robot.intake.swingInT();
+		Robot.arms.swingInT();
 	}
 
 	@Override
@@ -21,7 +25,7 @@ public class swingInT extends Command {
 	}
 	
 	protected void interrupted(){
-		Robot.intake.swingStop();
+		Robot.arms.swingStop();
 	}
 
 }

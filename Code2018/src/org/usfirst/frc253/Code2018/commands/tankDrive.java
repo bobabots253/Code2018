@@ -34,7 +34,7 @@ public class tankDrive extends Command {
 	private double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
 	private boolean PIDtoggle = true;
 	
-	MotionProfileExample _example = new MotionProfileExample(Robot.pathChooser.getSelected(), Robot.driveTrain.getLeftBack(), Robot.driveTrain.getRightFront());
+	MotionProfileExample _example = new MotionProfileExample(Robot.pathChooser.getSelected(), Robot.driveTrain.getLeftFront(), Robot.driveTrain.getRightFront());
 	
     public tankDrive() {
 
@@ -51,11 +51,11 @@ public class tankDrive extends Command {
     protected void execute() {
     	_example.control();
     	
-    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
     	 
     	if(Robot.oi.xboxController.getBButton()){
-    		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
+    		Robot.driveTrain.getLeftFront().setSelectedSensorPosition(0, 0, 0);
     		Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
     	}
     	
@@ -114,7 +114,7 @@ public class tankDrive extends Command {
     		
     		SetValueMotionProfile setOutput = _example.getSetValue();
     		
-    		Robot.driveTrain.getLeftBack().set(ControlMode.MotionProfile, setOutput.value);
+    		Robot.driveTrain.getLeftFront().set(ControlMode.MotionProfile, setOutput.value);
     		Robot.driveTrain.getRightFront().set(ControlMode.MotionProfile, setOutput.value);
     		
     		_example.setPath(Robot.pathChooser.getSelected());
