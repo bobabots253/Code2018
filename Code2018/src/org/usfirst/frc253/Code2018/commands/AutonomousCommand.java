@@ -18,6 +18,7 @@ import org.usfirst.frc253.Code2018.Robot.Ally;
 import org.usfirst.frc253.Code2018.Robot.Enemy;
 import org.usfirst.frc253.Code2018.Robot.Goal;
 import org.usfirst.frc253.Code2018.Robot.Position;
+import org.usfirst.frc253.Code2018.profiles.ProfileLib;
 
 /**
  *
@@ -26,19 +27,28 @@ public class AutonomousCommand extends CommandGroup {
 
 	//So in this command, there is both the decision making for the robot and there is also
 	//what the robot will do depending on the situation it is in
-    public AutonomousCommand(Position position, Goal goal, String gameData){
+	
+	/*TODO THIS IS A BIG TODO
+	 *Auto sequence rn assumes that our allies will not run into us
+	 *We need to implement something in the future to account for that
+	 */
+    public AutonomousCommand(Position position, Goal goal, boolean isSideSwitch, String gameData){
     	char switchSide = gameData.charAt(0); //L for Left, R for Right (relative to our alliance station)
     	char scaleSide = gameData.charAt(1);
     	
     	if(position == Position.CENTER){
     		switch(goal){
     			case SWITCH:
-    				if(switchSide == 'L'){
-    					//TODO: leftSwitch from center
-    				} else if(switchSide == 'R') {
-    					//TODO: rightSwitch from center
+    				if(isSideSwitch){
+	    				if(switchSide == 'L'){
+	    					addSequential(new GoTo(ProfileLib.LToLSwitch3_2_2018, 10));
+	    				} else if(switchSide == 'R') {
+	    					//TODO: rightSwitch from center
+	    				}
+	    				break;
+    				} else {
+    					goal = Goal.EXCHANGE;
     				}
-    				break;
     			case EXCHANGE:
     				//TODO: exchange from center
     				break;
@@ -59,9 +69,23 @@ public class AutonomousCommand extends CommandGroup {
     					} else if(position == Position.RIGHT){
     						//TODO: rightScale from right
     					}
+    					break;
+    				} else {
+    					goal = Goal.SWITCH;
     				}
     			case SWITCH:
-    				
+    				if(switchSide == position.getPos()){
+    					if(position == Position.LEFT){
+    						//TODO: leftScale from left
+    					} else if(position == Position.RIGHT){
+    						//TODO: rightScale from right
+    					}
+    					break;
+    				} else {
+    					goal = Goal.BASELINE;
+    				}
+    			default:
+    				//TODO: longBaseline
     				break;
     		}
     	}

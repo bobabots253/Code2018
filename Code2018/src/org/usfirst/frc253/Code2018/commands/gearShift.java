@@ -35,7 +35,7 @@ boolean toggle = true;
     	if(!changeStatus) {
     		Robot.pneumatics.doubleSolenoid1Forward();
     		Robot.pneumatics.doubleSolenoid2Forward();
-    	}else {
+    	} else {
     		Robot.pneumatics.doubleSolenoid1Reverse();
     		Robot.pneumatics.doubleSolenoid2Reverse();
     	}

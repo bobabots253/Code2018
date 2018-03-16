@@ -15,7 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc253.Code2018.Robot;
-import org.usfirst.frc253.Code2018.profiles.MotionProfileExample;
+import org.usfirst.frc253.Code2018.profiles.MotionProfileRunner;
 
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -34,8 +34,6 @@ public class tankDrive extends Command {
 	private double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
 	private boolean PIDtoggle = true;
 	
-	MotionProfileExample _example = new MotionProfileExample(Robot.pathChooser.getSelected(), Robot.driveTrain.getLeftFront(), Robot.driveTrain.getRightFront());
-	
     public tankDrive() {
 
     	//says we need drivetrain to do this command 
@@ -49,7 +47,7 @@ public class tankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	_example.control();
+    	Robot.runner.control();
     	
     	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
@@ -60,7 +58,7 @@ public class tankDrive extends Command {
     	}
     	
     	if(!Robot.oi.xboxController.getRawButton(7)){
-	    	boolean isPressedTurnOn = Robot.oi.buttonBoard.getRawButton(3);
+	    	boolean isPressedTurnOn = Robot.oi.getOperatorJoystick2().getRawButton(9);
 	    	if(isPressedTurnOn && toggle){
 	    		toggle = false; //if statement that makes toggling system
 	    		changeStatus = !changeStatus;
@@ -102,7 +100,7 @@ public class tankDrive extends Command {
 		    		Robot.driveTrain.drive(left, right);
 		    	}*/
 		    	Robot.driveTrain.drive(left, right);
-	        	_example.reset();
+	        	Robot.runner.reset();
 	    	}
     	} else {
     		if(PIDtoggle){
@@ -110,19 +108,6 @@ public class tankDrive extends Command {
     			Robot.driveTrain.changekD(Robot.derivChanger.getSelected());
     			
     			PIDtoggle = false;
-    		}
-    		
-    		SetValueMotionProfile setOutput = _example.getSetValue();
-    		
-    		Robot.driveTrain.getLeftFront().set(ControlMode.MotionProfile, setOutput.value);
-    		Robot.driveTrain.getRightFront().set(ControlMode.MotionProfile, setOutput.value);
-    		
-    		_example.setPath(Robot.pathChooser.getSelected());
-    		
-    		if(Robot.oi.xboxController.getRawButtonPressed(8)){
-    			
-    			
-    			_example.startMotionProfile();
     		}
     	}
     	

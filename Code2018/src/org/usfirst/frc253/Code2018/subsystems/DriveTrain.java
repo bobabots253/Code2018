@@ -66,7 +66,7 @@ public class DriveTrain extends Subsystem {
 		
 		leftFront.setSensorPhase(false);
 		rightFront.setSensorPhase(false);
-		leftBack.setSensorPhase(true);
+		leftBack.setSensorPhase(false);
 		
 		leftFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
     	rightFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);

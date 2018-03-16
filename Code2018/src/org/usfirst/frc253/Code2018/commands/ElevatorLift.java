@@ -14,15 +14,15 @@ public class ElevatorLift extends Command {
 	}
 	
 	protected void execute(){
-		double speed = -Robot.oi.getOperatorJoystick().getY();
+		double speed = -Robot.oi.getOperatorJoystick1().getY();
 		
 		Robot.elevator.move(.225 + speed * 0.775);
 		
 		if(Robot.oi.xboxController.getYButton()){
-			Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
+			Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
 		}
 		
-		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0)/ 4096.0 * 1.75 / 12.0 * Math.PI);
+		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0)/ 4096.0 * 1.75 / 12.0 * Math.PI);
 	}
 	
 	@Override

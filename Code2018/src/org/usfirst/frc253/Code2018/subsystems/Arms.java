@@ -1,6 +1,6 @@
 package org.usfirst.frc253.Code2018.subsystems;
 import org.usfirst.frc253.Code2018.RobotMap;
-import org.usfirst.frc253.Code2018.commands.swingStop;
+import org.usfirst.frc253.Code2018.commands.ArmsControl;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
@@ -13,15 +13,19 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
 public class Arms extends Subsystem{
+	
 	private final VictorSPX swingIntake1 = RobotMap.swingIntake1;
 	private final Talon swingIntake2 = RobotMap.swingIntake2;
-		
-	
 
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
         //setDefaultCommand(new MySpecialCommand());
-    	setDefaultCommand(new swingStop());
+    	setDefaultCommand(new ArmsControl());
+    }
+    
+    public void swing(double speed){
+    	swingIntake1.set(ControlMode.PercentOutput, speed);
+    	swingIntake2.set(speed);
     }
     //giving VictorSP's values
     public void swingInT(){
