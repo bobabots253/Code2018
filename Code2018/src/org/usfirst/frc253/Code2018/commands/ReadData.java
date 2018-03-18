@@ -47,14 +47,13 @@ public class ReadData extends Command {
  // Called repeatedly when this Command is scheduled to run
  protected void execute() {//this sends a message to the smart dashboard
 	 // Command "got cube?" tells driver if there's cube//
-	 SmartDashboard.putNumber("how far", Robot.sensors.getDistance());
 	  //Command "how far" tells driver how far from an object
-	 SmartDashboard.putBoolean("got limit switch1?", Robot.sensors.getLimitSwitch1().get());
+	 SmartDashboard.putBoolean("Has cube?", Robot.sensors.getLimitSwitch1().get());
 //	 SmartDashboard.putBoolean("got limit switch2?", Robot.sensors.hasCube());
 	 
-	 SmartDashboard.putNumber("Yaw", Robot.sensors.getYaw());
-	 SmartDashboard.putNumber("Pitch", Robot.sensors.getPitch());
-	 SmartDashboard.putNumber("Roll", Robot.sensors.getRoll());
+//	 SmartDashboard.putNumber("Yaw", Robot.sensors.getYaw());
+//	 SmartDashboard.putNumber("Pitch", Robot.sensors.getPitch());
+//	 SmartDashboard.putNumber("Roll", Robot.sensors.getRoll());
 	 
 	 SmartDashboard.putNumber("Proprotional Gain", Robot.driveTrain.getkP());
  	 SmartDashboard.putNumber("Integral Gain", Robot.driveTrain.getkI());

@@ -7,15 +7,16 @@ import edu.wpi.first.wpilibj.command.Command;
 public class StraightDrive extends Command {
 	
 	public StraightDrive() {
-		requires(Robot.driveTrain); 
+		requires(Robot.driveTrain);
+		setTimeout(3);
 	}
 	protected void initialize() {
 	}
 	protected void execute() { //makes robot go straight at specified speed
-		Robot.driveTrain.drive(.25, .25); 
+		Robot.driveTrain.drive(.5, .5); 
 	}
 	protected boolean isFinished() {
-		return false; 
+		return isTimedOut(); 
 	}
 	protected void end() {
 		Robot.driveTrain.drive(0, 0); 

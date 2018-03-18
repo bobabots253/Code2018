@@ -55,26 +55,26 @@ public class DriveTrain extends Subsystem {
     	leftBack.setInverted(true);
     	rightBack.setInverted(false);
     	
-    	leftFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
-		leftFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
+    	leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
+		leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		
 		rightFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
 		rightFront.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
 		
-		leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
-		leftBack.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
+		leftFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10); 
+		leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 		
-		leftFront.setSensorPhase(false);
-		rightFront.setSensorPhase(false);
 		leftBack.setSensorPhase(false);
+		rightFront.setSensorPhase(false);
+		leftFront.setSensorPhase(false);
 		
-		leftFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
+		leftBack.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
     	rightFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
 //35074964382
-		leftFront.config_kF(0, 0, Constants.kTimeoutMs);
-		leftFront.config_kP(0, kP, Constants.kTimeoutMs);
-		leftFront.config_kI(0, kI, Constants.kTimeoutMs);
-		leftFront.config_kD(0, kD, Constants.kTimeoutMs);
+		leftBack.config_kF(0, 0, Constants.kTimeoutMs);
+		leftBack.config_kP(0, kP, Constants.kTimeoutMs);
+		leftBack.config_kI(0, kI, Constants.kTimeoutMs);
+		leftBack.config_kD(0, kD, Constants.kTimeoutMs);
 
 		rightFront.config_kF(0, 0, Constants.kTimeoutMs);
 		rightFront.config_kP(0, kP, Constants.kTimeoutMs);
@@ -82,7 +82,7 @@ public class DriveTrain extends Subsystem {
 		rightFront.config_kD(0, kD, Constants.kTimeoutMs);
 
 		/* Our profile uses 10ms timing */
-		leftFront.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
+		leftBack.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
 		rightFront.configMotionProfileTrajectoryPeriod(10, Constants.kTimeoutMs); 
 		/*
 		 * status 10 provides the trajectory target for motion profile AND
@@ -123,14 +123,14 @@ public class DriveTrain extends Subsystem {
     	kP += delta;
     	
     	leftBack.config_kP(0, kP, Constants.kTimeoutMs);
-    	rightBack.config_kP(0, kP, Constants.kTimeoutMs);
+    	rightFront.config_kP(0, kP, Constants.kTimeoutMs);
     }
     
     public void changekD(double delta){
     	kD += delta;
     	
     	leftBack.config_kD(0, kD, Constants.kTimeoutMs);
-    	rightBack.config_kD(0, kD, Constants.kTimeoutMs);
+    	rightFront.config_kD(0, kD, Constants.kTimeoutMs);
     }
     
     public double getkP(){

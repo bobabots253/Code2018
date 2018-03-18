@@ -26,7 +26,7 @@ public class GoTo extends Command {
 		
 		SetValueMotionProfile setOutput = Robot.runner.getSetValue();
 		
-		Robot.driveTrain.getLeftFront().set(ControlMode.MotionProfile, setOutput.value);
+		Robot.driveTrain.getLeftBack().set(ControlMode.MotionProfile, setOutput.value);
 		Robot.driveTrain.getRightFront().set(ControlMode.MotionProfile, setOutput.value);
 		
 		if(toggle){

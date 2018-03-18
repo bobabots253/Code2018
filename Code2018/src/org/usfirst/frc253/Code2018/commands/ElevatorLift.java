@@ -9,20 +9,33 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class ElevatorLift extends Command {
 
+	boolean toggle = true;
+	boolean changeStatus = true;
+	
 	public ElevatorLift(){
 		requires(Robot.elevator);
 	}
 	
 	protected void execute(){
-		double speed = -Robot.oi.getOperatorJoystick1().getY();
-		
-		Robot.elevator.move(.225 + speed * 0.775);
-		
-		if(Robot.oi.xboxController.getYButton()){
-			Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
+		if(Robot.oi.getOperatorJoystick2().getRawButton(8) && toggle){
+			toggle = false;
+			changeStatus = !changeStatus;
+		} else if(!Robot.oi.getOperatorJoystick2().getRawButton(8)){
+			toggle = true;
 		}
 		
-		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0)/ 4096.0 * 1.75 / 12.0 * Math.PI);
+		if(changeStatus){
+			double speed = -Robot.oi.getOperatorJoystick1().getY();
+			Robot.elevator.move(.225 + speed * 0.775);
+		} else {
+			Robot.elevator.move(.225);
+		}
+		
+		if(Robot.oi.xboxController.getYButton()){
+			Robot.driveTrain.getLeftFront().setSelectedSensorPosition(0, 0, 0);
+		}
+		
+		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0)/ 4096.0 * 1.75 / 12.0 * Math.PI);
 	}
 	
 	@Override

@@ -33,15 +33,25 @@ public class Intake extends Subsystem {
        
     public void intake(){
     	insideIntake1.set(-0.75);
-    	insideIntake2.set(0.75);
-    	spinIntake1.set(ControlMode.PercentOutput, .75);
-    	spinIntake2.set(ControlMode.PercentOutput, .75);
+    	insideIntake2.set(0.45);
+    	spinIntake1.set(ControlMode.PercentOutput,- .75);
+    	spinIntake2.set(ControlMode.PercentOutput, -.75);
+    }
+    public void intakehalf(){
+    	insideIntake1.set(-0.1);
+    	insideIntake2.set(0.1);
+    //	spinIntake1.set(ControlMode.PercentOutput, .75);
+    //	spinIntake2.set(ControlMode.PercentOutput, .75);
+    }
+    public void hold(){
+    	insideIntake1.set(-0.1);
+    	insideIntake2.set(0.1);
     }
     public void eject(){
     	insideIntake1.set(0.75);
     	insideIntake2.set(-0.75);
-    	spinIntake1.set(ControlMode.PercentOutput, -.75);
-    	spinIntake2.set(ControlMode.PercentOutput, -.75);
+    	spinIntake1.set(ControlMode.PercentOutput, .75);
+    	spinIntake2.set(ControlMode.PercentOutput, .75);
     }
     public void ejectonly(){
     	insideIntake1.set(0.75);

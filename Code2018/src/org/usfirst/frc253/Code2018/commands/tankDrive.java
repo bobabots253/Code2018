@@ -34,6 +34,13 @@ public class tankDrive extends Command {
 	private double kDeadzone = 0.125; //How far you have to push the joystick to get a response (0.125 = 1/8th of full)
 	private boolean PIDtoggle = true;
 	
+	private boolean accelToggleSwitch = true;
+	private boolean accelToggle = false;
+	private final double delta = 0.1;
+	
+	double left = 0;
+	double right = 0;
+	
     public tankDrive() {
 
     	//says we need drivetrain to do this command 
@@ -49,12 +56,19 @@ public class tankDrive extends Command {
     protected void execute() {
     	Robot.runner.control();
     	
-    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
+    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
     	SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
     	 
     	if(Robot.oi.xboxController.getBButton()){
-    		Robot.driveTrain.getLeftFront().setSelectedSensorPosition(0, 0, 0);
+    		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
     		Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
+    	}
+    	
+    	if(Robot.oi.xboxController.getRawButton(8) && accelToggleSwitch){
+    		accelToggleSwitch = false;
+    		accelToggle = !accelToggle;
+    	} else if (!Robot.oi.xboxController.getRawButton(8)){
+    		accelToggleSwitch = true;
     	}
     	
     	if(!Robot.oi.xboxController.getRawButton(7)){
@@ -74,8 +88,9 @@ public class tankDrive extends Command {
 	        	// we are connecting the right joysticks to the right speedcontrollers
 	        	// we are sending numbers to the speedcontrollers through the method
 	    	}else{
-	        	double left;
-	        	double right;
+	    		double prevLeft = left;
+	    		double prevRight = right;
+	    		
 	        	if(Math.abs(Robot.oi.getLeftJoystickY())<=kDeadzone){
 	        		left = -Robot.oi.getRightJoystickX();
 	        		right = Robot.oi.getRightJoystickX();
@@ -87,6 +102,14 @@ public class tankDrive extends Command {
 	    		    right = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	        	}
 	        	
+	    		if(accelToggle){
+	    			if(left > prevLeft + delta){
+	    				left = prevLeft + delta;
+	    			}
+	    			if(right > prevRight + delta){
+	    				right = prevRight + delta;
+	    			}
+	    		}
 	        	/*boolean sensToggle = Robot.oi.xboxController.getRawButton(4);
 		    	if(sensToggle && toggle){
 		    		toggle = false; //if statement that makes toggling system

@@ -12,10 +12,9 @@
 package org.usfirst.frc253.Code2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc253.Code2018.Robot;
-import org.usfirst.frc253.Code2018.Robot.Ally;
-import org.usfirst.frc253.Code2018.Robot.Enemy;
 import org.usfirst.frc253.Code2018.Robot.Goal;
 import org.usfirst.frc253.Code2018.Robot.Position;
 import org.usfirst.frc253.Code2018.profiles.ProfileLib;
@@ -36,28 +35,42 @@ public class AutonomousCommand extends CommandGroup {
     	char switchSide = gameData.charAt(0); //L for Left, R for Right (relative to our alliance station)
     	char scaleSide = gameData.charAt(1);
     	
+    	String autoStatus = "nothing";
+//    	addSequential(new elevatorUp(0.3));
+    	
     	if(position == Position.CENTER){
     		switch(goal){
     			case SWITCH:
     				if(isSideSwitch){
 	    				if(switchSide == 'L'){
-	    					addSequential(new GoTo(ProfileLib.LToLSwitch3_2_2018, 10));
+	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 4)));
 	    				} else if(switchSide == 'R') {
-	    					//TODO: rightSwitch from center
+	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 4)));
 	    				}
+	    				addSequential(new Ejecthalf(1));
+	    				addSequential(new elevatorDown(4));
+	    				autoStatus = "center position to switch";
 	    				break;
     				} else {
     					goal = Goal.EXCHANGE;
     				}
     			case EXCHANGE:
-    				//TODO: exchange from center
+    				addSequential(new GoTo(ProfileLib.CtoExchange, 4));
+    				addSequential(new Eject(1));
+    				if(switchSide == 'L'){
+    					addSequential(new GoTo(ProfileLib.ExchangetoRBase, 5));
+    				} else if(switchSide == 'R') {
+    					addSequential(new GoTo(ProfileLib.ExchangetoLBase, 4));
+    				}
+    				autoStatus = "center position to exchange";
     				break;
     			default:
     				if(switchSide == 'L'){
-    					//TODO: rightBaseline from center
+    					addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 4));
     				} else if(switchSide == 'R') {
-    					//TODO: leftBaseline from center
+    					addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 4));
     				}
+    				autoStatus = "center position to baseline";
     				break;
     		}
     	} else if(position == Position.LEFT || position == Position.RIGHT){
@@ -65,10 +78,15 @@ public class AutonomousCommand extends CommandGroup {
     			case SCALE:
     				if(scaleSide == position.getPos()){
     					if(position == Position.LEFT){
-    						//TODO: leftScale from left
+    						addSequential(new GoTo(ProfileLib.NewLtoLScale, 8));
+    						autoStatus = "left position to scale";
     					} else if(position == Position.RIGHT){
-    						//TODO: rightScale from right
+    						addSequential(new GoTo(ProfileLib.NewRtoRScale, 8));
+    						autoStatus = "right position to scale";
     					}
+    					addSequential(new elevatorUp(4));
+    					addSequential(new Eject(1));
+    					addSequential(new elevatorDown(8));
     					break;
     				} else {
     					goal = Goal.SWITCH;
@@ -76,66 +94,29 @@ public class AutonomousCommand extends CommandGroup {
     			case SWITCH:
     				if(switchSide == position.getPos()){
     					if(position == Position.LEFT){
-    						//TODO: leftScale from left
+    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 4)));
+    						autoStatus = "left position to switch";
     					} else if(position == Position.RIGHT){
-    						//TODO: rightScale from right
+    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 4)));
+    						autoStatus = "right position to switch";
     					}
+	    				addSequential(new Ejecthalf(1));
+	    				addSequential(new elevatorDown(4));
     					break;
     				} else {
     					goal = Goal.BASELINE;
     				}
+    			case BASELINE:
+    				addSequential(new StraightDrive());
+    				autoStatus = "long baseline";
+    				break;
     			default:
-    				//TODO: longBaseline
+    				addSequential(new StraightDrive());
+    				autoStatus = "long baseline";
     				break;
     		}
     	}
-    }
-	
-	@Deprecated
-	public AutonomousCommand(Position position, char switchSide, char scaleSide, Enemy canDo, Ally isDoing) {
-    	requires(Robot.driveTrain);//Makes it so that we can use the things inside robot 
-    	//and elevator
-    	requires(Robot.elevator);
     	
-    	if(position == Position.LEFT || position == Position.RIGHT){
-    		if(switchSide == position.getPos() && scaleSide != position.getPos()){//Switch is ours and scale is not ours
-    			if(canDo == Enemy.SCALE){ 
-    			}else{ //these are defend and after the else are going to the switch and scoring
-    				addSequential(new SwitchScore());
-    			}
-    		}else if(switchSide != position.getPos() && scaleSide == position.getPos()){//Switch is not ours scale is ours
-    			if(canDo == Enemy.DEFEND){
-    				addSequential(new exchangeCommand());
-    			}else{ //we either go exchange or go to scale
-    				addSequential(new ScaleScore());
-
-    			} 
-    		}else if(switchSide == position.getPos() && scaleSide == position.getPos()){//both switch and scale is ours
-    			if(canDo == Enemy.DEFEND){
-    				addSequential(new SwitchScore());
-    			}else{//we either score in switch or scale
-    				addSequential(new ScaleScore());
-    			} 
-    		}else if(switchSide != position.getPos() && scaleSide != position.getPos()){//Neither scale or switch  
-    			if(canDo == Enemy.SCALE){
-    			}else{//defend if enemy is going scale otherwise we exchange
-    				addSequential(new exchangeCommand());
-    			}
-    		}
-    	}else if (position == Position.CENTER){
-    		if(switchSide == 'L'){
-        		if(isDoing == Ally.SCALEORDEFEND){
-    				addSequential(new SwitchScore());
-        		}else{//this is for if we are in center and we either switch score or exchange
-    				addSequential(new exchangeCommand());
-        		}
-        	}else if(switchSide == 'R'){
-        		if(isDoing == Ally.SCALEORDEFEND){
-    				addSequential(new SwitchScore()); 
-        		}else{//we either switch score or exchange
-    				addSequential(new exchangeCommand());
-        		}
-        	}
-    	}
-    }
+    	SmartDashboard.putString("Auto Status", autoStatus);
+    }    
 }

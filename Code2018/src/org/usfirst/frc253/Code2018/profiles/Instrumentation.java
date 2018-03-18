@@ -93,10 +93,10 @@ public class Instrumentation {
 			System.out.format("%-9s\t", (statusL.isUnderrun ? "true" : "false"));
 			System.out.format("%-9s\t", (statusL.isLast ? "true" : "false"));
 			System.out.format("%-9s\t\t", posL);
-			System.out.format("%-9s\t\t", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
+			System.out.format("%-9s\t\t", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
 			System.out.format("%-9s\t\t", velL);
-			System.out.format("%-9s\t\t", Robot.driveTrain.getLeftFront().getSelectedSensorVelocity(0));
-			System.out.format("%-9s\t", Robot.driveTrain.getLeftFront().getMotorOutputVoltage());
+			System.out.format("%-9s\t\t", Robot.driveTrain.getLeftBack().getSelectedSensorVelocity(0));
+			System.out.format("%-9s\t", Robot.driveTrain.getLeftBack().getMotorOutputVoltage());
 			//TODO left side is getting a constant 1.0 output percent despite not seeming to move at all
 			//TODO left is receiving a consistently higher voltage than right but doesn't move as much
 			System.out.format("%-9s\t\t", statusL.profileSlotSelect);

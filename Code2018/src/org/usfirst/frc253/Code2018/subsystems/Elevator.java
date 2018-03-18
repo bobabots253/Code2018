@@ -64,17 +64,16 @@ public class Elevator extends Subsystem {
     	ElevatorSpark2.set(speed);
     }
     public void lift(){
-    	ElevatorSpark1.set(.25);
-    	ElevatorSpark2.set(.25);
+    	ElevatorSpark1.set(.6);
+    	ElevatorSpark2.set(.6);
     }
     public void lower(){
-    	ElevatorSpark1.set(-.25);
-    	ElevatorSpark2.set(-.25);
+    	ElevatorSpark1.set(.1);
+    	ElevatorSpark2.set(.1);
     }
     public void eleStop(){
-    	ElevatorSpark1.set(0);
-    	ElevatorSpark2.set(0);
-    	
+    	ElevatorSpark1.set(.225);
+    	ElevatorSpark2.set(.225);	
     }
     public void pidControl(double output){
     	ElevatorSpark1.pidWrite(output);

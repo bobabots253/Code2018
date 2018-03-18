@@ -120,8 +120,7 @@ public class MotionProfileRunner {
 	 * @param talon
 	 *            reference to Talon object to fetch motion profile status from.
 	 */
-	public MotionProfileRunner(ArrayList<MotionProfileData> path, TalonSRX talonLeft, TalonSRX talonRight) {
-		_path = path;
+	public MotionProfileRunner(TalonSRX talonLeft, TalonSRX talonRight) {
 		
 		_talonLeft = talonLeft;
 		_talonRight = talonRight;
@@ -134,10 +133,9 @@ public class MotionProfileRunner {
 		_notifer.startPeriodic(0.005);
 	}
 	
-	public MotionProfileRunner(ArrayList<MotionProfileData> path) {
-		_path = path;
+	public MotionProfileRunner() {
 		
-		_talonLeft = Robot.driveTrain.getLeftFront();
+		_talonLeft = Robot.driveTrain.getLeftBack();
 		_talonRight = Robot.driveTrain.getRightFront();
 		/*
 		 * since our MP is 10ms per point, set the control frame rate and the

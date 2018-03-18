@@ -27,6 +27,12 @@ public class Arms extends Subsystem{
     	swingIntake1.set(ControlMode.PercentOutput, speed);
     	swingIntake2.set(speed);
     }
+    public void swingLeft(double speed){
+    	swingIntake1.set(ControlMode.PercentOutput, speed);
+    }
+    public void swingRight(double speed){
+    	swingIntake2.set(speed);
+    }
     //giving VictorSP's values
     public void swingInT(){
     	swingIntake1.set(ControlMode.PercentOutput, .5);
