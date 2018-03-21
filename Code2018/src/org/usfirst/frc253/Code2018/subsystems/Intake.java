@@ -32,10 +32,13 @@ public class Intake extends Subsystem {
 
        
     public void intake(){
-    	insideIntake1.set(-0.75);
-    	insideIntake2.set(0.45);
+    	insideIntake1.set(-0.45);
+    	insideIntake2.set(0.75);
     	spinIntake1.set(ControlMode.PercentOutput,- .75);
     	spinIntake2.set(ControlMode.PercentOutput, -.75);
+    }
+    public void spinRight(){
+    	insideIntake2.set(-0.25);
     }
     public void intakehalf(){
     	insideIntake1.set(-0.1);

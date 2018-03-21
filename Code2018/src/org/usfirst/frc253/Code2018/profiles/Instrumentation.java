@@ -32,6 +32,9 @@ public class Instrumentation {
 
 	static double timeout = 0;
 	static int count = 0;
+	
+	static int leftNoProgCount = 0;
+	static int rightNoProgCount = 0;
 
 	private static final String[] _table = {" Dis ", " En  ", "Hold "};
 
@@ -80,6 +83,7 @@ public class Instrumentation {
 				System.out.format("%-9s\t", "sentVlt");
 				System.out.format("%-9s\t", "SlotSel0");
 				System.out.format("%-9s\t\t", "timeDurMs");
+				System.out.format("%-9s\t", "NOPROG");
 				System.out.format("\n");
 			}
 			/* every loop, print our values */
@@ -101,7 +105,9 @@ public class Instrumentation {
 			//TODO left is receiving a consistently higher voltage than right but doesn't move as much
 			System.out.format("%-9s\t\t", statusL.profileSlotSelect);
 			System.out.format("%-9s\t\t", statusL.timeDurMs);
-
+			
+			System.out.format("%-9s\t", leftNoProgCount);
+			
 			System.out.format("\n");
 			
 			System.out.format("%-9s\t\t", "right");
@@ -120,6 +126,7 @@ public class Instrumentation {
 			System.out.format("%-9s\t", Robot.driveTrain.getRightFront().getMotorOutputVoltage());
 			System.out.format("%-9s\t\t", statusR.profileSlotSelect);
 			System.out.format("%-9s\t\t\t", statusR.timeDurMs);
+			System.out.format("%-9s\t", rightNoProgCount);
 			
 			System.out.format("\n\n");
 		}

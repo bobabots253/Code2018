@@ -14,9 +14,12 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import java.util.ArrayList;
+
 import org.usfirst.frc253.Code2018.Robot;
 import org.usfirst.frc253.Code2018.Robot.Goal;
 import org.usfirst.frc253.Code2018.Robot.Position;
+import org.usfirst.frc253.Code2018.profiles.MotionProfileData;
 import org.usfirst.frc253.Code2018.profiles.ProfileLib;
 
 /**
@@ -36,16 +39,16 @@ public class AutonomousCommand extends CommandGroup {
     	char scaleSide = gameData.charAt(1);
     	
     	String autoStatus = "nothing";
-//    	addSequential(new elevatorUp(0.3));
+    	addSequential(new elevatorUp(0.3));
     	
     	if(position == Position.CENTER){
     		switch(goal){
     			case SWITCH:
     				if(isSideSwitch){
 	    				if(switchSide == 'L'){
-	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 4)));
+	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 6)));
 	    				} else if(switchSide == 'R') {
-	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 4)));
+	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 6)));
 	    				}
 	    				addSequential(new Ejecthalf(1));
 	    				addSequential(new elevatorDown(4));
@@ -55,20 +58,20 @@ public class AutonomousCommand extends CommandGroup {
     					goal = Goal.EXCHANGE;
     				}
     			case EXCHANGE:
-    				addSequential(new GoTo(ProfileLib.CtoExchange, 4));
+    				addSequential(new GoTo(ProfileLib.CtoExchange, 6));
     				addSequential(new Eject(1));
     				if(switchSide == 'L'){
-    					addSequential(new GoTo(ProfileLib.ExchangetoRBase, 5));
+    					addSequential(new GoTo(ProfileLib.ExchangetoRBase, 7));
     				} else if(switchSide == 'R') {
-    					addSequential(new GoTo(ProfileLib.ExchangetoLBase, 4));
+    					addSequential(new GoTo(ProfileLib.ExchangetoLBase, 6));
     				}
     				autoStatus = "center position to exchange";
     				break;
     			default:
     				if(switchSide == 'L'){
-    					addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 4));
+    					addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 6));
     				} else if(switchSide == 'R') {
-    					addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 4));
+    					addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 6));
     				}
     				autoStatus = "center position to baseline";
     				break;
@@ -78,10 +81,10 @@ public class AutonomousCommand extends CommandGroup {
     			case SCALE:
     				if(scaleSide == position.getPos()){
     					if(position == Position.LEFT){
-    						addSequential(new GoTo(ProfileLib.NewLtoLScale, 8));
+    						addSequential(new GoTo(ProfileLib.NewLtoLScale, 10));
     						autoStatus = "left position to scale";
     					} else if(position == Position.RIGHT){
-    						addSequential(new GoTo(ProfileLib.NewRtoRScale, 8));
+    						addSequential(new GoTo(ProfileLib.NewRtoRScale, 10));
     						autoStatus = "right position to scale";
     					}
     					addSequential(new elevatorUp(4));
@@ -94,10 +97,10 @@ public class AutonomousCommand extends CommandGroup {
     			case SWITCH:
     				if(switchSide == position.getPos()){
     					if(position == Position.LEFT){
-    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 4)));
+    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 6)));
     						autoStatus = "left position to switch";
     					} else if(position == Position.RIGHT){
-    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 4)));
+    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 6)));
     						autoStatus = "right position to switch";
     					}
 	    				addSequential(new Ejecthalf(1));
@@ -119,4 +122,8 @@ public class AutonomousCommand extends CommandGroup {
     	
     	SmartDashboard.putString("Auto Status", autoStatus);
     }    
+    
+    public AutonomousCommand(ArrayList<MotionProfileData> path, double timeout){
+    	addSequential(new GoTo(path, timeout));
+    }
 }

@@ -13,7 +13,7 @@ public class StraightDrive extends Command {
 	protected void initialize() {
 	}
 	protected void execute() { //makes robot go straight at specified speed
-		Robot.driveTrain.drive(.75, .75); 
+		Robot.driveTrain.drive(-.5, -.5); 
 	}
 	protected boolean isFinished() {
 		return isTimedOut(); 

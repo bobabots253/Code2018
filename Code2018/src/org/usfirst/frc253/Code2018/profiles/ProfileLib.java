@@ -72,4 +72,44 @@ public class ProfileLib {
 		add(new MotionProfileData("ExchangetoRBase_left.csv", false, false, false));
 		add(new MotionProfileData("ExchangetoRBase_right.csv", false, false, false));
 	}};
+	public static ArrayList<MotionProfileData> CtoRSwitch_19V9A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V9.5A60J_left.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V9.5A60J_right.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> CtoLSwitch_19V9A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V9.5A60J_right.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V9.5A60J_left.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> CtoRSwitch_19V1200A2400J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V1200A2400J_left.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V1200A2400J_right.csv", false, false, false));
+	}};	
+	public static ArrayList<MotionProfileData> CtoLSwitch_19V1200A2400J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V1200A2400J_right.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V1200A2400J_left.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> CtoRSwitch_19V40A160J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V40A160J_left.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V40A160J_right.csv", false, false, false));
+	}};	
+	public static ArrayList<MotionProfileData> CtoLSwitch_19V40A160J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("CtoRSwitch_19V40A160J_right.csv", false, false, false));
+		add(new MotionProfileData("CtoRSwitch_19V40A160J_left.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> RtoRScale_19V9A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRScale_19V9.5A60J_left.csv", false, false, false));
+		add(new MotionProfileData("RtoRScale_19V9.5A60J_right.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> LtoLScale_19V9A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRScale_19V9.5A60J_right.csv", false, false, false));
+		add(new MotionProfileData("RtoRScale_19V9.5A60J_left.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> RtoRScale_19V22A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRScale_19V22A60J_left.csv", false, false, false));
+		add(new MotionProfileData("RtoRScale_19V22A60J_right.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> LtoLScale_19V22A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRScale_19V22A60J_right.csv", false, false, false));
+		add(new MotionProfileData("RtoRScale_19V22A60J_left.csv", false, false, false));
+	}};
 } 

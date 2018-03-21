@@ -48,6 +48,8 @@ public class Robot extends IterativeRobot {
     SendableChooser<Goal> goalChooser;
     SendableChooser<Boolean> switchSideChooser;
     
+    SendableChooser<ArrayList<MotionProfileData>> pathChooser;
+    
     public static SendableChooser<Double> propChanger;
     public static SendableChooser<Double> derivChanger;
     public static SendableChooser<Double> elevatorChooser;
@@ -169,6 +171,20 @@ public class Robot extends IterativeRobot {
         switchSideChooser.addObject("Ally is going front of switch", false);
         SmartDashboard.putData("SwitchSide", switchSideChooser);
         
+        pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
+        pathChooser.addDefault("No path", null);
+        pathChooser.addObject("CtoLSwitch_19V9.5A60J", ProfileLib.CtoLSwitch_19V9A60J);
+        pathChooser.addObject("CtoRSwitch_19V9.5A60J", ProfileLib.CtoRSwitch_19V9A60J);
+        pathChooser.addObject("CtoLSwitch_19V1200A2400J", ProfileLib.CtoLSwitch_19V1200A2400J);
+        pathChooser.addObject("CtoRSwitch_19V1200A2400J", ProfileLib.CtoRSwitch_19V1200A2400J);
+        pathChooser.addObject("CtoLSwitch_19V40A160J", ProfileLib.CtoLSwitch_19V40A160J);
+        pathChooser.addObject("CtoRSwitch_19V40A160J", ProfileLib.CtoRSwitch_19V40A160J);
+        pathChooser.addObject("LtoLScale_19V22A60J", ProfileLib.LtoLScale_19V22A60J);
+        pathChooser.addObject("RtoRScale_19V22A60J", ProfileLib.RtoRScale_19V22A60J);
+        pathChooser.addObject("RtoRScale_19V9.5A60J", ProfileLib.RtoRScale_19V9A60J);
+        pathChooser.addObject("LtoLScale_19V9.5A60J", ProfileLib.LtoLScale_19V9A60J);
+        SmartDashboard.putData("PathChooser", pathChooser);
+        
         oi = new OI();
 
         // instantiate the command used for the autonomous period
@@ -206,8 +222,12 @@ public class Robot extends IterativeRobot {
     	boolean isSideSwitch = switchSideChooser.getSelected();
     	
     	//starts auto by using info compiled from line 157 
-    	autonomousCommand = new AutonomousCommand(position, goal, isSideSwitch, gameData);
-        // schedule the autonomous command (example)
+    	if(pathChooser.getSelected() != null){
+    		autonomousCommand = new AutonomousCommand(pathChooser.getSelected(), 30);
+    	} else {
+    		autonomousCommand = new AutonomousCommand(position, goal, isSideSwitch, gameData);
+    	}
+    		// schedule the autonomous command (example)
         if (autonomousCommand != null){
         	autonomousCommand.start();
         }
