@@ -112,4 +112,12 @@ public class ProfileLib {
 		add(new MotionProfileData("RtoRScale_19V22A60J_right.csv", false, false, false));
 		add(new MotionProfileData("RtoRScale_19V22A60J_left.csv", false, false, false));
 	}};
+	public static ArrayList<MotionProfileData> perfectlyStraight15ft = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("perfectlyStraight15ft_right.csv", false, false, false));
+		add(new MotionProfileData("perfectlyStraight15ft_left.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> LtoLScale_10V65A60J = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("LtoLScale_10V6.5A60J_right.csv", false, false, false));
+		add(new MotionProfileData("LtoLScale_10V6.5A60J_left.csv", false, false, false));
+	}};
 } 

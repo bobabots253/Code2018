@@ -55,9 +55,6 @@ public class tankDrive extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	Robot.runner.control();
-    	
-    	SmartDashboard.putNumber("Left Position", Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0));
-    	SmartDashboard.putNumber("Right Position", Robot.driveTrain.getRightFront().getSelectedSensorPosition(0));
     	 
     	if(Robot.oi.xboxController.getBButton()){
     		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);

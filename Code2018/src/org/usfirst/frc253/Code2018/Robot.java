@@ -174,6 +174,8 @@ public class Robot extends IterativeRobot {
         pathChooser = new SendableChooser<ArrayList<MotionProfileData>>();
         pathChooser.addDefault("No path", null);
         pathChooser.addObject("CtoLSwitch_19V9.5A60J", ProfileLib.CtoLSwitch_19V9A60J);
+        pathChooser.addObject("LtoLScale_10V6.5A60J", ProfileLib.LtoLScale_10V65A60J);
+        pathChooser.addObject("perfectlyStraight15ft", ProfileLib.perfectlyStraight15ft);
         pathChooser.addObject("CtoRSwitch_19V9.5A60J", ProfileLib.CtoRSwitch_19V9A60J);
         pathChooser.addObject("CtoLSwitch_19V1200A2400J", ProfileLib.CtoLSwitch_19V1200A2400J);
         pathChooser.addObject("CtoRSwitch_19V1200A2400J", ProfileLib.CtoRSwitch_19V1200A2400J);
