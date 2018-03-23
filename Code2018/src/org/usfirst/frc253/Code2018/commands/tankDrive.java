@@ -69,6 +69,7 @@ public class tankDrive extends Command {
     	}
     	
     	if(!Robot.oi.xboxController.getRawButton(7)){
+    		PIDtoggle = true;
 	    	boolean isPressedTurnOn = Robot.oi.getOperatorJoystick2().getRawButton(9);
 	    	if(isPressedTurnOn && toggle){
 	    		toggle = false; //if statement that makes toggling system
@@ -125,7 +126,9 @@ public class tankDrive extends Command {
     	} else {
     		if(PIDtoggle){
     			Robot.driveTrain.changekP(Robot.propChanger.getSelected());
+    			Robot.driveTrain.changekI(Robot.intChanger.getSelected());
     			Robot.driveTrain.changekD(Robot.derivChanger.getSelected());
+    			Robot.driveTrain.changekF(Robot.feedChanger.getSelected());
     			
     			PIDtoggle = false;
     		}

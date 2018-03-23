@@ -120,4 +120,16 @@ public class ProfileLib {
 		add(new MotionProfileData("LtoLScale_10V6.5A60J_right.csv", false, false, false));
 		add(new MotionProfileData("LtoLScale_10V6.5A60J_left.csv", false, false, false));
 	}};
+	public static ArrayList<MotionProfileData> Straight15ftSlower = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("Straight15ftSlower_left.csv", false, false, false));
+		add(new MotionProfileData("Straight15ftSlower_right.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> RtoRSwitchTest = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRSwitchTest_left.csv", false, false, false));
+		add(new MotionProfileData("RtoRSwitchTest_right.csv", false, false, false));
+	}};
+	public static ArrayList<MotionProfileData> RtoRSwitchTestAlt = new ArrayList<MotionProfileData>() {{
+		add(new MotionProfileData("RtoRSwitchTestAlt_left.csv", false, false, false));
+		add(new MotionProfileData("RtoRSwitchTestAlt_right.csv", false, false, false));
+	}};
 } 

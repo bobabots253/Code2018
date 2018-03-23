@@ -51,7 +51,10 @@ public class Robot extends IterativeRobot {
     SendableChooser<ArrayList<MotionProfileData>> pathChooser;
     
     public static SendableChooser<Double> propChanger;
+    public static SendableChooser<Double> intChanger;
     public static SendableChooser<Double> derivChanger;
+    public static SendableChooser<Double> feedChanger;
+    
     public static SendableChooser<Double> elevatorChooser;
     //more declarations; public static=you don't need a robot object to use them, anything can use 
     //them; space in computer is reserved for this  
@@ -115,13 +118,23 @@ public class Robot extends IterativeRobot {
     	    	
     	propChanger = new SendableChooser<Double>();
 	    propChanger.addObject("+0.1", 0.1);
-	    propChanger.addObject("+0.05", 0.05);
 	    propChanger.addObject("+0.01", 0.01);
+	    propChanger.addObject("+0.001", 0.001);
 	    propChanger.addDefault("0 (P Gain)", 0.0);
+	    propChanger.addObject("-0.001", -0.001);
 	    propChanger.addObject("-0.01", -0.01);
-	    propChanger.addObject("-0.05", -0.05);
 	    propChanger.addObject("-0.1", -0.1);
 	    SmartDashboard.putData("Proportional Changer", propChanger);
+	    
+	    intChanger = new SendableChooser<Double>();
+	    intChanger.addObject("+0.001", 0.001);
+	    intChanger.addObject("+0.0005", 0.005);
+	    intChanger.addObject("+0.0001", 0.0001);
+	    intChanger.addDefault("0 (I Gain)", 0.0);
+	    intChanger.addObject("-0.0001", -0.0001);
+	    intChanger.addObject("-0.0005", -0.0005);
+	    intChanger.addObject("-0.001", -0.001);
+	    SmartDashboard.putData("Integral Changer", intChanger);
 	    
 	    derivChanger = new SendableChooser<Double>();
 	    derivChanger.addObject("+10", 10.0);
@@ -132,6 +145,16 @@ public class Robot extends IterativeRobot {
 	    derivChanger.addObject("-5", -5.0);
 	    derivChanger.addObject("-10", -10.0);
 	    SmartDashboard.putData("Derivative Changer", derivChanger);
+	    
+	    feedChanger = new SendableChooser<Double>();
+	    feedChanger.addObject("+10", 10.0);
+	    feedChanger.addObject("+1", 1.0);
+	    feedChanger.addObject("+0.1", 0.1);
+	    feedChanger.addDefault("0 (F Gain)", 0.0);
+	    feedChanger.addObject("-0.1", -0.1);
+	    feedChanger.addObject("-1", -1.0);
+	    feedChanger.addObject("-10", -10.0);
+	    SmartDashboard.putData("FeedForward Changer", feedChanger);
 	    
 	    elevatorChooser = new SendableChooser<Double>();
 	    elevatorChooser.addObject("Scale", SetElevator.SCALE);
@@ -185,6 +208,9 @@ public class Robot extends IterativeRobot {
         pathChooser.addObject("RtoRScale_19V22A60J", ProfileLib.RtoRScale_19V22A60J);
         pathChooser.addObject("RtoRScale_19V9.5A60J", ProfileLib.RtoRScale_19V9A60J);
         pathChooser.addObject("LtoLScale_19V9.5A60J", ProfileLib.LtoLScale_19V9A60J);
+        pathChooser.addObject("Straight15ftSlower", ProfileLib.Straight15ftSlower);
+        pathChooser.addObject("RtoRSwitchTest", ProfileLib.RtoRSwitchTest);
+        pathChooser.addObject("RtoRSwitchTestAlt", ProfileLib.RtoRSwitchTestAlt);
         SmartDashboard.putData("PathChooser", pathChooser);
         
         oi = new OI();

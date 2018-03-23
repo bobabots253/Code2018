@@ -124,6 +124,9 @@ public class AutonomousCommand extends CommandGroup {
     }    
     
     public AutonomousCommand(ArrayList<MotionProfileData> path, double timeout){
+    	if(path.equals(ProfileLib.Straight15ftSlower)){
+    		addSequential(new SolenoidsForward());
+    	}
     	addSequential(new GoTo(path, timeout));
     }
 }
