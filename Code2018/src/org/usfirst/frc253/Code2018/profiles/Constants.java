@@ -40,5 +40,10 @@ public class Constants {
 	 * Motor deadband, set to 4%.
 	 */
 	public static final double kNeutralDeadband = 0.04;
+	
+	public static final double kWheelBaseWidthMeters = 0.59817;
+	public static final double kWheelBaseWidthFeet = 1.9625;
+	public static final double kWheelDiameterFeet = 0.5;
+	public static final double kWheelDiameterMeters = 0.1524;
 }
 

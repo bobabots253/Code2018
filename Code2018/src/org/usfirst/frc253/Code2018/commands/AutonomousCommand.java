@@ -13,6 +13,7 @@ package org.usfirst.frc253.Code2018.commands;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Trajectory;
 
 import java.util.ArrayList;
 
@@ -21,6 +22,8 @@ import org.usfirst.frc253.Code2018.Robot.Goal;
 import org.usfirst.frc253.Code2018.Robot.Position;
 import org.usfirst.frc253.Code2018.profiles.MotionProfileData;
 import org.usfirst.frc253.Code2018.profiles.ProfileLib;
+import org.usfirst.frc253.Code2018.profiles.TrajecLib;
+import org.usfirst.frc253.Code2018.profiles.TrajectoryContainer;
 
 /**
  *
@@ -128,5 +131,12 @@ public class AutonomousCommand extends CommandGroup {
     		addSequential(new SolenoidsForward());
     	}
     	addSequential(new GoTo(path, timeout));
+    }
+    
+    public AutonomousCommand(TrajectoryContainer container){
+    	if(container.getTrajec().equals(TrajecLib.Straight15ft)){
+    		addSequential(new SolenoidsForward());
+    	}
+    	addSequential(new GoToTrajec(container));
     }
 }

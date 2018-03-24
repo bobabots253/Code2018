@@ -23,6 +23,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.livewindow.LiveWindow;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Trajectory;
 
 import java.util.ArrayList;
 
@@ -31,6 +32,8 @@ import org.usfirst.frc253.Code2018.subsystems.*;
 import org.usfirst.frc253.Code2018.profiles.MotionProfileData;
 import org.usfirst.frc253.Code2018.profiles.MotionProfileRunner;
 import org.usfirst.frc253.Code2018.profiles.ProfileLib;
+import org.usfirst.frc253.Code2018.profiles.TrajecLib;
+import org.usfirst.frc253.Code2018.profiles.TrajectoryContainer;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -49,6 +52,7 @@ public class Robot extends IterativeRobot {
     SendableChooser<Boolean> switchSideChooser;
     
     SendableChooser<ArrayList<MotionProfileData>> pathChooser;
+    SendableChooser<TrajectoryContainer> trajecChooser;
     
     public static SendableChooser<Double> propChanger;
     public static SendableChooser<Double> intChanger;
@@ -108,13 +112,13 @@ public class Robot extends IterativeRobot {
     //initiates RobotMap 
     	RobotMap.init(); 
     	
-    	camera = CameraServer.getInstance().startAutomaticCapture(0);
-    	camera2 = CameraServer.getInstance().startAutomaticCapture(1);
-//    	
-    	camera.setResolution(320, 240);
-    	camera.setFPS(15);
-    	camera2.setResolution(320, 240);	
-    	camera2.setFPS(15);
+//    	camera = CameraServer.getInstance().startAutomaticCapture(0);
+//    	camera2 = CameraServer.getInstance().startAutomaticCapture(1);
+////    	
+//    	camera.setResolution(320, 240);
+//    	camera.setFPS(15);
+//    	camera2.setResolution(320, 240);	
+//    	camera2.setFPS(15);
     	    	
     	propChanger = new SendableChooser<Double>();
 	    propChanger.addObject("+0.1", 0.1);
@@ -134,7 +138,7 @@ public class Robot extends IterativeRobot {
 	    intChanger.addObject("-0.0001", -0.0001);
 	    intChanger.addObject("-0.0005", -0.0005);
 	    intChanger.addObject("-0.001", -0.001);
-	    SmartDashboard.putData("Integral Changer", intChanger);
+	    //SmartDashboard.putData("Integral Changer", intChanger);
 	    
 	    derivChanger = new SendableChooser<Double>();
 	    derivChanger.addObject("+10", 10.0);
@@ -154,7 +158,7 @@ public class Robot extends IterativeRobot {
 	    feedChanger.addObject("-0.1", -0.1);
 	    feedChanger.addObject("-1", -1.0);
 	    feedChanger.addObject("-10", -10.0);
-	    SmartDashboard.putData("FeedForward Changer", feedChanger);
+	    //SmartDashboard.putData("FeedForward Changer", feedChanger);
 	    
 	    elevatorChooser = new SendableChooser<Double>();
 	    elevatorChooser.addObject("Scale", SetElevator.SCALE);
@@ -213,6 +217,17 @@ public class Robot extends IterativeRobot {
         pathChooser.addObject("RtoRSwitchTestAlt", ProfileLib.RtoRSwitchTestAlt);
         SmartDashboard.putData("PathChooser", pathChooser);
         
+        trajecChooser = new SendableChooser<TrajectoryContainer>();
+        trajecChooser.addDefault("No trajectory", null);
+        trajecChooser.addObject("Straight15ft", new TrajectoryContainer(TrajecLib.Straight15ft, false));
+        trajecChooser.addObject("RtoRSwitch", new TrajectoryContainer(TrajecLib.RtoRSwitch, false));
+        trajecChooser.addObject("RtoRScale", new TrajectoryContainer(TrajecLib.RtoRScale, false));
+        trajecChooser.addObject("LtoLSwitch", new TrajectoryContainer(TrajecLib.RtoRSwitch, true));
+        trajecChooser.addObject("LtoLScale", new TrajectoryContainer(TrajecLib.RtoRScaleAlt, true));
+        trajecChooser.addObject("CtoRSwitch", new TrajectoryContainer(TrajecLib.CtoRSwitch, false));
+        trajecChooser.addObject("CtoLSwitch", new TrajectoryContainer(TrajecLib.CtoLSwitch, false));
+        SmartDashboard.putData("Trajectory Chooser", trajecChooser);
+        
         oi = new OI();
 
         // instantiate the command used for the autonomous period
@@ -250,7 +265,9 @@ public class Robot extends IterativeRobot {
     	boolean isSideSwitch = switchSideChooser.getSelected();
     	
     	//starts auto by using info compiled from line 157 
-    	if(pathChooser.getSelected() != null){
+    	if(trajecChooser.getSelected() != null){
+    		autonomousCommand = new AutonomousCommand(trajecChooser.getSelected());
+    	} else if(pathChooser.getSelected() != null){
     		autonomousCommand = new AutonomousCommand(pathChooser.getSelected(), 30);
     	} else {
     		autonomousCommand = new AutonomousCommand(position, goal, isSideSwitch, gameData);

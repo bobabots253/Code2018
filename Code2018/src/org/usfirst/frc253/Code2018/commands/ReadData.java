@@ -51,9 +51,9 @@ public class ReadData extends Command {
 	 SmartDashboard.putBoolean("Has cube?", Robot.sensors.getLimitSwitch1().get());
 //	 SmartDashboard.putBoolean("got limit switch2?", Robot.sensors.hasCube());
 	 
-//	 SmartDashboard.putNumber("Yaw", Robot.sensors.getYaw());
-//	 SmartDashboard.putNumber("Pitch", Robot.sensors.getPitch());
-//	 SmartDashboard.putNumber("Roll", Robot.sensors.getRoll());
+	 SmartDashboard.putNumber("Yaw", Robot.sensors.getYaw());
+	 SmartDashboard.putNumber("Pitch", Robot.sensors.getPitch());
+	 SmartDashboard.putNumber("Roll", Robot.sensors.getRoll());
 	 
 	 SmartDashboard.putNumber("Proprotional Gain", Robot.driveTrain.getkP());
  	 SmartDashboard.putNumber("Integral Gain", Robot.driveTrain.getkI());

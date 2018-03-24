@@ -27,5 +27,6 @@
 	<classpathentry kind="var" path="USERLIBS_DIR/ntcore-jni-4.0.0-all.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/ufdw.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/wpiutil-java-3.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/Pathfinder-Java-1.8.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
