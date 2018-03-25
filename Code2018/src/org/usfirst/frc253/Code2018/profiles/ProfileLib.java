@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 public class ProfileLib {	
 
-	public static ArrayList<MotionProfileData> LtoLSwitch = new ArrayList<MotionProfileData>() {{
+	/*public static ArrayList<MotionProfileData> LtoLSwitch = new ArrayList<MotionProfileData>() {{
 		add(new MotionProfileData("LStartToLSwitch_left.csv", false, false, false));
 		add(new MotionProfileData("LStartToLSwitch_right.csv", false, false, false));
 	}};
@@ -131,5 +131,5 @@ public class ProfileLib {
 	public static ArrayList<MotionProfileData> RtoRSwitchTestAlt = new ArrayList<MotionProfileData>() {{
 		add(new MotionProfileData("RtoRSwitchTestAlt_left.csv", false, false, false));
 		add(new MotionProfileData("RtoRSwitchTestAlt_right.csv", false, false, false));
-	}};
+	}};*/
 } 

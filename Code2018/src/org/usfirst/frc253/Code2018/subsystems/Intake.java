@@ -5,6 +5,7 @@ import org.usfirst.frc253.Code2018.RobotMap;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.VictorSPX;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.SpeedController;
 import edu.wpi.first.wpilibj.Talon;
 import edu.wpi.first.wpilibj.VictorSP;
@@ -22,7 +23,7 @@ public class Intake extends Subsystem {
 	private final VictorSPX spinIntake2 = RobotMap.spinIntake2;
 	private final VictorSP insideIntake1 = RobotMap.insideIntake1;
 	private final VictorSP insideIntake2 = RobotMap.insideIntake2;
-	
+	private final DoubleSolenoid solenoidIntake = RobotMap.pneumaticsDoubleSolenoid2;
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
@@ -73,6 +74,15 @@ public class Intake extends Subsystem {
     	insideIntake2.set(0);
     	spinIntake1.set(ControlMode.PercentOutput, 0);
     	spinIntake2.set(ControlMode.PercentOutput, 0);
+    }
+    public void solenoidIntakeForward(){
+    	solenoidIntake.set(DoubleSolenoid.Value.kForward);
+    }
+    public void solenoidIntakeReverse(){
+    	solenoidIntake.set(DoubleSolenoid.Value.kReverse);
+    }
+    public void solenoidIntakeOff(){
+    	solenoidIntake.set(DoubleSolenoid.Value.kOff);
     }
 }
 

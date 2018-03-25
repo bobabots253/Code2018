@@ -35,8 +35,8 @@ public class GoToTrajec extends Command{
 		followerLeft = new EncoderFollower(invert ? trajecRight : trajecLeft);
 		followerRight = new EncoderFollower(invert ? trajecLeft : trajecRight);
 		
-		followerLeft.configurePIDVA(Robot.driveTrain.getkP(), Robot.driveTrain.getkI(), Robot.driveTrain.getkD(), 1 / 5.7912, 0);
-		followerRight.configurePIDVA(Robot.driveTrain.getkP(), Robot.driveTrain.getkI(), Robot.driveTrain.getkD(), 1 / 5.7912, 0);
+		followerLeft.configurePIDVA(Robot.driveTrain.getkP(), Robot.driveTrain.getkI(), Robot.driveTrain.getkD(), 1 / Constants.kDriveTrainMaxVelMetersPSec, 0);
+		followerRight.configurePIDVA(Robot.driveTrain.getkP(), Robot.driveTrain.getkI(), Robot.driveTrain.getkD(), 1 / Constants.kDriveTrainMaxVelMetersPSec, 0);
 		
 		followerLeft.configureEncoder(Robot.driveTrain.getLeftBack().getSelectedSensorPosition(0), 4096, Constants.kWheelDiameterMeters);
 		followerRight.configureEncoder(Robot.driveTrain.getRightFront().getSelectedSensorPosition(0), 4096, Constants.kWheelDiameterMeters);

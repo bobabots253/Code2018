@@ -12,6 +12,7 @@
 
 package org.usfirst.frc253.Code2018.subsystems;
 
+import org.usfirst.frc253.Code2018.Robot;
 import org.usfirst.frc253.Code2018.RobotMap;
 import org.usfirst.frc253.Code2018.commands.*;
 import org.usfirst.frc253.Code2018.profiles.Constants;
@@ -22,9 +23,9 @@ import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.SpeedController;
-
-
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -89,7 +90,6 @@ public class DriveTrain extends Subsystem {
 		 * status 10 provides the trajectory target for motion profile AND
 		 * motion magic
 		 */
-
     }
 
     // Put methods for controlling this subsystem

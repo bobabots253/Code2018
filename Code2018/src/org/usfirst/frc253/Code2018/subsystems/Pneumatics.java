@@ -26,8 +26,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class Pneumatics extends Subsystem {
 
 	//getting the solenoid objects from robotMap
-    private final DoubleSolenoid doubleSolenoid1 = RobotMap.pneumaticsDoubleSolenoid1;
-    private final DoubleSolenoid doubleSolenoid2 = RobotMap.pneumaticsDoubleSolenoid2;
+    private final DoubleSolenoid solenoidShift = RobotMap.pneumaticsDoubleSolenoid1;
+    private final DoubleSolenoid solenoid2 = RobotMap.pneumaticsDoubleSolenoid2;
     private final Compressor compressor1 = RobotMap.pneumaticsCompressor1;
 
     
@@ -49,22 +49,13 @@ public class Pneumatics extends Subsystem {
     	compressor1.setClosedLoopControl(false);
     }//This turns the compressor off
     public void doubleSolenoid1Forward(){
-    	doubleSolenoid1.set(DoubleSolenoid.Value.kForward);
+    	solenoidShift.set(DoubleSolenoid.Value.kForward);
     }//Makes solenoid push out
     public void doubleSolenoid1Reverse(){
-    	doubleSolenoid1.set(DoubleSolenoid.Value.kReverse);
+    	solenoidShift.set(DoubleSolenoid.Value.kReverse);
     }//makes solenoid retract
     public void doubleSolenoid1Off(){
-    	doubleSolenoid1.set(DoubleSolenoid.Value.kOff);
+    	solenoidShift.set(DoubleSolenoid.Value.kOff);
     }//turns off solenoid
-    public void doubleSolenoid2Forward(){
-    	doubleSolenoid2.set(DoubleSolenoid.Value.kForward);
-    }
-    public void doubleSolenoid2Reverse(){
-    	doubleSolenoid2.set(DoubleSolenoid.Value.kReverse);
-    }
-    public void doubleSolenoid2Off(){
-    	doubleSolenoid2.set(DoubleSolenoid.Value.kOff);
-    }
 
 }

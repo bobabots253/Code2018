@@ -49,9 +49,9 @@ public class AutonomousCommand extends CommandGroup {
     			case SWITCH:
     				if(isSideSwitch){
 	    				if(switchSide == 'L'){
-	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 6)));
+	    					//addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 6)));
 	    				} else if(switchSide == 'R') {
-	    					addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 6)));
+	    					//addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 6)));
 	    				}
 	    				addSequential(new Ejecthalf(1));
 	    				addSequential(new elevatorDown(4));
@@ -61,20 +61,20 @@ public class AutonomousCommand extends CommandGroup {
     					goal = Goal.EXCHANGE;
     				}
     			case EXCHANGE:
-    				addSequential(new GoTo(ProfileLib.CtoExchange, 6));
+    			//	addSequential(new GoTo(ProfileLib.CtoExchange, 6));
     				addSequential(new Eject(1));
     				if(switchSide == 'L'){
-    					addSequential(new GoTo(ProfileLib.ExchangetoRBase, 7));
+    				//	addSequential(new GoTo(ProfileLib.ExchangetoRBase, 7));
     				} else if(switchSide == 'R') {
-    					addSequential(new GoTo(ProfileLib.ExchangetoLBase, 6));
+    					//addSequential(new GoTo(ProfileLib.ExchangetoLBase, 6));
     				}
     				autoStatus = "center position to exchange";
     				break;
     			default:
     				if(switchSide == 'L'){
-    					addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 6));
+    				//	addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 6));
     				} else if(switchSide == 'R') {
-    					addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 6));
+    				//	addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 6));
     				}
     				autoStatus = "center position to baseline";
     				break;
@@ -84,10 +84,10 @@ public class AutonomousCommand extends CommandGroup {
     			case SCALE:
     				if(scaleSide == position.getPos()){
     					if(position == Position.LEFT){
-    						addSequential(new GoTo(ProfileLib.NewLtoLScale, 10));
+    						//addSequential(new GoTo(ProfileLib.NewLtoLScale, 10));
     						autoStatus = "left position to scale";
     					} else if(position == Position.RIGHT){
-    						addSequential(new GoTo(ProfileLib.NewRtoRScale, 10));
+    						//addSequential(new GoTo(ProfileLib.NewRtoRScale, 10));
     						autoStatus = "right position to scale";
     					}
     					addSequential(new elevatorUp(4));
@@ -100,10 +100,10 @@ public class AutonomousCommand extends CommandGroup {
     			case SWITCH:
     				if(switchSide == position.getPos()){
     					if(position == Position.LEFT){
-    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 6)));
+    						//addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 6)));
     						autoStatus = "left position to switch";
     					} else if(position == Position.RIGHT){
-    						addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 6)));
+    					//	addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 6)));
     						autoStatus = "right position to switch";
     					}
 	    				addSequential(new Ejecthalf(1));
@@ -126,16 +126,16 @@ public class AutonomousCommand extends CommandGroup {
     	SmartDashboard.putString("Auto Status", autoStatus);
     }    
     
-    public AutonomousCommand(ArrayList<MotionProfileData> path, double timeout){
+   /* public AutonomousCommand(ArrayList<MotionProfileData> path, double timeout){
     	if(path.equals(ProfileLib.Straight15ftSlower)){
     		addSequential(new SolenoidsForward());
     	}
     	addSequential(new GoTo(path, timeout));
-    }
+    }*/
     
     public AutonomousCommand(TrajectoryContainer container){
     	if(container.getTrajec().equals(TrajecLib.Straight15ft)){
-    		addSequential(new SolenoidsForward());
+    		addSequential(new SolenoidShiftForward());
     	}
     	addSequential(new GoToTrajec(container));
     }

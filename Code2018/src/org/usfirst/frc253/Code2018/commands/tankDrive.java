@@ -45,6 +45,7 @@ public class tankDrive extends Command {
 
     	//says we need drivetrain to do this command 
         requires(Robot.driveTrain);
+        setName("Differential Drive");
 
     }
 

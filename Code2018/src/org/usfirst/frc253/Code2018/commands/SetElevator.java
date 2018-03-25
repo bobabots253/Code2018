@@ -2,48 +2,38 @@
 package org.usfirst.frc253.Code2018.commands;
 
 import org.usfirst.frc253.Code2018.Robot;
+import org.usfirst.frc253.Code2018.profiles.Constants;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.PIDCommand;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Trajectory;
+import jaci.pathfinder.followers.EncoderFollower;
 
-public class SetElevator extends PIDCommand{
+public class SetElevator extends Command{
 
-	public static final double GROUND = 0;
-	public static final double SWITCH = 2.104;
-	public static final double SCALE = 5.542;
-	public static final double PORTAL = 2.25; //bottom is 1 ft 8 in off the ground; portal is 1 ft 2 in high
+	EncoderFollower follower;
 	
-	public SetElevator(double height){
-		super(0.1, 0, 0);
+	public SetElevator(Trajectory trajec){
 		requires(Robot.elevator);
-		getPIDController().setSetpoint(height);
-		getPIDController().setAbsoluteTolerance(0.2);
-		getPIDController().setContinuous(false);
-		getPIDController().enable();
+		
+		follower = new EncoderFollower(trajec);
+		
+		follower.configurePIDVA(1.0, 0, 0, 1 / Constants.kElevatorMaxVelMetersPSec, 0.0);
+		
+		follower.configureEncoder(Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0), 4096, Constants.kElevatorSprocketDiameterMeters);
 	}
 	
 	protected void execute(){
-		SmartDashboard.putNumber("SetElevator Output", getPIDController().get());
+		double speed = follower.calculate(Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
 		
-		Robot.elevator.pidControl(0.225 + getPIDController().get());
-	}
-
-	@Override
-	protected double returnPIDInput() {
-		// TODO Auto-generated method stub
-		return Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0) / 4096.0 * 1.75 / 12.0 * Math.PI; //feet
-	}
-
-	@Override
-	protected void usePIDOutput(double output) {
-		// TODO Auto-generated method stub
-		
+		Robot.elevator.move(0.225 + speed);
 	}
 
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return follower.isFinished();
 	}
 	
 }
