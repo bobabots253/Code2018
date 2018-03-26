@@ -139,4 +139,10 @@ public class AutonomousCommand extends CommandGroup {
     	}
     	addSequential(new GoToTrajec(container));
     }
+    
+    public AutonomousCommand(Trajectory trajec){
+    	addSequential(new SetElevator(trajec));
+    	addSequential(new ElevatorHold(3));
+    	addSequential(new elevatorDown(6));
+    }
 }

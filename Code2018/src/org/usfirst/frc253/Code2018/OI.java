@@ -140,10 +140,8 @@ public class OI {
         OperatorOne3.whileHeld(new Ejecthalf());
         OperatorOne5.whileHeld(new Eject());
         
-        OperatorTwo3.whileHeld(new TakeInHalf());
-
-        OperatorTwo1.whileHeld(new elevatorUp());
-        OperatorTwo2.whileHeld(new elevatorDown());
+        OperatorTwo2.whileHeld(new SolenoidIntakeForward());
+        OperatorTwo3.whileHeld(new SolenoidIntakeReverse());
         
         SmartDashboard.putData("Compressor Off", new CompressorOff());
         SmartDashboard.putData("Compressor On", new CompressorOn());

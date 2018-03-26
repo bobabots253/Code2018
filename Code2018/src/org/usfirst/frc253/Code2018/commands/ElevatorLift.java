@@ -35,7 +35,7 @@ public class ElevatorLift extends Command {
 			Robot.driveTrain.getLeftFront().setSelectedSensorPosition(0, 0, 0);
 		}
 		
-		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0)/ 4096.0 * 1.75 / 12.0 * Math.PI);
+		SmartDashboard.putNumber("Elevator Encoder", Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
 	}
 	
 	@Override

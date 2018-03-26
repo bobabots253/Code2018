@@ -46,14 +46,14 @@ public class Constants {
 	public static final double kWheelDiameterFeet = 0.5;
 	public static final double kWheelDiameterMeters = 0.1524;
 	public static final double kDriveTrainMaxVelMetersPSec = 5.7912;
-	public static final double kElevatorMaxVelMetersPSec = 1;
+	public static final double kElevatorMaxVelMetersPSec = 0.9144;
 	public static final double kElevatorSprocketDiameterMeters = 0.0381; //about 1.5 inches
 	public static final double kGround = 0;
 	public static final double kSwitchHeightFeet = 2.104;
 	public static final double kScaleHeightFeet = 5.542;
 	public static final double kPortalHeightFeet = 2.25; //bottom is 1 ft 8 in off the ground; portal is 1 ft 2 in high
-	public static final double kSwitchHeightMeters = 0.6412992;
-	public static final double kScaleHeightMeters = 1.6892016;
+	public static final double kSwitchHeightMeters =0.35;
+	public static final double kScaleHeightMeters =0.9;
 	public static final double kPortalHeightMeters = 0.6858;
 }
 

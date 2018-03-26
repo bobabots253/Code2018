@@ -61,19 +61,19 @@ public class Elevator extends Subsystem {
     //values for the sparks that control the elevator and sweeps
     public void move(double speed){
     	
-    	ElevatorSpark2.set(speed * 0.8);
+    	ElevatorSpark2.set(speed);
     	ElevatorSpark1.set(speed);
     }
     public void lift(){
-    	ElevatorSpark2.set(.6 * 0.8);
+    	ElevatorSpark2.set(.6);
     	ElevatorSpark1.set(.6);
     }
     public void lower(){
-    	ElevatorSpark2.set(.1 * 0.8);
-    	ElevatorSpark1.set(.1);
+    	ElevatorSpark2.set(-.1);
+    	ElevatorSpark1.set(-.1);
     }
     public void eleStop(){
-    	ElevatorSpark2.set(.225 * 0.8);
+    	ElevatorSpark2.set(.225);
     	ElevatorSpark1.set(.225);	
     }
     public void pidControl(double output){

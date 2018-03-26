@@ -55,24 +55,24 @@ public class TrajecLib {
 	/*************************
 	 * Elevator Trajectories *
 	 *************************/
-//	public static Waypoint[] SwitchHeightPoints = new Waypoint[]{
-//			new Waypoint(0, 0, 0),
-//			new Waypoint(Constants.kSwitchHeightMeters, 0, 0)
-//	};
-//	public static Trajectory.Config SwitchHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
-//	public static Trajectory SwitchHeight = Pathfinder.generate(SwitchHeightPoints, SwitchHeightConfig);
-//	
-//	public static Waypoint[] ScaleHeightPoints = new Waypoint[]{
-//			new Waypoint(0, 0, 0),
-//			new Waypoint(Constants.kScaleHeightMeters, 0, 0)
-//	};
-//	public static Trajectory.Config ScaleHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
-//	public static Trajectory ScaleHeight = Pathfinder.generate(ScaleHeightPoints, ScaleHeightConfig);
-//	
-//	public static Waypoint[] PortalHeightPoints = new Waypoint[]{
-//			new Waypoint(0, 0, 0),
-//			new Waypoint(Constants.kPortalHeightMeters, 0, 0)
-//	};
-//	public static Trajectory.Config PortalHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
-//	public static Trajectory PortalHeight = Pathfinder.generate(PortalHeightPoints, PortalHeightConfig);
+	public static Waypoint[] SwitchHeightPoints = new Waypoint[]{
+			new Waypoint(0, 0, 0),
+			new Waypoint(Constants.kSwitchHeightMeters, 0, 0)
+	};
+	public static Trajectory.Config SwitchHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
+	public static Trajectory SwitchHeight = Pathfinder.generate(SwitchHeightPoints, SwitchHeightConfig);
+	
+	public static Waypoint[] ScaleHeightPoints = new Waypoint[]{
+			new Waypoint(0, 0, 0),
+			new Waypoint(Constants.kScaleHeightMeters, 0, 0)
+	};
+	public static Trajectory.Config ScaleHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
+	public static Trajectory ScaleHeight = Pathfinder.generate(ScaleHeightPoints, ScaleHeightConfig);
+	
+	public static Waypoint[] PortalHeightPoints = new Waypoint[]{
+			new Waypoint(0, 0, 0),
+			new Waypoint(Constants.kPortalHeightMeters, 0, 0)
+	};
+	public static Trajectory.Config PortalHeightConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, 0.01, 0.775, 0.3875, 2.90625);
+	public static Trajectory PortalHeight = Pathfinder.generate(PortalHeightPoints, PortalHeightConfig);
 }

@@ -108,7 +108,7 @@ public class RobotMap {
         
         spinIntake2 = new VictorSPX(2);
         
-        insideIntake1 = new VictorSP(3);
+        insideIntake1 = new VictorSP(3);//no
         
         insideIntake2 = new VictorSP(2);
        
