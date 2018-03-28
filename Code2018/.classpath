@@ -30,5 +30,6 @@
 	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/Pathfinder-Java-1.8.jar"/>
 	<classpathentry kind="var" path="USERLIBS_DIR/Pathfinder-Java-1.8.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Administrator.TALAP01/wpilib/user/java/lib/CheesyLib.jar"/>
+	<classpathentry kind="var" path="USERLIBS_DIR/CheesyLib.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

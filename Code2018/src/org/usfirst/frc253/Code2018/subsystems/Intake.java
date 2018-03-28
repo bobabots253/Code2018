@@ -52,10 +52,10 @@ public class Intake extends Subsystem {
     	insideIntake2.set(0.1);
     }
     public void eject(){
-    	insideIntake1.set(0.75);
-    	insideIntake2.set(-0.75);
-    	spinIntake1.set(ControlMode.PercentOutput, .75);
-    	spinIntake2.set(ControlMode.PercentOutput, .75);
+    	insideIntake1.set(1);
+    	insideIntake2.set(-1);
+    	spinIntake1.set(ControlMode.PercentOutput, 1);
+    	spinIntake2.set(ControlMode.PercentOutput, 1);
     }
     public void ejectonly(){
     	insideIntake1.set(0.75);

@@ -52,8 +52,8 @@ public class Constants {
 	public static final double kSwitchHeightFeet = 2.104;
 	public static final double kScaleHeightFeet = 5.542;
 	public static final double kPortalHeightFeet = 2.25; //bottom is 1 ft 8 in off the ground; portal is 1 ft 2 in high
-	public static final double kSwitchHeightMeters =0.35;
-	public static final double kScaleHeightMeters =0.9;
+	public static final double kSwitchHeightMeters = 0.41;
+	public static final double kScaleHeightMeters = 0.9;
 	public static final double kPortalHeightMeters = 0.6858;
 }
 

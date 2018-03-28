@@ -42,18 +42,20 @@ public class AutonomousCommand extends CommandGroup {
     	char scaleSide = gameData.charAt(1);
     	
     	String autoStatus = "nothing";
-    	addSequential(new elevatorUp(0.3));
+    	addSequential(new SolenoidIntakeForward(0.1));
+    	addSequential(new elevatorUp(0.2));
     	
     	if(position == Position.CENTER){
     		switch(goal){
     			case SWITCH:
     				if(isSideSwitch){
 	    				if(switchSide == 'L'){
-	    					//addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoLSwitchFaster, 6)));
+	    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, true))));
 	    				} else if(switchSide == 'R') {
-	    					//addSequential(new ScoreSwitch(new GoTo(ProfileLib.CtoRSwitchFaster, 6)));
+	    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, false))));
 	    				}
-	    				addSequential(new Ejecthalf(1));
+	    				addSequential(new Release());
+	    				addSequential(new DriveBackwards(0.5));
 	    				addSequential(new elevatorDown(4));
 	    				autoStatus = "center position to switch";
 	    				break;
@@ -62,19 +64,19 @@ public class AutonomousCommand extends CommandGroup {
     				}
     			case EXCHANGE:
     			//	addSequential(new GoTo(ProfileLib.CtoExchange, 6));
-    				addSequential(new Eject(1));
+    			//	addSequential(new Eject(1));
     				if(switchSide == 'L'){
     				//	addSequential(new GoTo(ProfileLib.ExchangetoRBase, 7));
     				} else if(switchSide == 'R') {
     					//addSequential(new GoTo(ProfileLib.ExchangetoLBase, 6));
     				}
     				autoStatus = "center position to exchange";
-    				break;
+    			//	break;
     			default:
     				if(switchSide == 'L'){
-    				//	addSequential(new GoTo(ProfileLib.CtoRSwitchFaster, 6));
+    					addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, false)));
     				} else if(switchSide == 'R') {
-    				//	addSequential(new GoTo(ProfileLib.CtoLSwitchFaster, 6));
+    					addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoLSwitch, false)));
     				}
     				autoStatus = "center position to baseline";
     				break;
@@ -84,14 +86,16 @@ public class AutonomousCommand extends CommandGroup {
     			case SCALE:
     				if(scaleSide == position.getPos()){
     					if(position == Position.LEFT){
-    						//addSequential(new GoTo(ProfileLib.NewLtoLScale, 10));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScaleAlt, true)));
     						autoStatus = "left position to scale";
     					} else if(position == Position.RIGHT){
-    						//addSequential(new GoTo(ProfileLib.NewRtoRScale, 10));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, false)));
     						autoStatus = "right position to scale";
     					}
-    					addSequential(new elevatorUp(4));
-    					addSequential(new Eject(1));
+    					addSequential(new SetElevator(TrajecLib.ScaleUp, 5));
+    					addSequential(new StraightDriveSlow(0.5));
+    					addSequential(new Release());
+    					addSequential(new DriveBackwards(1));
     					addSequential(new elevatorDown(8));
     					break;
     				} else {
@@ -100,13 +104,14 @@ public class AutonomousCommand extends CommandGroup {
     			case SWITCH:
     				if(switchSide == position.getPos()){
     					if(position == Position.LEFT){
-    						//addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewLtoLSwitch, 6)));
+    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRSwitch, true), 6)));
     						autoStatus = "left position to switch";
     					} else if(position == Position.RIGHT){
-    					//	addSequential(new ScoreSwitch(new GoTo(ProfileLib.NewRToRSwitch, 6)));
+    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRSwitch, false), 6)));
     						autoStatus = "right position to switch";
     					}
-	    				addSequential(new Ejecthalf(1));
+	    				addSequential(new Release());
+	    				addSequential(new DriveBackwards(0.5));
 	    				addSequential(new elevatorDown(4));
     					break;
     				} else {

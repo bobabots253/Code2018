@@ -52,6 +52,16 @@ public class DriveTrain extends Subsystem {
     	leftFront.follow(leftBack);
     	rightBack.follow(rightFront);
     	
+    	leftFront.configPeakCurrentLimit(0, 10);
+    	rightBack.configPeakCurrentLimit(0, 10);
+    	leftBack.configPeakCurrentLimit(0, 10);
+    	rightFront.configPeakCurrentLimit(0, 10);
+    	
+    	leftFront.configContinuousCurrentLimit(45, 10);
+    	rightBack.configContinuousCurrentLimit(45, 10);
+    	leftBack.configContinuousCurrentLimit(45, 10);
+    	rightFront.configContinuousCurrentLimit(45, 10);
+    	
     	leftFront.setInverted(true);
     	rightFront.setInverted(false);
     	leftBack.setInverted(true);

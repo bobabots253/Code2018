@@ -24,6 +24,11 @@ public class SetElevator extends Command{
 		follower.configureEncoder(Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0), 4096, Constants.kElevatorSprocketDiameterMeters);
 	}
 	
+	public SetElevator(Trajectory trajec, double timeout){
+		this(trajec);
+		setTimeout(timeout);
+	}
+	
 	protected void execute(){
 		double speed = follower.calculate(Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0));
 		
@@ -33,7 +38,15 @@ public class SetElevator extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return follower.isFinished();
+		return follower.isFinished() || isTimedOut();
+	}
+	
+	protected void end(){
+		Robot.elevator.eleStop();
+	}
+	
+	protected void interrupted(){
+		Robot.elevator.eleStop();
 	}
 	
 }

@@ -5,6 +5,17 @@ import org.usfirst.frc253.Code2018.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 
 public class SolenoidIntakeForward extends Command{
+
+	boolean isTimed;
+	
+	public SolenoidIntakeForward(){
+		isTimed = false;
+	}
+	
+	public SolenoidIntakeForward(double time){
+		setTimeout(time);
+		isTimed = true;
+	}
 	
 	protected void execute(){
 		Robot.intake.solenoidIntakeForward();
@@ -13,7 +24,7 @@ public class SolenoidIntakeForward extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return false;
+		return isTimed ? isTimedOut() : false;
 	}
 
 }

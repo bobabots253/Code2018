@@ -29,7 +29,11 @@ public class Eject extends Command {
     		return isTimedOut(); 
     	}else{ 
     		return false;
+    	}
 	}
+	
+	protected void end(){
+		Robot.intake.stop();
 	}
 	
 	protected void interrupted(){

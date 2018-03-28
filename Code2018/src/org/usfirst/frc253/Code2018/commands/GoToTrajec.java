@@ -20,6 +20,13 @@ public class GoToTrajec extends Command{
 	EncoderFollower followerRight;
 	
 	boolean invert;
+	boolean isTimed = false;
+	
+	public GoToTrajec(TrajectoryContainer container, double timeout){
+		this(container);
+		setTimeout(timeout);
+		isTimed = true;
+	}
 	
 	public GoToTrajec(TrajectoryContainer container){
 		requires(Robot.driveTrain);
@@ -70,7 +77,11 @@ public class GoToTrajec extends Command{
 	@Override
 	protected boolean isFinished() {
 		// TODO Auto-generated method stub
-		return followerLeft.isFinished() && followerRight.isFinished();
+		if(isTimed){
+			return (followerLeft.isFinished() && followerRight.isFinished()) || isTimedOut();
+		} else {
+			return followerLeft.isFinished() && followerRight.isFinished();
+		}
 	}
 
 }
