@@ -19,7 +19,7 @@ public class SetElevator extends Command{
 		
 		follower = new EncoderFollower(trajec);
 		
-		follower.configurePIDVA(1.0, 0, 0, 1 / Constants.kElevatorMaxVelMetersPSec, 0.0);
+		follower.configurePIDVA(0.8, 0, 0, 1 / Constants.kElevatorMaxVelMetersPSec, 0.0);
 		
 		follower.configureEncoder(Robot.driveTrain.getLeftFront().getSelectedSensorPosition(0), 4096, Constants.kElevatorSprocketDiameterMeters);
 	}

@@ -86,7 +86,7 @@ public class AutonomousCommand extends CommandGroup {
     			case SCALE:
     				if(scaleSide == position.getPos()){
     					if(position == Position.LEFT){
-    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScaleAlt, true)));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, true)));
     						autoStatus = "left position to scale";
     					} else if(position == Position.RIGHT){
     						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, false)));
