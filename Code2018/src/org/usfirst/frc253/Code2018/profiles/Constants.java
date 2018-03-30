@@ -55,5 +55,6 @@ public class Constants {
 	public static final double kSwitchHeightMeters = 0.41;
 	public static final double kScaleHeightMeters = 1.1;
 	public static final double kPortalHeightMeters = 0.6858;
+	public static final double kTimeStepGlobal = 0.01;
 }
 

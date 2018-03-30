@@ -18,10 +18,10 @@ import jaci.pathfinder.Trajectory;
 import java.util.ArrayList;
 
 import org.usfirst.frc253.Code2018.Robot;
+import org.usfirst.frc253.Code2018.Robot.AutoMode;
 import org.usfirst.frc253.Code2018.Robot.Goal;
 import org.usfirst.frc253.Code2018.Robot.Position;
-import org.usfirst.frc253.Code2018.profiles.MotionProfileData;
-import org.usfirst.frc253.Code2018.profiles.ProfileLib;
+import org.usfirst.frc253.Code2018.Robot.Priority;
 import org.usfirst.frc253.Code2018.profiles.TrajecLib;
 import org.usfirst.frc253.Code2018.profiles.TrajectoryContainer;
 
@@ -33,11 +33,7 @@ public class AutonomousCommand extends CommandGroup {
 	//So in this command, there is both the decision making for the robot and there is also
 	//what the robot will do depending on the situation it is in
 	
-	/*TODO THIS IS A BIG TODO
-	 *Auto sequence rn assumes that our allies will not run into us
-	 *We need to implement something in the future to account for that
-	 */
-    public AutonomousCommand(Position position, Goal goal, boolean isSideSwitch, String gameData){
+    public AutonomousCommand(Position position, Goal goal, boolean isSideSwitch, String gameData, AutoMode autoMode, Priority priority){
     	char switchSide = gameData.charAt(0); //L for Left, R for Right (relative to our alliance station)
     	char scaleSide = gameData.charAt(1);
     	
@@ -49,16 +45,24 @@ public class AutonomousCommand extends CommandGroup {
     		switch(goal){
     			case SWITCH:
     				if(isSideSwitch){
-	    				if(switchSide == 'L'){
-	    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, true))));
-	    				} else if(switchSide == 'R') {
-	    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, false))));
-	    				}
-	    				addSequential(new Release());
-	    				addSequential(new DriveBackwards(0.5));
-	    				addSequential(new elevatorDown(4));
-	    				autoStatus = "center position to switch";
-	    				break;
+    					autoStatus = "center position to switch";
+    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'L'))));
+	    				
+    					if(autoMode == AutoMode.EXP){
+        					addParallel(new elevatorDown(4));
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'L')));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoCube, false)));
+    						addSequential(new GetCube());
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.CtoCube, false)));
+    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'L'))));
+    						addSequential(new DriveBackwards(0.5));
+        					addSequential(new elevatorDown(4));
+    					} else {
+    						addSequential(new DriveBackwards(0.5));
+        					addSequential(new elevatorDown(4));
+    					}
+    					
+    					break;
     				} else {
     					goal = Goal.EXCHANGE;
     				}
@@ -73,57 +77,67 @@ public class AutonomousCommand extends CommandGroup {
     				autoStatus = "center position to exchange";
     			//	break;
     			default:
-    				if(switchSide == 'L'){
-    					addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, false)));
-    				} else if(switchSide == 'R') {
-    					addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoLSwitch, false)));
-    				}
     				autoStatus = "center position to baseline";
+    				addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'R')));
     				break;
     		}
     	} else if(position == Position.LEFT || position == Position.RIGHT){
     		switch(goal){
     			case SCALE:
     				if(scaleSide == position.getPos()){
-    					if(position == Position.LEFT){
-    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, true)));
-    						autoStatus = "left position to scale";
-    					} else if(position == Position.RIGHT){
-    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, false)));
-    						autoStatus = "right position to scale";
+    					addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRScale, position == Position.LEFT)));
+    					addSequential(new ScoreScale());
+    					
+    					if(autoMode == AutoMode.EXP){
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.BackuptoRScale, position == Position.LEFT)));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.BackuptoRCube, position == Position.LEFT)));
+    						addSequential(new GetCube());
+    						addSequential(new elevatorUp(0.2));
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.BackuptoRCube, position == Position.LEFT)));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.BackuptoRScale, position == Position.LEFT)));
+    						addSequential(new ScoreScale());
     					}
-    					addSequential(new SetElevator(TrajecLib.ScaleUp, 5));
-    					addSequential(new StraightDriveSlow(0.5));
-    					addSequential(new Release());
-    					addSequential(new DriveBackwards(1));
-    					addSequential(new elevatorDown(8));
+    					
     					break;
     				} else {
-    					goal = Goal.SWITCH;
+    					if(autoMode == AutoMode.EXP){
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoLScale, position == Position.LEFT)));
+    						addSequential(new ScoreScale());
+    						break;
+    					} else {
+    						if(priority == Priority.BASELINE){
+    							goal = Goal.BASELINE;
+    						} else {
+    							goal = Goal.SWITCH;
+    						}
+    					}
     				}
     			case SWITCH:
     				if(switchSide == position.getPos()){
-    					if(position == Position.LEFT){
-    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRSwitch, true), 6)));
-    						autoStatus = "left position to switch";
-    					} else if(position == Position.RIGHT){
-    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRSwitch, false), 6)));
-    						autoStatus = "right position to switch";
+    					autoStatus = "side to switch";
+    					addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.RtoRSwitch, position == Position.LEFT), 6)));
+    					
+    					if(autoMode == AutoMode.EXP){
+        					addParallel(new elevatorDown(4));
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'L')));
+    						addSequential(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoCube, false)));
+    						addSequential(new GetCube());
+    						addSequential(new GoToTrajecReverse(new TrajectoryContainer(TrajecLib.CtoCube, false)));
+    						addSequential(new ScoreSwitch(new GoToTrajec(new TrajectoryContainer(TrajecLib.CtoRSwitch, switchSide == 'L'))));
+    						addSequential(new DriveBackwards(0.5));
+        					addSequential(new elevatorDown(4));
+    					} else {
+    						addSequential(new DriveBackwards(0.5));
+        					addSequential(new elevatorDown(4));
     					}
-	    				addSequential(new Release());
-	    				addSequential(new DriveBackwards(0.5));
-	    				addSequential(new elevatorDown(4));
+    					
     					break;
     				} else {
     					goal = Goal.BASELINE;
     				}
-    			case BASELINE:
-    				addSequential(new StraightDrive());
-    				autoStatus = "long baseline";
-    				break;
     			default:
-    				addSequential(new StraightDrive());
     				autoStatus = "long baseline";
+    				addSequential(new StraightDrive());
     				break;
     		}
     	}
@@ -138,14 +152,19 @@ public class AutonomousCommand extends CommandGroup {
     	addSequential(new GoTo(path, timeout));
     }*/
     
-    public AutonomousCommand(TrajectoryContainer container){
+    public AutonomousCommand(TrajectoryContainer container, boolean reverse){
     	if(container.getTrajec().equals(TrajecLib.Straight15ft)){
     		addSequential(new SolenoidShiftForward());
     	}
-    	addSequential(new GoToTrajec(container));
+    	
+    	if(reverse){
+    		addSequential(new GoToTrajecReverse(container));
+    	} else {
+    		addSequential(new GoToTrajec(container));
+    	}
     }
     
-    public AutonomousCommand(Trajectory trajec){
+    public AutonomousCommand(Trajectory trajec, boolean reverse){
     	addSequential(new SetElevator(trajec));
     	addSequential(new ElevatorHold(3));
     	addSequential(new elevatorDown(6));

@@ -24,26 +24,26 @@ public class Arms extends Subsystem{
     }
     
     public void swing(double speed){
-    	swingIntake1.set(ControlMode.PercentOutput, speed);
+    	swingIntake1.set(ControlMode.PercentOutput, -speed);
     	swingIntake2.set(speed);
     }
     public void swingLeft(double speed){
-    	swingIntake1.set(ControlMode.PercentOutput, speed);
+    	swingIntake1.set(ControlMode.PercentOutput, -speed);
     }
     public void swingRight(double speed){
-    	swingIntake2.set(speed);
+    	swingIntake2.set(-speed);
     }
     //giving VictorSP's values
     public void swingInT(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
+    	swingIntake1.set(ControlMode.PercentOutput, -.5);
     	swingIntake2.set(.5);
     }
     public void swingOutT(){
-    	swingIntake1.set(ControlMode.PercentOutput, -.5);
+    	swingIntake1.set(ControlMode.PercentOutput, .5);
     	swingIntake2.set(-.5);
     }
     public void swingIn(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
+    	swingIntake1.set(ControlMode.PercentOutput, -.5);
     //	swingIntake2.set(.5);
     }
     
@@ -53,7 +53,7 @@ public class Arms extends Subsystem{
     	swingIntake2.set(-.5);
     }
     public void swingInL(){
-    	swingIntake1.set(ControlMode.PercentOutput, .5);
+    	swingIntake1.set(ControlMode.PercentOutput, -.5);
     	//swingIntake2.set(.5);
     }
     public void swingOutL(){

@@ -7,32 +7,29 @@ import edu.wpi.first.wpilibj.command.Command;
 public class ArmsControl extends Command{
 
 	boolean toggle = true;
-	boolean changeStatus = true;
+	boolean changeStatus = false;
 	
 	public ArmsControl(){
 		requires(Robot.arms);
 	}
 	
 	protected void execute(){
-		if(Robot.oi.getOperatorJoystick2().getRawButton(8) && toggle){
+		if(Robot.oi.getOperatorJoystick2().getRawButton(11) && toggle){
 			toggle = false;
 			changeStatus = !changeStatus;
-		} else if(!Robot.oi.getOperatorJoystick2().getRawButton(8)){
+		} else if(!Robot.oi.getOperatorJoystick2().getRawButton(11)){
 			toggle = true;
 		}
 		
-		if(changeStatus){
-			double speed = Robot.oi.getOperatorJoystick2().getY();
+		double speed = Robot.oi.getOperatorJoystick2().getY();
+		
+		if(Math.abs(speed) > 0.1){
 			Robot.arms.swing(speed);
+		} else if(changeStatus){
+			Robot.arms.swing(.15);
 		} else {
-			double left = Robot.oi.getOperatorJoystick2().getY();
-			double right = Robot.oi.getOperatorJoystick1().getY();
-			Robot.arms.swingLeft(left);
-			Robot.arms.swingRight(right);
+			Robot.arms.swing(0);
 		}
-			
-		
-		
 	}
 	
 	@Override

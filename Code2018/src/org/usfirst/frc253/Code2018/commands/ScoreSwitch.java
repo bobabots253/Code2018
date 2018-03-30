@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class ScoreSwitch extends CommandGroup {
 	public ScoreSwitch(Command toSwitch){
 		addParallel(toSwitch);
-		addSequential(new SetElevator(TrajecLib.SwitchUp, 4));
+		addSequential(new SetElevator(TrajecLib.SwitchUp));
+		addSequential(new Release());
+		
 	}
 }

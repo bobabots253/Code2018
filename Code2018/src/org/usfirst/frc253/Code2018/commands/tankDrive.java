@@ -15,7 +15,6 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import org.usfirst.frc253.Code2018.Robot;
-import org.usfirst.frc253.Code2018.profiles.MotionProfileRunner;
 
 import com.ctre.phoenix.motion.SetValueMotionProfile;
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -55,18 +54,10 @@ public class tankDrive extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.runner.control();
     	 
     	if(Robot.oi.xboxController.getBButton()){
     		Robot.driveTrain.getLeftBack().setSelectedSensorPosition(0, 0, 0);
     		Robot.driveTrain.getRightFront().setSelectedSensorPosition(0, 0, 0);
-    	}
-    	
-    	if(Robot.oi.xboxController.getRawButton(8) && accelToggleSwitch){
-    		accelToggleSwitch = false;
-    		accelToggle = !accelToggle;
-    	} else if (!Robot.oi.xboxController.getRawButton(8)){
-    		accelToggleSwitch = true;
     	}
     	
     	if(!Robot.oi.xboxController.getRawButton(7)){
@@ -100,15 +91,6 @@ public class tankDrive extends Command {
 	    		    left = Robot.oi.getLeftJoystickY()+Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	    		    right = Robot.oi.getLeftJoystickY()-Robot.oi.getLeftJoystickY()*Robot.oi.getRightJoystickX();
 	        	}
-	        	
-	    		if(accelToggle){
-	    			if(left > prevLeft + delta){
-	    				left = prevLeft + delta;
-	    			}
-	    			if(right > prevRight + delta){
-	    				right = prevRight + delta;
-	    			}
-	    		}
 	        	/*boolean sensToggle = Robot.oi.xboxController.getRawButton(4);
 		    	if(sensToggle && toggle){
 		    		toggle = false; //if statement that makes toggling system
@@ -122,7 +104,6 @@ public class tankDrive extends Command {
 		    		Robot.driveTrain.drive(left, right);
 		    	}*/
 		    	Robot.driveTrain.drive(left, right);
-	        	Robot.runner.reset();
 	    	}
     	} else {
     		if(PIDtoggle){
