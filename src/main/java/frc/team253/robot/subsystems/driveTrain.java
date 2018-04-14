@@ -44,6 +44,12 @@ public class driveTrain extends Subsystem {
         leftFront.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10);
         leftFront.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, 0, 10);
 
+        leftBack.configVoltageCompSaturation(12, 10);
+        rightFront.configVoltageCompSaturation(12, 10);
+
+        leftBack.enableVoltageCompensation(true);
+        rightFront.enableVoltageCompensation(true);
+
         leftBack.setSensorPhase(false);
         rightFront.setSensorPhase(false);
         leftFront.setSensorPhase(false);
@@ -59,9 +65,19 @@ public class driveTrain extends Subsystem {
     }
 
     public void drive(double leftspeed, double rightspeed) {// We are setting the speed controllers to speed
-        leftBack.set(ControlMode.PercentOutput, -leftspeed);
+        leftspeed = -leftspeed;
+        rightspeed = -rightspeed;
 
-        rightFront.set(ControlMode.PercentOutput, -rightspeed);
+        leftBack.set(ControlMode.PercentOutput, leftspeed *
+                Constants.kRobotMaxVelo *
+                Constants.kVeloCharSlopeL *
+                Math.copySign(Constants.kVeloCharInterceptL, leftspeed));
+
+
+        rightFront.set(ControlMode.PercentOutput, rightspeed *
+                Constants.kRobotMaxVelo *
+                Constants.kVeloCharSlopeR *
+                Math.copySign(Constants.kVeloCharInterceptR, rightspeed));
     }
 
 }
