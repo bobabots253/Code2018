@@ -34,11 +34,17 @@ public class Intake extends Subsystem {
 
        
     public void intake(){
-    	insideIntake1.set(0.45);
-    	insideIntake2.set(-0.75);
-    	spinIntake1.set(ControlMode.PercentOutput,- .75);
+    	insideIntake1.set(0.51);
+    	insideIntake2.set(-0.85);
+    	spinIntake1.set(ControlMode.PercentOutput, -.6375);
     	spinIntake2.set(ControlMode.PercentOutput, .75);
     }
+    
+    public void spinOpposite(){
+    	spinIntake1.set(ControlMode.PercentOutput, -.50);
+    	spinIntake2.set(ControlMode.PercentOutput, -.25);
+    }
+    
     public void spinRight(){
     	insideIntake2.set(-0.25);
     }
@@ -84,6 +90,9 @@ public class Intake extends Subsystem {
     }
     public void solenoidIntakeOff(){
     	solenoidIntake.set(DoubleSolenoid.Value.kOff);
+    }
+    public DoubleSolenoid getSolenoidIntake(){
+    	return solenoidIntake;
     }
 }
 

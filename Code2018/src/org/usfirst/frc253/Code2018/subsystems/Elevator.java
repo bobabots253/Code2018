@@ -69,8 +69,8 @@ public class Elevator extends Subsystem {
     	ElevatorSpark1.set(.6);
     }
     public void lower(){
-    	ElevatorSpark2.set(-.2);
-    	ElevatorSpark1.set(-.2);
+    	ElevatorSpark2.set(-.3);
+    	ElevatorSpark1.set(-.3);
     }
     public void eleStop(){
     	ElevatorSpark2.set(.225);

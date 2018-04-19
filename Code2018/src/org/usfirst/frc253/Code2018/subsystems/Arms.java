@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 
-public class Arms extends Subsystem{
+public class Arms extends ChangeableSubsystem{
 	
 	private final VictorSPX swingIntake1 = RobotMap.swingIntake1;
 	private final Talon swingIntake2 = RobotMap.swingIntake2;
@@ -24,8 +24,8 @@ public class Arms extends Subsystem{
     }
     
     public void swing(double speed){
-    	swingIntake1.set(ControlMode.PercentOutput, -speed);
-    	swingIntake2.set(speed);
+    	swingIntake1.set(ControlMode.PercentOutput, -speed * 0.5);
+    	swingIntake2.set(speed * 0.5);
     }
     public void swingLeft(double speed){
     	swingIntake1.set(ControlMode.PercentOutput, -speed);
@@ -59,7 +59,7 @@ public class Arms extends Subsystem{
     public void swingOutL(){
     	//swingIntake1.set(ControlMode.PercentOutput,-.5);
     	swingIntake2.set(-.5);
-    }
+    }   
     public void swingStop(){
     	swingIntake1.set(ControlMode.PercentOutput, 0.075);
     	swingIntake2.set(0.075);

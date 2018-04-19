@@ -2,6 +2,7 @@ package org.usfirst.frc253.Code2018.commands;
 
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 
 //RobotBuilder Version: 2.0
 //
@@ -72,6 +73,8 @@ public class ReadData extends Command {
 		SmartDashboard.putNumber("Right Front", Robot.driveTrain.getRightFront().getMotorOutputPercent());
 		
 		SmartDashboard.putString("Drive Mode", Robot.driveTrain.getDefaultCommandName());
+		
+		SmartDashboard.putBoolean("Is Intake Clamped?", Robot.intake.getSolenoidIntake().get() == Value.kForward);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()

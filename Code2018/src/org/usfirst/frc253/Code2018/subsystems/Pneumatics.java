@@ -31,6 +31,7 @@ public class Pneumatics extends Subsystem {
     private final Compressor compressor1 = RobotMap.pneumaticsCompressor1;
 
     
+    
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 

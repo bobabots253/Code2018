@@ -12,7 +12,7 @@ public class SwingIn extends Command{
 	}
 	
 	protected void execute(){
-		Robot.arms.swing(.5);
+		Robot.arms.swing(1);
 	}
 	
 	@Override
