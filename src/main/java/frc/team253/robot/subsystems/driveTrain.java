@@ -68,16 +68,18 @@ public class driveTrain extends Subsystem {
         leftspeed = -leftspeed;
         rightspeed = -rightspeed;
 
-        leftBack.set(ControlMode.PercentOutput, leftspeed *
+        /*leftBack.set(ControlMode.PercentOutput, leftspeed *
                 Constants.kRobotMaxVelo *
-                Constants.kVeloCharSlopeL *
+                Constants.kVeloCharSlopeL +x
                 Math.copySign(Constants.kVeloCharInterceptL, leftspeed));
 
 
         rightFront.set(ControlMode.PercentOutput, rightspeed *
                 Constants.kRobotMaxVelo *
-                Constants.kVeloCharSlopeR *
-                Math.copySign(Constants.kVeloCharInterceptR, rightspeed));
+                Constants.kVeloCharSlopeR +
+                Math.copySign(Constants.kVeloCharInterceptR, rightspeed));*/
+        leftBack.set(ControlMode.PercentOutput, leftspeed);
+        rightFront.set(ControlMode.PercentOutput, rightspeed);
     }
 
 }

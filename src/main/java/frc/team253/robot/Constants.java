@@ -60,8 +60,8 @@ public class Constants {
     public static final double kTimeStepGlobal = 0.01;
 
     public static final double kRobotMaxVelo = 0;
-    public static final double kVeloCharSlopeL = 0 / 12;
-    public static final double kVeloCharInterceptL = 0 / 12;
+    public static final double kVeloCharSlopeL = 229.92 / 12;
+    public static final double kVeloCharInterceptL = 180.62 / 12;
     public static final double kVeloCharSlopeR = 0 / 12;
     public static final double kVeloCharInterceptR = 0 / 12;
 }
