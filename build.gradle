@@ -8,6 +8,10 @@ plugins {
 def TEAM = 253
 def ROBOT_CLASS = "frc.team253.robot.Robot"
 
+task generateProfiles(type:Exec) {
+    workingDir 'profiles'
+    commandLine 'java', '-jar', '../generation/path-util.jar'
+}
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
@@ -19,6 +23,12 @@ deploy {
     artifacts {
         artifact('frcJava', jaci.openrio.gradle.frc.FRCJavaArtifact) {
             targets << "roborio"
+        }
+        fileCollectionArtifact('motionProfiles') {
+            dependsOn("generateProfiles")
+            targets << 'roborio'
+            files = fileTree(dir: 'profiles/generated', include: "**/*.csv")
+            directory = "/home/lvuser/profiles"
         }
     }
 }
