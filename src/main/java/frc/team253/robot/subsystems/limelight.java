@@ -22,7 +22,7 @@ public class limelight {
         table = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
-    public boolean isHasTarget() {
+    public boolean gethasTarget() {
         targetD = table.getEntry("tv").getDouble(0);
         if(targetD == 0){
             hasTarget = false;
