@@ -65,21 +65,19 @@ public class driveTrain extends Subsystem {
     }
 
     public void drive(double leftspeed, double rightspeed) {// We are setting the speed controllers to speed
-        leftspeed = -leftspeed;
-        rightspeed = -rightspeed;
 
-        /*leftBack.set(ControlMode.PercentOutput, leftspeed *
-                Constants.kRobotMaxVelo *
-                Constants.kVeloCharSlopeL +x
-                Math.copySign(Constants.kVeloCharInterceptL, leftspeed));
+        leftspeed = Math.copySign(Math.pow(leftspeed, 2), leftspeed);
+        rightspeed = Math.copySign(Math.pow(rightspeed, 2), rightspeed);
+
+        if (leftspeed > 0.01 && rightspeed > 0.01) {
+            leftspeed = (((leftspeed * 2686) / 257) + Math.copySign(1.280, leftspeed)) / 12;
+            rightspeed = (((rightspeed * 2686) / 246) + Math.copySign(1.081, rightspeed)) / 12;
+        }
+
+        leftBack.set(ControlMode.PercentOutput, -leftspeed);
+        rightFront.set(ControlMode.PercentOutput, -rightspeed);
 
 
-        rightFront.set(ControlMode.PercentOutput, rightspeed *
-                Constants.kRobotMaxVelo *
-                Constants.kVeloCharSlopeR +
-                Math.copySign(Constants.kVeloCharInterceptR, rightspeed));*/
-        leftBack.set(ControlMode.PercentOutput, leftspeed);
-        rightFront.set(ControlMode.PercentOutput, rightspeed);
     }
 
 }

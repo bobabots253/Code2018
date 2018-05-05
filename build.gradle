@@ -12,6 +12,7 @@ task generateProfiles(type:Exec) {
     workingDir 'profiles'
     commandLine 'java', '-jar', '../generation/path-util.jar'
 }
+
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
 deploy {
