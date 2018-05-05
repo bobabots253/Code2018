@@ -6,8 +6,8 @@ import frc.team253.robot.Robot;
 
 public class gearShift extends Command {
 
-    boolean changeStatus = true;
-    boolean toggle = true;
+    private boolean changeStatus = true;
+    private boolean toggle = true;
 
     public gearShift() {
         requires(Robot.pneumatics);

@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.team253.robot.Robot;
 
 public class drive extends Command {
-    double left = 0, right = 0;
+    private double left = 0, right = 0;
 
     public drive() {
         requires(Robot.drivetrain);

@@ -15,7 +15,7 @@ public class RobotMap {
 
     public static Compressor compressorA;
 
-    public static void init() {
+    static void init() {
 
         driveTrainRightBack = new TalonSRX(1);
         driveTrainRightFront = new TalonSRX(2);
