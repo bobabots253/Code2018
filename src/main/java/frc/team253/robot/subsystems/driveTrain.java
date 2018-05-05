@@ -30,10 +30,10 @@ public class driveTrain extends Subsystem {
         leftBack.configContinuousCurrentLimit(45, 10);
         rightFront.configContinuousCurrentLimit(45, 10);
 
-        leftFront.setInverted(true);
-        rightFront.setInverted(false);
-        leftBack.setInverted(true);
-        rightBack.setInverted(false);
+        leftFront.setInverted(false);
+        rightFront.setInverted(true);
+        leftBack.setInverted(false);
+        rightBack.setInverted(true);
 
         leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10);
         leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
@@ -74,8 +74,8 @@ public class driveTrain extends Subsystem {
             rightspeed = (((rightspeed * Constants.kRobotVmax) / Constants.kVeloCharSlopeR) + Math.copySign(Constants.kVeloCharInterceptR, rightspeed)) / 12;
         }
 
-        leftBack.set(ControlMode.PercentOutput, -leftspeed);
-        rightFront.set(ControlMode.PercentOutput, -rightspeed);
+        leftBack.set(ControlMode.PercentOutput, leftspeed);
+        rightFront.set(ControlMode.PercentOutput, rightspeed);
 
 
     }
