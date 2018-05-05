@@ -1,6 +1,7 @@
 package frc.team253.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class limelight {
@@ -50,6 +51,42 @@ public class limelight {
     public double getSkew(){
         skew = table.getEntry("ta").getDouble(0);
         return skew;
+    }
+
+
+
+    //Camera Mode Switching(0=VisionMode;1=DriverMode)
+    public double getCamMode() {
+        camMode = table.getEntry("camMode").getDouble(0);
+        return camMode;
+    }
+    public void switchCamera() {
+        if (getCamMode() == 0) {
+            table.getEntry("camMode").setDouble(1);
+            SmartDashboard.putString("Camera Mode", "Camera");
+        } else if (getCamMode() == 1) {
+            table.getEntry("camMode").setDouble(0);
+            SmartDashboard.putString("Camera Mode", "Vision");
+        }
+    }
+
+    //LED Switching(0=Off;1=On;2=Blink)
+    public double getLEDMode() {
+        LEDMode = table.getEntry("ledMode").getDouble(1);
+        return LEDMode;
+    }
+
+    public void switchLED() {
+        if (getLEDMode() == 0) {
+            table.getEntry("ledMode").setDouble(1);
+            SmartDashboard.putString("LED Mode", "Off");
+        } else if (getLEDMode() == 1) {
+            table.getEntry("ledMode").setDouble(0);
+            SmartDashboard.putString("LED Mode", "On");
+        } else if (getLEDMode() == 2) {
+            table.getEntry("ledMode").setDouble(1);
+            SmartDashboard.putString("LED Mode", "Off");
+        }
     }
 
 
