@@ -70,8 +70,8 @@ public class driveTrain extends Subsystem {
         rightspeed = Math.copySign(Math.pow(rightspeed, 2), rightspeed);
 
         if (leftspeed > 0.01 && rightspeed > 0.01) {
-            leftspeed = (((leftspeed * 2686) / 257) + Math.copySign(1.280, leftspeed)) / 12;
-            rightspeed = (((rightspeed * 2686) / 246) + Math.copySign(1.081, rightspeed)) / 12;
+            leftspeed = (((leftspeed * Constants.kRobotVmax) / Constants.kVeloCharSlopeL) + Math.copySign(Constants.kVeloCharInterceptL, leftspeed)) / 12;
+            rightspeed = (((rightspeed * Constants.kRobotVmax) / Constants.kVeloCharSlopeR) + Math.copySign(Constants.kVeloCharInterceptR, rightspeed)) / 12;
         }
 
         leftBack.set(ControlMode.PercentOutput, -leftspeed);

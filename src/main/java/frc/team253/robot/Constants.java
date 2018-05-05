@@ -59,10 +59,10 @@ public class Constants {
     public static final double kPortalHeightMeters = 0.6858;
     public static final double kTimeStepGlobal = 0.01;
 
-    public static final double kRobotMaxVelo = 0;
-    public static final double kVeloCharSlopeL = 229.92 / 12;
-    public static final double kVeloCharInterceptL = 180.62 / 12;
-    public static final double kVeloCharSlopeR = 0 / 12;
-    public static final double kVeloCharInterceptR = 0 / 12;
+    public static final double kRobotVmax = 2686; //encoder units when 12V applied (take lower of left and right sides)
+    public static final double kVeloCharSlopeL = 257; //slope of LSRL of left drivetrain side (units: encoder units / volt)
+    public static final double kVeloCharInterceptL = 1.280; //minimum voltage required to overcome friction, x-int of LSRL of left side (volts)
+    public static final double kVeloCharSlopeR = 246; //slope of LSRL of right drivetrain side (units: encoder units / volt)
+    public static final double kVeloCharInterceptR = 1.081; //minimum voltage required to overcome friction, x-int of LSRL of right side (volts)
 }
 
