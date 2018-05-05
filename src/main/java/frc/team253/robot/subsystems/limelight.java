@@ -53,9 +53,17 @@ public class limelight {
         return skew;
     }
 
+    public void setPipeline(double pipeline) {
+        table.getEntry("pipeline").setDouble(pipeline);
+        SmartDashboard.putNumber("Camera Mode", pipeline);
+        
+    }
 
 
-    //Camera Mode Switching(0=VisionMode;1=DriverMode)
+
+
+    /*Camera Mode Switching(0=VisionMode;1=DriverMode)
+
     public double getCamMode() {
         camMode = table.getEntry("camMode").getDouble(0);
         return camMode;
@@ -88,7 +96,7 @@ public class limelight {
             SmartDashboard.putString("LED Mode", "Off");
         }
     }
-
+*/
 
 
 
