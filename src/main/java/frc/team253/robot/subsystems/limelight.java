@@ -1,10 +1,21 @@
 package frc.team253.robot.subsystems;
 import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team253.robot.Robot;
+import frc.team253.robot.RobotMap;
+import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import frc.team253.robot.commands.trackCube;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team253.robot.Constants;
+import frc.team253.robot.RobotMap;
+import frc.team253.robot.commands.drive;
 
 
-public class limelight {
+public class limelight extends Subsystem {
     NetworkTable table;
     double targetD;
     boolean hasTarget; //whether target is detected or tracked
@@ -20,6 +31,7 @@ public class limelight {
     double Tdistance;
 
     public limelight(){
+
         table = NetworkTableInstance.getDefault().getTable("limelight");
     }
 
@@ -57,6 +69,13 @@ public class limelight {
         table.getEntry("pipeline").setDouble(pipeline);
         SmartDashboard.putNumber("Camera Mode", pipeline);
         
+    }
+    public void initDefaultCommand() {
+
+        // Set the default command for subsystem here.
+        // setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(new trackCube());
+        //setting gearShift as the default command for pneumatics
     }
 
 

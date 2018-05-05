@@ -4,12 +4,14 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.team253.robot.Robot;
 import frc.team253.robot.subsystems.limelight;
+import frc.team253.robot.subsystems.limelight;
 
 public class drive extends Command {
     private double left = 0, right = 0;
 
     public drive() {
         requires(Robot.drivetrain);
+        requires(Robot.Limelight);
     }
 
 

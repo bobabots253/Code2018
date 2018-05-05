@@ -2,6 +2,7 @@ package frc.team253.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team253.robot.commands.trackCube;
 
 import static edu.wpi.first.wpilibj.GenericHID.Hand;
 
@@ -9,10 +10,15 @@ public class OI {
 
     public XboxController xboxcontroller;
     public JoystickButton ButtonA;
+    public JoystickButton ButtonB;
 
     public OI() {
         xboxcontroller = new XboxController(1);
         ButtonA = new JoystickButton(xboxcontroller, 1);
+        ButtonB = new JoystickButton(xboxcontroller, 2);
+
+        ButtonB.whileHeld(new trackCube());
+
     }
 
     public double throttleValue() {
