@@ -1,15 +1,18 @@
 package frc.team253.robot;
 
 import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
 import static edu.wpi.first.wpilibj.GenericHID.Hand;
 
 public class OI {
 
     public XboxController xboxcontroller;
+    public JoystickButton ButtonA;
 
     public OI() {
         xboxcontroller = new XboxController(1);
+        ButtonA = new JoystickButton(xboxcontroller, 1);
     }
 
     public double throttleValue() {

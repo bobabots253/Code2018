@@ -59,10 +59,16 @@ public class Constants {
     public static final double kPortalHeightMeters = 0.6858;
     public static final double kTimeStepGlobal = 0.01;
 
-    public static final double kRobotVmax = 2686; //encoder units when 12V applied (take lower of left and right sides)
-    public static final double kVeloCharSlopeL = 257; //slope of LSRL of left drivetrain side (units: encoder units / volt)
-    public static final double kVeloCharInterceptL = 1.280; //minimum voltage required to overcome friction, x-int of LSRL of left side (volts)
-    public static final double kVeloCharSlopeR = 246; //slope of LSRL of right drivetrain side (units: encoder units / volt)
-    public static final double kVeloCharInterceptR = 1.081; //minimum voltage required to overcome friction, x-int of LSRL of right side (volts)
+    public static final double kHRobotVmax = 2686; //encoder units when 12V applied (take lower of left and right sides)
+    public static final double kHVeloCharSlopeL = 257; //slope of LSRL of left drivetrain side (units: encoder units / volt)
+    public static final double kHVeloCharInterceptL = 1.280; //minimum voltage required to overcome friction, x-int of LSRL of left side (volts)
+    public static final double kHVeloCharSlopeR = 246; //slope of LSRL of right drivetrain side (units: encoder units / volt)
+    public static final double kHVeloCharInterceptR = 1.081; //minimum voltage required to overcome friction, x-int of LSRL of right side (volts)
+
+    public static final double kLRobotVmax = 2686;
+    public static final double kLVeloCharSlopeL = 257;
+    public static final double kLVeloCharInterceptL = 1.280;
+    public static final double kLVeloCharSlopeR = 246;
+    public static final double kLVeloCharInterceptR = 1.081;
 }
 
