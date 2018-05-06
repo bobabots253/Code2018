@@ -3,16 +3,6 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team253.robot.Robot;
-import frc.team253.robot.RobotMap;
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import frc.team253.robot.commands.trackCube;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team253.robot.Constants;
-import frc.team253.robot.RobotMap;
-import frc.team253.robot.commands.drive;
 
 
 public class limelight extends Subsystem {
@@ -71,11 +61,6 @@ public class limelight extends Subsystem {
         
     }
     public void initDefaultCommand() {
-
-        // Set the default command for subsystem here.
-        // setDefaultCommand(new MySpecialCommand());
-        setDefaultCommand(new trackCube());
-        //setting gearShift as the default command for pneumatics
     }
 
 

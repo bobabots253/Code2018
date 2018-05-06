@@ -67,11 +67,11 @@ public class driveTrain extends Subsystem {
 
     public void drive(double leftspeed, double rightspeed) {// We are setting the speed controllers to speed
 
-        leftspeed = Math.copySign(Math.pow(leftspeed, 2), leftspeed);
-        rightspeed = Math.copySign(Math.pow(rightspeed, 2), rightspeed);
+//        leftspeed = Math.copySign(Math.pow(leftspeed, 2), leftspeed);
+//        rightspeed = Math.copySign(Math.pow(rightspeed, 2), rightspeed);
 
 
-        if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kForward) {
+        /*if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kForward) {
             if (leftspeed > 0.01 && rightspeed > 0.01) {
                 leftspeed = (((leftspeed * Constants.kHRobotVmax) / Constants.kHVeloCharSlopeL) + Math.copySign(Constants.kHVeloCharInterceptL, leftspeed)) / 12;
                 rightspeed = (((rightspeed * Constants.kHRobotVmax) / Constants.kHVeloCharSlopeR) + Math.copySign(Constants.kHVeloCharInterceptR, rightspeed)) / 12;
@@ -83,7 +83,9 @@ public class driveTrain extends Subsystem {
             rightspeed = (((rightspeed * Constants.kLRobotVmax) / Constants.kLVeloCharSlopeR) + Math.copySign(Constants.kLVeloCharInterceptR, rightspeed)) / 12;
             leftBack.set(ControlMode.PercentOutput, leftspeed);
             rightFront.set(ControlMode.PercentOutput, rightspeed);
-        }
+        }*/
+        leftBack.set(ControlMode.PercentOutput, leftspeed);
+        rightFront.set(ControlMode.PercentOutput, rightspeed);
 
     }
 
