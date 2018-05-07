@@ -23,6 +23,7 @@ public class Robot extends IterativeRobot {
         pneumatics = new Pneumatics();
         Limelight = new limelight();
         oi = new OI();
+        //Important: OI initialization has to come after all the subsystem declarations
     }
 
     @Override
