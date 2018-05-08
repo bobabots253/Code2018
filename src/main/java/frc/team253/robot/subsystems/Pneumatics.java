@@ -15,14 +15,6 @@ public class Pneumatics extends Subsystem {
         setDefaultCommand(new gearShift());
     }
 
-    public void compressStart() {
-        compressor.setClosedLoopControl(true);
-    }
-
-    public void compressStop() {
-        compressor.setClosedLoopControl(false);
-    }
-
     public void shiftForward() {
         shiftSolenoid.set(DoubleSolenoid.Value.kForward);
     }

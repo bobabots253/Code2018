@@ -4,7 +4,6 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team253.robot.Constants;
 import frc.team253.robot.RobotMap;
@@ -31,10 +30,10 @@ public class driveTrain extends Subsystem {
         leftBack.configContinuousCurrentLimit(45, 10);
         rightFront.configContinuousCurrentLimit(45, 10);
 
-        leftFront.setInverted(false);
-        rightFront.setInverted(true);
-        leftBack.setInverted(false);
-        rightBack.setInverted(true);
+        leftFront.setInverted(true);
+        rightFront.setInverted(false);
+        leftBack.setInverted(true);
+        rightBack.setInverted(false);
 
         leftBack.setStatusFramePeriod(StatusFrameEnhanced.Status_3_Quadrature, 1, 10);
         leftBack.configSelectedFeedbackSensor(FeedbackDevice.QuadEncoder, 0, 10);
@@ -67,23 +66,8 @@ public class driveTrain extends Subsystem {
 
     public void drive(double leftspeed, double rightspeed) {// We are setting the speed controllers to speed
 
-        leftspeed = Math.copySign(Math.pow(leftspeed, 2), leftspeed);
-        rightspeed = Math.copySign(Math.pow(rightspeed, 2), rightspeed);
-
-
-        if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kForward) {
-            if (leftspeed > 0.01 && rightspeed > 0.01) {
-                leftspeed = (((leftspeed * Constants.kHRobotVmax) / Constants.kHVeloCharSlopeL) + Math.copySign(Constants.kHVeloCharInterceptL, leftspeed)) / 12;
-                rightspeed = (((rightspeed * Constants.kHRobotVmax) / Constants.kHVeloCharSlopeR) + Math.copySign(Constants.kHVeloCharInterceptR, rightspeed)) / 12;
-                leftBack.set(ControlMode.PercentOutput, leftspeed);
-                rightFront.set(ControlMode.PercentOutput, rightspeed);
-            }
-        } else if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kReverse) {
-            leftspeed = (((leftspeed * Constants.kLRobotVmax) / Constants.kLVeloCharSlopeL) + Math.copySign(Constants.kLVeloCharInterceptL, leftspeed)) / 12;
-            rightspeed = (((rightspeed * Constants.kLRobotVmax) / Constants.kLVeloCharSlopeR) + Math.copySign(Constants.kLVeloCharInterceptR, rightspeed)) / 12;
-            leftBack.set(ControlMode.PercentOutput, leftspeed);
-            rightFront.set(ControlMode.PercentOutput, rightspeed);
-        }
+        leftBack.set(ControlMode.PercentOutput, leftspeed);
+        rightFront.set(ControlMode.PercentOutput, rightspeed);
 
     }
 
