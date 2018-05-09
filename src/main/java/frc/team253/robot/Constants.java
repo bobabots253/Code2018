@@ -43,32 +43,35 @@ public class Constants {
      */
     public static final double kNeutralDeadband = 0.04;
 
-    public static final double kWheelBaseWidthMeters = 0.59817;
-    public static final double kWheelBaseWidthFeet = 1.9625;
-    public static final double kWheelDiameterFeet = 0.5;
-    public static final double kWheelDiameterMeters = 0.1524;
-    public static final double kDriveTrainMaxVelMetersPSec = 5.7912;
-    public static final double kElevatorMaxVelMetersPSec = 0.9144;
-    public static final double kElevatorSprocketDiameterMeters = 0.0381; //about 1.5 inches
-    public static final double kGround = 0;
-    public static final double kSwitchHeightFeet = 2.104;
-    public static final double kScaleHeightFeet = 5.542;
-    public static final double kPortalHeightFeet = 2.25; //bottom is 1 ft 8 in off the ground; portal is 1 ft 2 in high
-    public static final double kSwitchHeightMeters = 0.41;
-    public static final double kScaleHeightMeters = 1.1;
-    public static final double kPortalHeightMeters = 0.6858;
-    public static final double kTimeStepGlobal = 0.01;
+    public static final double
+            kWheelBaseWidthMeters = 0.59817,
+            kWheelBaseWidthFeet = 1.9625,
+            kWheelDiameterFeet = 0.5,
+            kWheelDiameterMeters = 0.1524,
+            kDriveTrainMaxVelMetersPSec = 5.7912,
+            kElevatorMaxVelMetersPSec = 0.9144,
+            kElevatorSprocketDiameterMeters = 0.0381,
+            kGround = 0,
+            kSwitchHeightFeet = 2.104,
+            kScaleHeightFeet = 5.542,
+            kPortalHeightFeet = 2.25,
+            kSwitchHeightMeters = 0.41,
+            kScaleHeightMeters = 1.1,
+            kPortalHeightMeters = 0.6858,
+            kTimeStepGlobal = 0.01;
 
-    public static final double kHRobotVmax = 2686; //encoder units when 12V applied (take lower of left and right sides)
-    public static final double kHVeloCharSlopeL = 257; //slope of LSRL of left drivetrain side (units: encoder units / volt)
-    public static final double kHVeloCharInterceptL = 1.280; //minimum voltage required to overcome friction, x-int of LSRL of left side (volts)
-    public static final double kHVeloCharSlopeR = 246; //slope of LSRL of right drivetrain side (units: encoder units / volt)
-    public static final double kHVeloCharInterceptR = 1.081; //minimum voltage required to overcome friction, x-int of LSRL of right side (volts)
+    public static final double kHRobotVmax = 2686,
+            kHVeloCharSlopeL = 257,
+            kHVeloCharInterceptL = 1.280,
+            kHVeloCharSlopeR = 246,
+            kHVeloCharInterceptR = 1.081,
 
-    public static final double kLRobotVmax = 2686;
-    public static final double kLVeloCharSlopeL = 257;
-    public static final double kLVeloCharInterceptL = 1.280;
-    public static final double kLVeloCharSlopeR = 246;
-    public static final double kLVeloCharInterceptR = 1.081;
+    public static final double kLRobotVmax = 2686,
+            kLVeloCharSlopeL = 257,
+            kLVeloCharInterceptL = 1.280,
+            kLVeloCharSlopeR = 246,
+            kLVeloCharInterceptR = 1.081;
+
+    public static final double kMaxTurnRadius = 3.048;
 }
 

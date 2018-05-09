@@ -7,8 +7,10 @@ import frc.team253.robot.Constants;
 import frc.team253.robot.Robot;
 import frc.team253.robot.RobotMap;
 
+import static frc.team253.robot.Constants.*;
+
 public class drive extends Command {
-    private double left, right;
+    private double Vouter, Vinner, radius, r, turnDir, throttle = Robot.oi.throttleValue(), wheel = Robot.oi.turnValue();
 
     public drive() {
         requires(Robot.drivetrain);
@@ -16,7 +18,39 @@ public class drive extends Command {
 
     protected void execute() {
 
-        if (Math.abs(Robot.oi.throttleValue()) <= 0.05) {
+        //RADIUS CODE
+        if(Math.abs(throttle) < 0.05){
+            Robot.drivetrain.drive(-wheel,wheel);
+        }else if(Math.abs(wheel)<0.05){
+            Robot.drivetrain.drive(throttle,throttle);
+        }else{
+            wheel = Math.pow(wheel, 1 / 3);
+            radius = (kWheelBaseWidthMeters / 2) + (kMaxTurnRadius) * (1 - Math.abs(wheel));
+
+            turnDir = Math.copySign(1, radius);
+            radius = Math.abs(radius);
+
+            r = (radius - (kWheelBaseWidthMeters / 2)) /
+                    (radius + (kWheelBaseWidthMeters / 2));
+
+            Vouter = (2 * throttle) / (1 / r);
+            Vinner = r * Vouter;
+
+            if (Vouter > 1) {
+                Vinner /= Vouter;
+                Vouter /= Vouter;
+            }
+
+            if (turnDir > 0) {
+                Robot.drivetrain.drive(Vouter, Vinner);
+            } else {
+                Robot.drivetrain.drive(Vinner, Vouter);
+            }
+        }
+
+
+        //DIFFERENTIAL CODE
+        /*if (Math.abs(Robot.oi.throttleValue()) <= 0.05) {
             left = -Robot.oi.turnValue();
             right = Robot.oi.turnValue();
         } else if (Robot.oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kLeft) > 0.06125) {
@@ -57,9 +91,7 @@ public class drive extends Command {
             Robot.drivetrain.drive(left, right);
         } else {
             Robot.drivetrain.drive(0, 0);
-        }
-
-
+        }*/
     }
 
     @Override
