@@ -9,7 +9,10 @@ import frc.team253.robot.subsystems.limelight;
 
 public class drive extends Command {
     private double left = 0, right = 0;
-    double kP = -0.000001;
+    double kPAim = -0.1;
+    double kPDistance = -0.1;
+    double min_aim_command = 0.05;
+
 
     public drive() {
         requires(Robot.drivetrain);
@@ -20,11 +23,11 @@ public class drive extends Command {
     protected void execute() {
 
         SmartDashboard.putNumber("xOffset", Robot.Limelight.getxOffset());
+        SmartDashboard.putNumber("yOffset", Robot.Limelight.getyOffset());
 
 
-        double steering = Robot.Limelight.getxOffset() / 50;
 
-        SmartDashboard.putNumber("does math work?", steering);
+
 
         if(!Robot.oi.xboxcontroller.getBButton()) {
             if (Math.abs(Robot.oi.throttleValue()) <= 0.06125) {
@@ -40,11 +43,22 @@ public class drive extends Command {
 
             Robot.drivetrain.drive(left, right);
         } else {
+            double heading_error = -Robot.Limelight.getxOffset();
+            double distance_error = -Robot.Limelight.getyOffset();
+            double steering_adjust = 0.0;
 
-            SmartDashboard.putNumber("left control", -steering);
-            SmartDashboard.putNumber("right control", steering);
 
-            Robot.drivetrain.drive(-steering, steering);
+            if(Robot.Limelight.getxOffset() > 1.0){
+                steering_adjust = kPAim*heading_error - min_aim_command;
+
+            }else if(Robot.Limelight.getxOffset() < 1.0){
+                steering_adjust = kPAim*heading_error + min_aim_command;
+            }
+            double distance_adjust = kPDistance * distance_error;
+            left +=steering_adjust + distance_adjust;
+            right -=steering_adjust + distance_adjust;
+
+            Robot.drivetrain.drive(left, right);
         }
 
     }
