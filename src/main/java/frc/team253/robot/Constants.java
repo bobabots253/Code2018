@@ -64,7 +64,7 @@ public class Constants {
             kHVeloCharSlopeL = 257,
             kHVeloCharInterceptL = 1.280,
             kHVeloCharSlopeR = 246,
-            kHVeloCharInterceptR = 1.081,
+            kHVeloCharInterceptR = 1.081;
 
     public static final double kLRobotVmax = 2686,
             kLVeloCharSlopeL = 257,

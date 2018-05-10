@@ -66,8 +66,8 @@ public class driveTrain extends Subsystem {
 
     public void drive(double leftspeed, double rightspeed) {// We are setting the speed controllers to speed
 
-        leftBack.set(ControlMode.PercentOutput, leftspeed);
-        rightFront.set(ControlMode.PercentOutput, rightspeed);
+        leftBack.set(ControlMode.PercentOutput, -leftspeed);
+        rightFront.set(ControlMode.PercentOutput, -rightspeed);
 
     }
 

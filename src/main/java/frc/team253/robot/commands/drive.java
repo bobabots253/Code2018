@@ -1,22 +1,23 @@
 package frc.team253.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
-import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team253.robot.Constants;
 import frc.team253.robot.Robot;
-import frc.team253.robot.RobotMap;
 
-import static frc.team253.robot.Constants.*;
+import static frc.team253.robot.Constants.kMaxTurnRadius;
+import static frc.team253.robot.Constants.kWheelBaseWidthMeters;
 
 public class drive extends Command {
-    private double Vouter, Vinner, radius, r, turnDir, throttle = Robot.oi.throttleValue(), wheel = Robot.oi.turnValue();
+    private double radius;
+    private double r;
+    private double turnDir;
 
     public drive() {
         requires(Robot.drivetrain);
     }
 
     protected void execute() {
+        double throttle = Robot.oi.throttleValue();
+        double wheel = Robot.oi.turnValue();
 
         //RADIUS CODE
         if(Math.abs(throttle) < 0.05){
@@ -24,17 +25,19 @@ public class drive extends Command {
         }else if(Math.abs(wheel)<0.05){
             Robot.drivetrain.drive(throttle,throttle);
         }else{
-            wheel = Math.pow(wheel, 1 / 3);
+            //wheel = Math.pow(wheel, 1.0 / 3.0);
             radius = (kWheelBaseWidthMeters / 2) + (kMaxTurnRadius) * (1 - Math.abs(wheel));
+            System.out.println("radius1 " + radius);
 
             turnDir = Math.copySign(1, radius);
+
             radius = Math.abs(radius);
 
             r = (radius - (kWheelBaseWidthMeters / 2)) /
                     (radius + (kWheelBaseWidthMeters / 2));
 
-            Vouter = (2 * throttle) / (1 / r);
-            Vinner = r * Vouter;
+            double Vouter = (2 * throttle) / (1 / r);
+            double Vinner = r * Vouter;
 
             if (Vouter > 1) {
                 Vinner /= Vouter;
@@ -46,6 +49,11 @@ public class drive extends Command {
             } else {
                 Robot.drivetrain.drive(Vinner, Vouter);
             }
+            System.out.println(Vouter + "," + Vinner);
+            System.out.println("throtle " + throttle);
+            System.out.println("wheel " + wheel);
+            System.out.println("radius2 " + radius);
+            System.out.println(turnDir);
         }
 
 
