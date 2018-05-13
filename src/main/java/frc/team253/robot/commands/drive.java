@@ -44,21 +44,22 @@ public class drive extends Command {
             Robot.drivetrain.drive(left, right);
         } else {
             double heading_error = -Robot.Limelight.getxOffset();
-            double distance_error = -Robot.Limelight.getyOffset();
+            double distance_error = -Robot.Limelight.getyOffset() /2;
             double steering_adjust = 0.0;
 
+            SmartDashboard.putNumber("Steering Adjust", steering_adjust);
+            if(Robot.Limelight.getxOffset() > 3.0){
+                steering_adjust = (kPAim*heading_error - min_aim_command)/4;
 
-            if(Robot.Limelight.getxOffset() > 1.0){
-                steering_adjust = kPAim*heading_error - min_aim_command;
 
-            }else if(Robot.Limelight.getxOffset() < 1.0){
-                steering_adjust = kPAim*heading_error + min_aim_command;
+            }else if(Robot.Limelight.getxOffset() < 3.0){
+                steering_adjust = (kPAim*heading_error + min_aim_command)/4;
             }
             double distance_adjust = kPDistance * distance_error;
-            left +=steering_adjust + distance_adjust;
-            right -=steering_adjust + distance_adjust;
+            left =(steering_adjust + distance_adjust)/1.5;
+            right =(steering_adjust - distance_adjust)/1.5;
 
-            Robot.drivetrain.drive(left, right);
+            Robot.drivetrain.drive(-left, right);
         }
 
     }
