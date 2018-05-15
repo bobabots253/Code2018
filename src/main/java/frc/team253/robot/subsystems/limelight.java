@@ -3,6 +3,7 @@ import edu.wpi.first.networktables.NetworkTable;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team253.robot.commands.vision;
 
 
 public class limelight extends Subsystem {
@@ -60,7 +61,11 @@ public class limelight extends Subsystem {
         SmartDashboard.putNumber("Camera Mode", pipeline);
         
     }
+    public void setLEDMode(int ledMode){
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(ledMode);
+    }
     public void initDefaultCommand() {
+        setDefaultCommand(new vision());
     }
 
 

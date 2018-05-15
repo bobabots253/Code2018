@@ -1,5 +1,6 @@
 package frc.team253.robot;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -46,6 +47,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void disabledPeriodic() {
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+
         Scheduler.getInstance().run();
     }
 
@@ -56,6 +59,8 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void teleopPeriodic() {
+        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(1);
+
         Scheduler.getInstance().run();
     }
 

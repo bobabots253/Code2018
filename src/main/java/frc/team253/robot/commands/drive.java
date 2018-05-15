@@ -1,11 +1,12 @@
 package frc.team253.robot.commands;
 
+import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.Robot;
 import frc.team253.robot.subsystems.limelight;
-import frc.team253.robot.subsystems.limelight;
+
 
 public class drive extends Command {
     private double left = 0, right = 0;
@@ -16,11 +17,12 @@ public class drive extends Command {
 
     public drive() {
         requires(Robot.drivetrain);
-        requires(Robot.Limelight);
     }
 
 
     protected void execute() {
+
+        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(2);
 
         SmartDashboard.putNumber("xOffset", Robot.Limelight.getxOffset());
         SmartDashboard.putNumber("yOffset", Robot.Limelight.getyOffset());
