@@ -22,8 +22,6 @@ public class drive extends Command {
 
     protected void execute() {
 
-        //NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(2);
-
         SmartDashboard.putNumber("xOffset", Robot.Limelight.getxOffset());
         SmartDashboard.putNumber("yOffset", Robot.Limelight.getyOffset());
 
