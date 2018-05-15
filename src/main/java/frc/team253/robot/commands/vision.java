@@ -14,7 +14,10 @@ public class vision extends Command {
 
     protected void execute(){
 
-        boolean toggle;
+        NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0);
+
+
+        boolean toggle = true;
         boolean isPressedTurnedOn = Robot.oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kRight) > 0.1;
 
         if (isPressedTurnedOn && toggle) {
