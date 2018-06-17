@@ -1,9 +1,13 @@
-package frc.team253.robot;
+package main.java.frc.team253.robot;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.team253.robot.OI;
+
+import frc.team253.robot.RobotMap;
+import frc.team253.robot.subsystems.Elevator;
 import frc.team253.robot.subsystems.Pneumatics;
 import frc.team253.robot.subsystems.driveTrain;
 import frc.team253.robot.subsystems.limelight;
@@ -14,6 +18,7 @@ public class Robot extends IterativeRobot {
     public static driveTrain drivetrain;
     public static Pneumatics pneumatics;
     public static limelight Limelight;
+    public static Elevator elevator;
 
 
 
@@ -21,7 +26,7 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
         RobotMap.init();
         drivetrain = new driveTrain();
-
+        elevator = new Elevator();
         pneumatics = new Pneumatics();
         Limelight = new limelight();
         oi = new OI();

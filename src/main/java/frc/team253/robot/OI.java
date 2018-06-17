@@ -1,5 +1,6 @@
 package frc.team253.robot;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 
@@ -16,9 +17,11 @@ public class OI {
     public JoystickButton ButtonLB;
     public JoystickButton ButtonRT;
     public JoystickButton ButtonLT;
+    public Joystick elevatorStick;
 
 
     public OI() {
+        elevatorStick = new Joystick(2);
         xboxcontroller = new XboxController(1);
         ButtonA = new JoystickButton(xboxcontroller, 1);
         ButtonB = new JoystickButton(xboxcontroller, 2);
@@ -37,5 +40,9 @@ public class OI {
 
     public double turnValue() {
         return xboxcontroller.getX(Hand.kRight);
+    }
+
+    public double elevateValue(){
+        return elevatorStick.getY();
     }
 }

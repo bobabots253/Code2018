@@ -4,10 +4,10 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.Constants;
-import frc.team253.robot.Robot;
 import frc.team253.robot.RobotMap;
 
 import static frc.team253.robot.Constants.*;
+import static main.java.frc.team253.robot.Robot.*;
 
 public class drive extends Command {
     private double left = 0, right = 0;
@@ -17,31 +17,31 @@ public class drive extends Command {
 
 
     public drive() {
-        requires(Robot.drivetrain);
+        requires(drivetrain);
     }
 
 
     protected void execute() {
 
-        double throttle = Robot.oi.throttleValue(),
-                wheel = Robot.oi.turnValue();
+        double throttle = oi.throttleValue(),
+                wheel = oi.turnValue();
 
-        SmartDashboard.putNumber("xOffset", Robot.Limelight.getxOffset());
-        SmartDashboard.putNumber("yOffset", Robot.Limelight.getyOffset());
+        SmartDashboard.putNumber("xOffset", Limelight.getxOffset());
+        SmartDashboard.putNumber("yOffset", Limelight.getyOffset());
 
         //Vision when B button is held
 
-        if(Robot.oi.xboxcontroller.getBButton()) {
-            double heading_error = -Robot.Limelight.getxOffset();
-            double distance_error = -Robot.Limelight.getyOffset() / 1.5;
+        if(oi.xboxcontroller.getBButton()) {
+            double heading_error = -Limelight.getxOffset();
+            double distance_error = -Limelight.getyOffset() / 1.5;
             double steering_adjust = 0.0;
 
             SmartDashboard.putNumber("Steering Adjust", steering_adjust);
-            if (Robot.Limelight.getxOffset() > 3.0) {
+            if (Limelight.getxOffset() > 3.0) {
                 steering_adjust = (kPAim * heading_error - min_aim_command) / 3;
 
 
-            } else if (Robot.Limelight.getxOffset() < 3.0) {
+            } else if (Limelight.getxOffset() < 3.0) {
                 steering_adjust = (kPAim * heading_error + min_aim_command) / 3;
             }
             double distance_adjust = kPDistance * distance_error;
@@ -62,7 +62,7 @@ public class drive extends Command {
         }
 
         //DRIVETRAIN CHARACTERIZATION NUMBER PROCESSING
-        if (Math.abs(throttle) > kDriveDeadband || Math.abs(wheel) > kDriveDeadband || Robot.oi.xboxcontroller.getBButton()) {
+        if (Math.abs(throttle) > kDriveDeadband || Math.abs(wheel) > kDriveDeadband || oi.xboxcontroller.getBButton()) {
 
             if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kForward) { //if solenoids are in forward position
 
@@ -75,16 +75,16 @@ public class drive extends Command {
                 right = processDriveChar(right, kLRobotVmax, kLVeloCharSlopeR,kLVeloCharInterceptR);
             }
 
-            Robot.drivetrain.drive(left, right);
+            drivetrain.drive(left, right);
         } else {
-            Robot.drivetrain.drive(0, 0);
+            drivetrain.drive(0, 0);
         }
     }
     protected double processDriveChar(double wantedSpeed, double Vmax, double slope, double intercept){
 
         double actualSpeed = (((wantedSpeed*Vmax)
                 / slope)
-                + Math.copySign(intercept, wantedSpeed)
+                + Math.copySign(intercept, wantedSpeed))
                 / 12;
 
         return actualSpeed;

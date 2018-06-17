@@ -2,7 +2,8 @@ package frc.team253.robot.commands;
 
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team253.robot.Robot;
+
+import static main.java.frc.team253.robot.Robot.*;
 
 public class gearShift extends Command {
 
@@ -10,7 +11,7 @@ public class gearShift extends Command {
     private boolean toggle = true;
 
     public gearShift() {
-        requires(Robot.pneumatics);
+        requires(pneumatics);
 
     }
 
@@ -18,7 +19,7 @@ public class gearShift extends Command {
     }
 
     protected void execute() {
-        boolean isPressedTurnedOn = Robot.oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kLeft) > 0.1;
+        boolean isPressedTurnedOn = oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kLeft) > 0.1;
 
         if (isPressedTurnedOn && toggle) {
             toggle = false;
@@ -27,9 +28,9 @@ public class gearShift extends Command {
             toggle = true;
         }
         if (!changeStatus) {
-            Robot.pneumatics.shiftForward();
+            pneumatics.shiftForward();
         } else {
-            Robot.pneumatics.shiftBackward();
+            pneumatics.shiftBackward();
         }
     }
 

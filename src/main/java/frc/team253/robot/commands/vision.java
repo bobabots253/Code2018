@@ -3,13 +3,13 @@ package frc.team253.robot.commands;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team253.robot.Robot;
+import static main.java.frc.team253.robot.Robot.*;
 
 public class vision extends Command {
     private int ledMode = 0;
 
     public vision(){
-        requires(Robot.Limelight);
+        requires(Limelight);
     }
 
     protected void execute(){
@@ -18,7 +18,7 @@ public class vision extends Command {
 
 
         boolean toggle = true;
-        boolean isPressedTurnedOn = Robot.oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kRight) > 0.1;
+        boolean isPressedTurnedOn = oi.xboxcontroller.getTriggerAxis(GenericHID.Hand.kRight) > 0.1;
 
         if (isPressedTurnedOn && toggle) {
             toggle = false;

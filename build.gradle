@@ -3,6 +3,9 @@ plugins {
     id "eclipse"
     id "idea"
     id "jaci.openrio.gradle.GradleRIO" version "2018.03.06"
+
+    //simulator
+    id "com.snobot.simulator.plugin.SnobotSimulatorPlugin" version "2018.01.10"
 }
 
 def TEAM = 253
@@ -37,10 +40,15 @@ deploy {
 // Defining my dependencies. In this case, WPILib (+ friends), CTRE Phoenix (Talon SRX)
 // and NavX.
 dependencies {
+    //general dependencies
     compile wpilib()
     compile ctre()
     compile navx()
     compile openrio.powerup.matchData()
+
+    //simulator
+    testCompile snobotSimCompile()
+    testCompile snobotSimJavaCompile()
 }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
@@ -54,3 +62,9 @@ jar {
 task wrapper(type: Wrapper) {
     gradleVersion = '4.4'
 }
+
+//simulator
+snobotSimVersions {
+    snobotSimVersion = "0.8.0"
+}
+build.dependsOn snobotSimUnzipNativeTools

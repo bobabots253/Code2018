@@ -12,10 +12,10 @@ import frc.team253.robot.commands.drive;
 
 public class driveTrain extends Subsystem {
 
-    private final TalonSRX leftBack = RobotMap.driveTrainLeftBack,
-            leftFront = RobotMap.driveTrainLeftFront,
-            rightFront = RobotMap.driveTrainRightFront,
-            rightBack = RobotMap.driveTrainRightBack;
+    protected final TalonSRX leftBack = RobotMap.driveTrainLeftBack;
+    public static final TalonSRX leftFront = RobotMap.driveTrainLeftFront;
+    protected final TalonSRX rightFront = RobotMap.driveTrainRightFront;
+    protected final TalonSRX rightBack = RobotMap.driveTrainRightBack;
 
     public driveTrain() {
         leftFront.follow(leftBack);
