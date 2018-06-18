@@ -22,7 +22,7 @@ public class Elevator extends Subsystem {
 
     public Elevator() {
         elevatorControl.setSetpoint(0);
-        elevatorControl.set
+        elevatorControl.setPercentTolerance(2);
     }
 
     public void elevate(double speed){

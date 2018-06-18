@@ -16,7 +16,7 @@ public class elevate extends Command {
     protected void execute(){
         double elevateAxis = oi.elevateValue(); //sets elevateAxis to joystick input
 
-        if(elevateAxis >= 0.05){
+        if(Math.abs(elevateAxis) >= 0.05){
             elevator.elevatorControl.disable();
             elevator.elevate(elevateAxis);
         }else{
