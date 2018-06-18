@@ -1,7 +1,6 @@
 package frc.team253.robot.subsystems;
 
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSource;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -9,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team253.robot.ElevatorEncoderSource;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.elevate;
-import frc.team253.robot.subsystems.driveTrain;
 
 public class Elevator extends Subsystem {
 

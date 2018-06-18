@@ -7,10 +7,9 @@ import frc.team253.robot.Constants;
 import frc.team253.robot.RobotMap;
 
 import static frc.team253.robot.Constants.*;
-import static main.java.frc.team253.robot.Robot.*;
+import static frc.team253.robot.Robot.*;
 
 public class drive extends Command {
-    private double left = 0, right = 0;
     double kPAim = -0.1;
     double kPDistance = -0.1;
     double min_aim_command = 0.05;
@@ -31,6 +30,8 @@ public class drive extends Command {
 
         //Vision when B button is held
 
+        double right = 0;
+        double left = 0;
         if(oi.xboxcontroller.getBButton()) {
             double heading_error = -Limelight.getxOffset();
             double distance_error = -Limelight.getyOffset() / 1.5;
@@ -82,12 +83,10 @@ public class drive extends Command {
     }
     protected double processDriveChar(double wantedSpeed, double Vmax, double slope, double intercept){
 
-        double actualSpeed = (((wantedSpeed*Vmax)
+        return (((wantedSpeed*Vmax)
                 / slope)
                 + Math.copySign(intercept, wantedSpeed))
                 / 12;
-
-        return actualSpeed;
     }
 
     @Override

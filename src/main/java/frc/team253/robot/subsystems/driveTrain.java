@@ -4,13 +4,12 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team253.robot.Constants;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.drive;
 
-import static main.java.frc.team253.robot.Robot.drivetrain;
+import static frc.team253.robot.Robot.drivetrain;
 
 public class driveTrain extends Subsystem {
 
@@ -75,7 +74,7 @@ public class driveTrain extends Subsystem {
     }
 
     public void resetEncoders(){
-        drivetrain.leftFront.setSelectedSensorPosition(0,0,10);
+        leftFront.setSelectedSensorPosition(0,0,10);
         drivetrain.leftBack.setSelectedSensorPosition(0,0,10);
         drivetrain.rightFront.setSelectedSensorPosition(0,0,10);
     }

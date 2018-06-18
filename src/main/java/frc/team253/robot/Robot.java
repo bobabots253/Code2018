@@ -1,9 +1,8 @@
-package main.java.frc.team253.robot;
+package frc.team253.robot;
 
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.OI;
 
 import frc.team253.robot.RobotMap;

@@ -3,7 +3,7 @@ package frc.team253.robot.commands;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
-import static main.java.frc.team253.robot.Robot.*;
+import static frc.team253.robot.Robot.*;
 
 public class vision extends Command {
     private int ledMode = 0;

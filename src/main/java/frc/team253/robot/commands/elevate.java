@@ -1,11 +1,10 @@
 package frc.team253.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.team253.robot.subsystems.Elevator;
 import frc.team253.robot.subsystems.driveTrain;
 
-import static main.java.frc.team253.robot.Robot.elevator;
-import static main.java.frc.team253.robot.Robot.oi;
+import static frc.team253.robot.Robot.elevator;
+import static frc.team253.robot.Robot.oi;
 
 public class elevate extends Command {
 
