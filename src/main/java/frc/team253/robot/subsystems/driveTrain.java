@@ -10,6 +10,8 @@ import frc.team253.robot.Constants;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.drive;
 
+import static main.java.frc.team253.robot.Robot.drivetrain;
+
 public class driveTrain extends Subsystem {
 
     protected final TalonSRX leftBack = RobotMap.driveTrainLeftBack;
@@ -70,6 +72,12 @@ public class driveTrain extends Subsystem {
         leftBack.set(ControlMode.PercentOutput, leftspeed);
         rightFront.set(ControlMode.PercentOutput, rightspeed);
 
+    }
+
+    public void resetEncoders(){
+        drivetrain.leftFront.setSelectedSensorPosition(0,0,10);
+        drivetrain.leftBack.setSelectedSensorPosition(0,0,10);
+        drivetrain.rightFront.setSelectedSensorPosition(0,0,10);
     }
 
 }

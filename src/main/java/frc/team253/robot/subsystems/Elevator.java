@@ -18,9 +18,11 @@ public class Elevator extends Subsystem {
 
     private final SpeedControllerGroup ElevatorSparks = new SpeedControllerGroup(Elevator1,Elevator2);
     private ElevatorEncoderSource ElevatorEncoderSource = new ElevatorEncoderSource();
-    public PIDController elevatorControl = new PIDController(0,0,0,ElevatorEncoderSource,ElevatorSparks);
-    public Elevator() {
+    public PIDController elevatorControl = new PIDController(0,0,0,0,ElevatorEncoderSource,ElevatorSparks);
 
+    public Elevator() {
+        elevatorControl.setSetpoint(0);
+        elevatorControl.set
     }
 
     public void elevate(double speed){

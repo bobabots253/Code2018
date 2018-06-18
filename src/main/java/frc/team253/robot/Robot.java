@@ -31,6 +31,8 @@ public class Robot extends IterativeRobot {
         Limelight = new limelight();
         oi = new OI();
         //Important: OI initialization has to come after all the subsystem declarations
+
+        drivetrain.resetEncoders();
     }
 
     @Override
