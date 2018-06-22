@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
-import frc.team253.robot.ElevatorEncoderSource;
+import frc.team253.robot.utils.ElevatorEncoderSource;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.elevate;
 

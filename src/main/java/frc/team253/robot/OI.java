@@ -3,8 +3,10 @@ package frc.team253.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team253.robot.utils.XBPovButton;
 
 import static edu.wpi.first.wpilibj.GenericHID.Hand;
+import static frc.team253.robot.utils.Constants.POVConstants.*;
 
 public class OI {
 
@@ -19,6 +21,17 @@ public class OI {
     public JoystickButton ButtonLT;
     public Joystick elevatorStick;
 
+    public JoystickButton
+            povUP,
+            povUP_RIGHT,
+            povRIGHT,
+            povDOWN_RIGHT,
+            povDOWN,
+            povDOWN_LEFT,
+            povLEFT,
+            povUP_LEFT;
+
+
 
     public OI() {
         elevatorStick = new Joystick(2);
@@ -31,6 +44,15 @@ public class OI {
         ButtonLB = new JoystickButton(xboxcontroller, 5);
         ButtonRT = new JoystickButton(xboxcontroller, 7);
         ButtonLT = new JoystickButton(xboxcontroller, 8);
+
+        povUP = new XBPovButton(xboxcontroller, UP);
+        povUP_RIGHT = new XBPovButton(xboxcontroller,UP_RIGHT);
+        povRIGHT = new XBPovButton(xboxcontroller,RIGHT);
+        povDOWN_RIGHT = new XBPovButton(xboxcontroller,DOWN_RIGHT);
+        povDOWN = new XBPovButton(xboxcontroller,DOWN);
+        povDOWN_LEFT = new XBPovButton(xboxcontroller,DOWN_LEFT);
+        povLEFT = new XBPovButton(xboxcontroller,LEFT);
+        povUP_LEFT = new XBPovButton(xboxcontroller,UP_LEFT);
 
     }
 

@@ -5,7 +5,7 @@ import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team253.robot.Constants;
+import frc.team253.robot.utils.Constants;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.drive;
 

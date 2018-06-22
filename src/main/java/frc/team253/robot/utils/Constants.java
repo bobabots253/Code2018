@@ -1,6 +1,19 @@
-package frc.team253.robot;
+package frc.team253.robot.utils;
 
 public class Constants {
+
+    public class POVConstants{
+        public static final int
+                NONE = -1,
+                UP = 0,
+                UP_RIGHT = 45,
+                RIGHT = 90,
+                DOWN_RIGHT = 115,
+                DOWN = 180,
+                DOWN_LEFT = 225,
+                LEFT = 270,
+                UP_LEFT = 315;
+    }
 
     /**
      * which Talon on CANBus

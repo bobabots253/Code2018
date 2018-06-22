@@ -3,10 +3,10 @@ package frc.team253.robot.commands;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team253.robot.Constants;
+import frc.team253.robot.utils.Constants;
 import frc.team253.robot.RobotMap;
 
-import static frc.team253.robot.Constants.*;
+import static frc.team253.robot.utils.Constants.*;
 import static frc.team253.robot.Robot.*;
 
 public class drive extends Command {
