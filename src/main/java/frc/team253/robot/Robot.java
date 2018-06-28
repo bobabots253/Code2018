@@ -3,9 +3,6 @@ package frc.team253.robot;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team253.robot.OI;
-
-import frc.team253.robot.RobotMap;
 import frc.team253.robot.subsystems.Elevator;
 import frc.team253.robot.subsystems.Pneumatics;
 import frc.team253.robot.subsystems.driveTrain;

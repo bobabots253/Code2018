@@ -65,15 +65,16 @@ public class drive extends Command {
         //DRIVETRAIN CHARACTERIZATION NUMBER PROCESSING
         if (Math.abs(throttle) > kDriveDeadband || Math.abs(wheel) > kDriveDeadband || oi.xboxcontroller.getBButton()) {
 
-            if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kForward) { //if solenoids are in forward position
-
-                left = processDriveChar(left, Constants.kHRobotVmax, kHVeloCharSlopeL,kHVeloCharInterceptL);
-                right = processDriveChar(right, Constants.kHRobotVmax, kHVeloCharSlopeR,kHVeloCharInterceptR);
-
-            } else if (RobotMap.solenoid1.get() == DoubleSolenoid.Value.kReverse) { //if solenoids are in reverse position
-
-                left = processDriveChar(left, kLRobotVmax, kLVeloCharSlopeL,kLVeloCharInterceptL);
-                right = processDriveChar(right, kLRobotVmax, kLVeloCharSlopeR,kLVeloCharInterceptR);
+            switch(RobotMap.solenoid1.get()){
+                case kForward:
+                    left = processDriveChar(left, Constants.kHRobotVmax, kHVeloCharSlopeL,kHVeloCharInterceptL);
+                    right = processDriveChar(right, Constants.kHRobotVmax, kHVeloCharSlopeR,kHVeloCharInterceptR);
+                    break;
+                case kReverse:
+                    left = processDriveChar(left, kLRobotVmax, kLVeloCharSlopeL,kLVeloCharInterceptL);
+                    right = processDriveChar(right, kLRobotVmax, kLVeloCharSlopeR,kLVeloCharInterceptR);
+                case kOff:
+                    break;
             }
 
             drivetrain.drive(left, right);
@@ -81,6 +82,7 @@ public class drive extends Command {
             drivetrain.drive(0, 0);
         }
     }
+
     protected double processDriveChar(double wantedSpeed, double Vmax, double slope, double intercept){
 
         return (((wantedSpeed*Vmax)
