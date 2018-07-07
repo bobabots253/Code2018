@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.utils.ElevatorEncoderSource;
 import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.elevate;
@@ -20,6 +21,7 @@ public class Elevator extends Subsystem {
     public PIDController elevatorControl = new PIDController(0,0,0,0,ElevatorEncoderSource,ElevatorSparks);
 
     private Elevator() {
+        SmartDashboard.putNumber("Spark Output",ElevatorSparks.get());
         elevatorControl.setSetpoint(0);
         elevatorControl.setPercentTolerance(2);
     }

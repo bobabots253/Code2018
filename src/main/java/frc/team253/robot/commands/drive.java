@@ -83,7 +83,7 @@ public class drive extends Command {
         }
     }
 
-    protected double processDriveChar(double wantedSpeed, double Vmax, double slope, double intercept){
+    public static double processDriveChar(double wantedSpeed, double Vmax, double slope, double intercept){
 
         return (((wantedSpeed*Vmax)
                 / slope)

@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.Robot;
 import frc.team253.robot.RobotMap;
+import frc.team253.robot.commands.drive;
 import frc.team253.robot.subsystems.DriveTrain;
 import frc.team253.robot.utils.Constants;
 import jaci.pathfinder.Pathfinder;
@@ -64,7 +65,13 @@ public class pathFollow extends Command {
         double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - gyroHeading);
         double turn = 0.8 * (-1.0/80.0) * angleDifference;
 
-        Robot.drivetrain.drive(left+turn, right-turn);
+        double leftspeed = left+turn;
+        double rightspeed = right+turn;
+
+        //leftspeed = drive.processDriveChar(leftspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeL,Constants.kLVeloCharInterceptL);
+        //rightspeed = drive.processDriveChar(rightspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeR,Constants.kLVeloCharInterceptR);
+
+        Robot.drivetrain.drive(leftspeed, rightspeed);
     }
 
     @Override
