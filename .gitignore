@@ -1,5 +1,7 @@
 .gradle
 /build/
+*.iml
+*.iws
 
 # Ignore Gradle GUI config
 gradle-app.setting
