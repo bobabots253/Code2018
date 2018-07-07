@@ -11,14 +11,16 @@ import frc.team253.robot.commands.drive;
 
 import static frc.team253.robot.Robot.drivetrain;
 
-public class driveTrain extends Subsystem {
+public class DriveTrain extends Subsystem {
 
-    protected final TalonSRX leftBack = RobotMap.driveTrainLeftBack;
+    private static DriveTrain instance = null;
+
+    public static final TalonSRX leftBack = RobotMap.driveTrainLeftBack;
     public static final TalonSRX leftFront = RobotMap.driveTrainLeftFront;
-    protected final TalonSRX rightFront = RobotMap.driveTrainRightFront;
-    protected final TalonSRX rightBack = RobotMap.driveTrainRightBack;
+    public static final TalonSRX rightFront = RobotMap.driveTrainRightFront;
+    public final TalonSRX rightBack = RobotMap.driveTrainRightBack;
 
-    public driveTrain() {
+    private DriveTrain() {
         leftFront.follow(leftBack);
         rightBack.follow(rightFront);
 
@@ -56,9 +58,6 @@ public class driveTrain extends Subsystem {
         rightFront.setSensorPhase(false);
         leftFront.setSensorPhase(false);
 
-        leftBack.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
-        rightFront.configNeutralDeadband(Constants.kNeutralDeadband, Constants.kTimeoutMs);
-
 
     }
 
@@ -77,6 +76,14 @@ public class driveTrain extends Subsystem {
         leftFront.setSelectedSensorPosition(0,0,10);
         drivetrain.leftBack.setSelectedSensorPosition(0,0,10);
         drivetrain.rightFront.setSelectedSensorPosition(0,0,10);
+    }
+
+    public static DriveTrain getInstance()
+    {
+        if (instance == null)
+            instance = new DriveTrain();
+
+        return instance;
     }
 
 }

@@ -9,12 +9,12 @@ public class vision extends Command {
     private int ledMode = 0;
 
     public vision(){
-        requires(Limelight);
+        requires(limelight);
     }
 
     protected void execute(){
 
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("stream").setNumber(0);
+        NetworkTableInstance.getDefault().getTable("Limelight").getEntry("stream").setNumber(0);
 
 
         boolean toggle = true;
@@ -23,7 +23,7 @@ public class vision extends Command {
         if (isPressedTurnedOn && toggle) {
             toggle = false;
             NetworkTableInstance.getDefault()
-                    .getTable("limelight")
+                    .getTable("Limelight")
                     .getEntry("ledMode")
                     .setNumber(incrementLEDMode());
 

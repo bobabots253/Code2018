@@ -6,7 +6,10 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.commands.vision;
 
 
-public class limelight extends Subsystem {
+public class Limelight extends Subsystem {
+
+    private static Limelight instance = null;
+
     NetworkTable table;
     double targetD;
     boolean hasTarget; //whether target is detected or tracked
@@ -21,9 +24,9 @@ public class limelight extends Subsystem {
     double angle;
     double Tdistance;
 
-    public limelight(){
+    private Limelight(){
 
-        table = NetworkTableInstance.getDefault().getTable("limelight");
+        table = NetworkTableInstance.getDefault().getTable("Limelight");
     }
 
     public boolean gethasTarget() {
@@ -62,7 +65,7 @@ public class limelight extends Subsystem {
         
     }
     public void setLEDMode(int ledMode){
-        NetworkTableInstance.getDefault().getTable("limelight").getEntry("ledMode").setNumber(ledMode);
+        NetworkTableInstance.getDefault().getTable("Limelight").getEntry("ledMode").setNumber(ledMode);
     }
     public void initDefaultCommand() {
         setDefaultCommand(new vision());
@@ -107,6 +110,12 @@ public class limelight extends Subsystem {
     }
 */
 
+    public static Limelight getInstance()
+    {
+        if (instance == null)
+            instance = new Limelight();
 
+        return instance;
+    }
 
 }

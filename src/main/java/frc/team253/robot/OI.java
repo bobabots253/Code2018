@@ -3,9 +3,12 @@ package frc.team253.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import frc.team253.robot.pathing.pathFollow;
+import frc.team253.robot.utils.RunCommand;
 import frc.team253.robot.utils.XBPovButton;
 
 import static edu.wpi.first.wpilibj.GenericHID.Hand;
+import static frc.team253.robot.Robot.elevator;
 import static frc.team253.robot.utils.Constants.POVConstants.*;
 
 public class OI {
@@ -22,14 +25,14 @@ public class OI {
     public Joystick elevatorStick;
 
     public JoystickButton
-            povUP,
-            povUP_RIGHT,
-            povRIGHT,
-            povDOWN_RIGHT,
-            povDOWN,
-            povDOWN_LEFT,
-            povLEFT,
-            povUP_LEFT;
+            dpadUP,
+            dpadUP_RIGHT,
+            dpadRIGHT,
+            dpadDOWN_RIGHT,
+            dpadDOWN,
+            dpadDOWN_LEFT,
+            dpadLEFT,
+            dpadUP_LEFT;
 
 
 
@@ -45,14 +48,20 @@ public class OI {
         ButtonRT = new JoystickButton(xboxcontroller, 7);
         ButtonLT = new JoystickButton(xboxcontroller, 8);
 
-        povUP = new XBPovButton(xboxcontroller, UP);
-        povUP_RIGHT = new XBPovButton(xboxcontroller,UP_RIGHT);
-        povRIGHT = new XBPovButton(xboxcontroller,RIGHT);
-        povDOWN_RIGHT = new XBPovButton(xboxcontroller,DOWN_RIGHT);
-        povDOWN = new XBPovButton(xboxcontroller,DOWN);
-        povDOWN_LEFT = new XBPovButton(xboxcontroller,DOWN_LEFT);
-        povLEFT = new XBPovButton(xboxcontroller,LEFT);
-        povUP_LEFT = new XBPovButton(xboxcontroller,UP_LEFT);
+        dpadUP = new XBPovButton(xboxcontroller, UP);
+        dpadUP_RIGHT = new XBPovButton(xboxcontroller,UP_RIGHT);
+        dpadRIGHT = new XBPovButton(xboxcontroller,RIGHT);
+        dpadDOWN_RIGHT = new XBPovButton(xboxcontroller,DOWN_RIGHT);
+        dpadDOWN = new XBPovButton(xboxcontroller,DOWN);
+        dpadDOWN_LEFT = new XBPovButton(xboxcontroller,DOWN_LEFT);
+        dpadLEFT = new XBPovButton(xboxcontroller,LEFT);
+        dpadUP_LEFT = new XBPovButton(xboxcontroller,UP_LEFT);
+
+        dpadLEFT.whileHeld(new pathFollow("Straight15ft"));
+
+        dpadUP.whenPressed(new RunCommand(()->{
+            elevator.elevatorControl.setSetpoint(0);
+        }));
 
     }
 

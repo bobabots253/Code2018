@@ -10,6 +10,7 @@ import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.elevate;
 
 public class Elevator extends Subsystem {
+    private static Elevator instance = null;
 
     private final Spark Elevator1 = RobotMap.Elevator1;
     private final Spark Elevator2 = RobotMap.Elevator2;
@@ -18,9 +19,16 @@ public class Elevator extends Subsystem {
     private ElevatorEncoderSource ElevatorEncoderSource = new ElevatorEncoderSource();
     public PIDController elevatorControl = new PIDController(0,0,0,0,ElevatorEncoderSource,ElevatorSparks);
 
-    public Elevator() {
+    private Elevator() {
         elevatorControl.setSetpoint(0);
         elevatorControl.setPercentTolerance(2);
+    }
+    public static Elevator getInstance()
+    {
+        if (instance == null)
+            instance = new Elevator();
+
+        return instance;
     }
 
     public void elevate(double speed){

@@ -7,9 +7,12 @@ import frc.team253.robot.RobotMap;
 import frc.team253.robot.commands.gearShift;
 
 public class Pneumatics extends Subsystem {
+    private static Pneumatics instance = null;
 
     private final DoubleSolenoid shiftSolenoid = RobotMap.solenoid1;
     private final Compressor compressor = RobotMap.compressorA;
+
+    private Pneumatics(){}
 
     public void initDefaultCommand() {
         setDefaultCommand(new gearShift());
@@ -33,5 +36,13 @@ public class Pneumatics extends Subsystem {
 
     public void shiftOff() {
         shiftSolenoid.set(DoubleSolenoid.Value.kOff);
+    }
+
+    public static Pneumatics getInstance()
+    {
+        if (instance == null)
+            instance = new Pneumatics();
+
+        return instance;
     }
 }

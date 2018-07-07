@@ -25,24 +25,24 @@ public class drive extends Command {
         double throttle = oi.throttleValue(),
                 wheel = oi.turnValue();
 
-        SmartDashboard.putNumber("xOffset", Limelight.getxOffset());
-        SmartDashboard.putNumber("yOffset", Limelight.getyOffset());
+        SmartDashboard.putNumber("xOffset", limelight.getxOffset());
+        SmartDashboard.putNumber("yOffset", limelight.getyOffset());
 
         //Vision when B button is held
 
         double right = 0;
         double left = 0;
         if(oi.xboxcontroller.getBButton()) {
-            double heading_error = -Limelight.getxOffset();
-            double distance_error = -Limelight.getyOffset() / 1.5;
+            double heading_error = -limelight.getxOffset();
+            double distance_error = -limelight.getyOffset() / 1.5;
             double steering_adjust = 0.0;
 
             SmartDashboard.putNumber("Steering Adjust", steering_adjust);
-            if (Limelight.getxOffset() > 3.0) {
+            if (limelight.getxOffset() > 3.0) {
                 steering_adjust = (kPAim * heading_error - min_aim_command) / 3;
 
 
-            } else if (Limelight.getxOffset() < 3.0) {
+            } else if (limelight.getxOffset() < 3.0) {
                 steering_adjust = (kPAim * heading_error + min_aim_command) / 3;
             }
             double distance_adjust = kPDistance * distance_error;
