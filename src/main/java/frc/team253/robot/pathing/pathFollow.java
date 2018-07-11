@@ -30,15 +30,15 @@ public class pathFollow extends Command {
         SmartDashboard.putNumber("I gain",kI);
         SmartDashboard.putNumber("D gain",kD);
 
-        gyro.reset();
+        //gyro.reset();
 
         requires(drivetrain);
-        Trajectory trajectory = Pathfinder.readFromCSV(new File("/home/lvuser/profiles/"+pathName));
+        //Trajectory trajectory = Pathfinder.readFromCSV(new File("/home/lvuser/profiles/"+pathName));
 
-        TankModifier modifier = new TankModifier(trajectory);
-        modifier.modify(Constants.kWheelBaseWidthMeters);
-        trajecLeft = modifier.getLeftTrajectory();
-        trajecRight = modifier.getRightTrajectory();
+        //TankModifier modifier = new TankModifier(trajectory);
+        //modifier.modify(Constants.kWheelBaseWidthMeters);
+        trajecLeft = Pathfinder.readFromCSV(new File("/home/lvuser/profiles/"+pathName+"_left.csv"));
+        trajecRight = Pathfinder.readFromCSV(new File("/home/lvuser/profiles/"+pathName+"_right.csv"));
 
         followerLeft = new EncoderFollower(trajecLeft);
         followerRight = new EncoderFollower(trajecRight);
@@ -60,13 +60,19 @@ public class pathFollow extends Command {
         double left = followerLeft.calculate(Robot.drivetrain.leftBack.getSelectedSensorPosition(0));
         double right = followerLeft.calculate(Robot.drivetrain.leftBack.getSelectedSensorPosition(0));
 
-        double gyroHeading = gyro.getYaw();
-        double desiredHeading = Pathfinder.r2d(followerLeft.getHeading());
-        double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - gyroHeading);
-        double turn = 0.8 * (-1.0/80.0) * angleDifference;
+        //double gyroHeading = gyro.getYaw();
+        //double desiredHeading = Pathfinder.r2d(followerLeft.getHeading());
+        //double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - gyroHeading);
+        //double turn = 0.8 * (-1.0/80.0) * angleDifference;
 
-        double leftspeed = left+turn;
-        double rightspeed = right+turn;
+        double leftspeed = -left;
+        double rightspeed = -right;
+
+        SmartDashboard.putNumber("leftspeed",leftspeed);
+        SmartDashboard.putNumber("rightspeed",rightspeed);
+
+        SmartDashboard.putNumber("left encoder",drivetrain.leftBack.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("right encoder",-drivetrain.rightFront.getSelectedSensorPosition(0));
 
         //leftspeed = drive.processDriveChar(leftspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeL,Constants.kLVeloCharInterceptL);
         //rightspeed = drive.processDriveChar(rightspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeR,Constants.kLVeloCharInterceptR);

@@ -1,8 +1,8 @@
 {
-  "Straight15ft": {
+  "Straight5ft": {
     "points": [
       {"x": 0, "y": 0, "angle": 0},
-      {"x": 4.572, "y": 0, "angle": 0}
+      {"x": 1.524, "y": 0, "angle": 0}
     ],
     "flip": false
   },

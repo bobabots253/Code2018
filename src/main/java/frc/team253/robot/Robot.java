@@ -3,6 +3,7 @@ package frc.team253.robot;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.team253.robot.pathing.pathFollow;
 import frc.team253.robot.subsystems.DriveTrain;
 import frc.team253.robot.subsystems.Elevator;
 import frc.team253.robot.subsystems.Limelight;
@@ -62,7 +63,6 @@ public class Robot extends IterativeRobot {
     @Override
     public void teleopPeriodic() {
         //NetworkTableInstance.getDefault().getTable("Limelight").getEntry("ledMode").setNumber(1);
-
         Scheduler.getInstance().run();
     }
 

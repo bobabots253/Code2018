@@ -25,14 +25,14 @@ public class OI {
     public Joystick elevatorStick;
 
     public JoystickButton
-            dpadUP,
-            dpadUP_RIGHT,
-            dpadRIGHT,
-            dpadDOWN_RIGHT,
-            dpadDOWN,
-            dpadDOWN_LEFT,
-            dpadLEFT,
-            dpadUP_LEFT;
+            dpadUP;
+    public JoystickButton dpadUP_RIGHT;
+    public JoystickButton dpadRIGHT;
+    public JoystickButton dpadDOWN_RIGHT;
+    public JoystickButton dpadDOWN;
+    public JoystickButton dpadDOWN_LEFT;
+    public static JoystickButton dpadLEFT;
+    public JoystickButton dpadUP_LEFT;
 
 
 
@@ -57,11 +57,11 @@ public class OI {
         dpadLEFT = new XBPovButton(xboxcontroller,LEFT);
         dpadUP_LEFT = new XBPovButton(xboxcontroller,UP_LEFT);
 
-        dpadLEFT.whileHeld(new pathFollow("Straight15ft"));
 
-        dpadUP.whenPressed(new RunCommand(()->{
+        /*dpadUP.whenPressed(new RunCommand(()->{
             elevator.elevatorControl.setSetpoint(0);
-        }));
+        }));*/
+        dpadLEFT.whileHeld(new pathFollow("Straight5ft"));
 
     }
 
