@@ -60,7 +60,7 @@ public class Constants {
     public static final double kWheelBaseWidthFeet = 1.9625;
     public static final double kWheelDiameterFeet = 0.5;
     public static final double kWheelDiameterMeters = 0.1524;
-    public static final double kDriveTrainMaxVelMetersPSec = 5.7912;
+    public static final double kDriveTrainMaxVelMetersPSec = 4.18;
     public static final double kElevatorMaxVelMetersPSec = 0.9144;
     public static final double kElevatorSprocketDiameterMeters = 0.0381; //about 1.5 inches
     public static final double kGround = 0;

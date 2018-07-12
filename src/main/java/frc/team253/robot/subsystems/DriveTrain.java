@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team253.robot.utils.Constants;
 import frc.team253.robot.RobotMap;
@@ -12,6 +13,8 @@ import frc.team253.robot.commands.drive;
 import static frc.team253.robot.Robot.drivetrain;
 
 public class DriveTrain extends Subsystem {
+
+    private final AHRS gyro = RobotMap.gyro;
 
     private static DriveTrain instance = null;
 
@@ -76,6 +79,21 @@ public class DriveTrain extends Subsystem {
         leftFront.setSelectedSensorPosition(0,0,10);
         drivetrain.leftBack.setSelectedSensorPosition(0,0,10);
         drivetrain.rightFront.setSelectedSensorPosition(0,0,10);
+    }
+
+    public void resetGyro(){
+        gyro.reset();
+    }
+    public double getYaw(){
+        return gyro.getYaw();
+    }
+
+    public double getPitch(){
+        return gyro.getPitch();
+    }
+
+    public double getRoll(){
+        return gyro.getRoll();
     }
 
     public static DriveTrain getInstance()

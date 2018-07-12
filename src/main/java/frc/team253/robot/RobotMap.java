@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Spark;
 
 public class RobotMap {
@@ -32,7 +33,7 @@ public class RobotMap {
 
         solenoid1 = new DoubleSolenoid(1, 4, 5);
 
-
+        gyro = new AHRS(SPI.Port.kMXP);
 
     }
 }

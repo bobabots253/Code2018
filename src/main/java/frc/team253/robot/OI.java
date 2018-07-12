@@ -6,6 +6,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.team253.robot.pathing.pathFollow;
 import frc.team253.robot.utils.RunCommand;
 import frc.team253.robot.utils.XBPovButton;
+import jaci.pathfinder.Waypoint;
 
 import static edu.wpi.first.wpilibj.GenericHID.Hand;
 import static frc.team253.robot.Robot.elevator;
@@ -58,10 +59,18 @@ public class OI {
         dpadUP_LEFT = new XBPovButton(xboxcontroller,UP_LEFT);
 
 
-        /*dpadUP.whenPressed(new RunCommand(()->{
+        dpadUP.whenPressed(new RunCommand(()->{
             elevator.elevatorControl.setSetpoint(0);
-        }));*/
+        }));
+
         dpadLEFT.whileHeld(new pathFollow("Straight5ft"));
+
+        Waypoint[] runPoints = new Waypoint[]{ //TEMPORARY
+                new Waypoint(0, 0, 0),
+                new Waypoint(1.524, 0, 0)
+        };
+
+        dpadRIGHT.whileHeld(new pathFollow(runPoints));
 
     }
 

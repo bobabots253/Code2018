@@ -1,10 +1,8 @@
 package frc.team253.robot.commands;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import frc.team253.robot.OI;
-import frc.team253.robot.pathing.pathFollow;
+
 import frc.team253.robot.utils.Constants;
 import frc.team253.robot.RobotMap;
 
