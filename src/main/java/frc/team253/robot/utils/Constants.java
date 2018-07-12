@@ -70,7 +70,7 @@ public class Constants {
     public static final double kSwitchHeightMeters = 0.41;
     public static final double kScaleHeightMeters = 1.1;
     public static final double kPortalHeightMeters = 0.6858;
-    public static final double kTimeStepGlobal = 0.01;
+    public static final double kTimeStepGlobal = 0.02;
 
     public static final double kHRobotVmax = 2686; //encoder units when 12V applied (take lower of left and right sides)
     public static final double kHVeloCharSlopeL = 257; //slope of LSRL of left drivetrain side (units: encoder units / volt)

@@ -70,6 +70,7 @@ public class pathFollow extends Command {
 
     protected void initialize(){
         drivetrain.resetGyro();
+        drivetrain.resetEncoders();
     }
 
     protected void execute() {
@@ -98,6 +99,9 @@ public class pathFollow extends Command {
 
         SmartDashboard.putNumber("left encoder",-drivetrain.leftBack.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("right encoder",-drivetrain.rightFront.getSelectedSensorPosition(0));
+
+        System.out.println(followerLeft.getSegment());
+        System.out.println(followerRight.getSegment());
 
         //leftspeed = drive.processDriveChar(leftspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeL,Constants.kLVeloCharInterceptL);
         //rightspeed = drive.processDriveChar(rightspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeR,Constants.kLVeloCharInterceptR);
