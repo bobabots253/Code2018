@@ -56,8 +56,8 @@ public class drive extends Command {
                 left = -wheel;
                 right = wheel;
             } else if (throttle > kDriveDeadband) { //positive drive values
-                left =-throttle+throttle*wheel;
-                right =-throttle-throttle*wheel;
+                left =throttle-throttle*wheel);
+                right =throttle+throttle*wheel;
             } else { //negative drive values
                 left = throttle+throttle*wheel;
                 right = throttle-throttle*wheel;
