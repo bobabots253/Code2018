@@ -1,6 +1,7 @@
 package frc.team253.robot.pathing;
 
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.team253.robot.Robot;
@@ -48,7 +49,7 @@ public class pathFollow extends Command {
     }
 
     public pathFollow(Waypoint[] points){
-        Trajectory.Config pointsConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_HIGH, Constants.kTimeStepGlobal, 4, 2, 15);
+        Trajectory.Config pointsConfig = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, Constants.kTimeStepGlobal, 4, 2, 15);
         Trajectory pointsTrajec = Pathfinder.generate(points, pointsConfig);
 
         TankModifier modifier = new TankModifier(pointsTrajec);
@@ -75,6 +76,11 @@ public class pathFollow extends Command {
 
     protected void execute() {
 
+        drivetrain.leftBack.setNeutralMode(NeutralMode.Coast);
+        drivetrain.leftFront.setNeutralMode(NeutralMode.Coast);
+        drivetrain.rightBack.setNeutralMode(NeutralMode.Coast);
+        drivetrain.rightFront.setNeutralMode(NeutralMode.Coast);
+
         kP = SmartDashboard.getNumber("P gain", kP);
         kI = SmartDashboard.getNumber("I gain", kI);
         kD = SmartDashboard.getNumber("D gain", kD);
@@ -89,7 +95,7 @@ public class pathFollow extends Command {
         double gyroHeading = gyro.getYaw();
         double desiredHeading = Pathfinder.r2d(followerLeft.getHeading());
         double angleDifference = Pathfinder.boundHalfDegrees(desiredHeading - gyroHeading);
-        double turn = .8 * (-1.0/80.0) * angleDifference *0; //REMEMBER TO TUNE THIS LATER
+        double turn = .8 * (-1.0/80.0) * angleDifference*0; //REMEMBER TO TUNE THIS LATER
 
         double leftspeed = -(left+turn);
         double rightspeed = -(right-turn);
@@ -100,8 +106,8 @@ public class pathFollow extends Command {
         SmartDashboard.putNumber("left encoder",-drivetrain.leftBack.getSelectedSensorPosition(0));
         SmartDashboard.putNumber("right encoder",-drivetrain.rightFront.getSelectedSensorPosition(0));
 
-        System.out.println(followerLeft.getSegment());
-        System.out.println(followerRight.getSegment());
+//        System.out.println(followerLeft.getSegment());
+//        System.out.println(followerRight.getSegment());
 
         //leftspeed = drive.processDriveChar(leftspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeL,Constants.kLVeloCharInterceptL);
         //rightspeed = drive.processDriveChar(rightspeed,Constants.kLRobotVmax,Constants.kLVeloCharSlopeR,Constants.kLVeloCharInterceptR);

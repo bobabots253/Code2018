@@ -69,8 +69,14 @@ public class OI {
                 new Waypoint(0, 0, 0),
                 new Waypoint(1.524, 0, 0)
         };
+        Waypoint[] runPoints2 = new Waypoint[]{ //TEMPORARY
+                new Waypoint(0, 0, 0),
+                new Waypoint(30, 0, 0)
+        };
 
         dpadRIGHT.whileHeld(new pathFollow(runPoints));
+
+        dpadUP.whileHeld(new pathFollow(runPoints2));
 
     }
 

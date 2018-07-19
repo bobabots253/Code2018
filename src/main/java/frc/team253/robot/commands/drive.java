@@ -1,5 +1,6 @@
 package frc.team253.robot.commands;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -56,8 +57,8 @@ public class drive extends Command {
                 left = -wheel;
                 right = wheel;
             } else if (throttle > kDriveDeadband) { //positive drive values
-                left =-throttle+throttle*wheel);
-                right =-throttle-throttle*wheel;
+                left =throttle+throttle*wheel;
+                right =throttle-throttle*wheel;
             } else { //negative drive values
                 left = throttle+throttle*wheel;
                 right = throttle-throttle*wheel;
@@ -78,9 +79,17 @@ public class drive extends Command {
                 case kOff:
                     break;
             }
+            drivetrain.leftBack.setNeutralMode(NeutralMode.Brake);
+            drivetrain.leftFront.setNeutralMode(NeutralMode.Brake);
+            drivetrain.rightBack.setNeutralMode(NeutralMode.Brake);
+            drivetrain.rightFront.setNeutralMode(NeutralMode.Brake);
 
             drivetrain.drive(left, right);
         } else {
+            drivetrain.leftBack.setNeutralMode(NeutralMode.Brake);
+            drivetrain.leftFront.setNeutralMode(NeutralMode.Brake);
+            drivetrain.rightBack.setNeutralMode(NeutralMode.Brake);
+            drivetrain.rightFront.setNeutralMode(NeutralMode.Brake);
             drivetrain.drive(0, 0);
         }
     }

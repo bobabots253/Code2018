@@ -1,5 +1,6 @@
 package frc.team253.robot;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
@@ -8,6 +9,7 @@ import frc.team253.robot.subsystems.DriveTrain;
 import frc.team253.robot.subsystems.Elevator;
 import frc.team253.robot.subsystems.Limelight;
 import frc.team253.robot.subsystems.Pneumatics;
+import jaci.pathfinder.Waypoint;
 
 public class Robot extends IterativeRobot {
 
@@ -37,10 +39,19 @@ public class Robot extends IterativeRobot {
 
     @Override
     public void autonomousInit() {
+        Waypoint[] runPoints = new Waypoint[]{ //TEMPORARY
+                new Waypoint(0, 0, 0),
+                new Waypoint(1.524, 0, 0)
+        };
+        new pathFollow(runPoints).start();
     }
 
     @Override
     public void teleopInit() {
+        drivetrain.leftBack.setNeutralMode(NeutralMode.Brake);
+        drivetrain.leftFront.setNeutralMode(NeutralMode.Brake);
+        drivetrain.rightBack.setNeutralMode(NeutralMode.Brake);
+        drivetrain.rightFront.setNeutralMode(NeutralMode.Brake);
     }
 
     @Override
