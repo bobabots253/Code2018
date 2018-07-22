@@ -103,8 +103,8 @@ public class pathFollow extends Command {
         SmartDashboard.putNumber("leftspeed",leftspeed);
         SmartDashboard.putNumber("rightspeed",rightspeed);
 
-        SmartDashboard.putNumber("left encoder",-drivetrain.leftBack.getSelectedSensorPosition(0));
-        SmartDashboard.putNumber("right encoder",-drivetrain.rightFront.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("left encoder",drivetrain.leftBack.getSelectedSensorPosition(0));
+        SmartDashboard.putNumber("right encoder",drivetrain.rightFront.getSelectedSensorPosition(0));
 
 //        System.out.println(followerLeft.getSegment());
 //        System.out.println(followerRight.getSegment());
