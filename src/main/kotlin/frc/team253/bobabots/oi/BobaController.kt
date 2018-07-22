@@ -1,9 +1,9 @@
-package frc.team253.BobaBot.oi
+package frc.team253.bobabots.oi
 
 import edu.wpi.first.wpilibj.XboxController
 import edu.wpi.first.wpilibj.buttons.JoystickButton
-import frc.team253.BobaBot.oi.utils.JoystickPOV
-import frc.team253.BobaBot.oi.utils.XBConstants
+import frc.team253.bobabots.oi.utils.JoystickPOV
+import frc.team253.bobabots.oi.utils.XBConstants
 
 class BobaController(port: Int) : XboxController(port) {
     // Buttons

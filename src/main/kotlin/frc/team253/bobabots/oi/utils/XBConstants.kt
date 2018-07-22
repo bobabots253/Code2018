@@ -1,4 +1,4 @@
-package frc.team253.BobaBot.oi.utils
+package frc.team253.bobabots.oi.utils
 
 object XBConstants {
     // Joystick Deadband
